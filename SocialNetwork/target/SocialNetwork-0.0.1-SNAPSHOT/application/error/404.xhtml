@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        <title>Chemico - Animated 404 Error Page</title>
+        
+        <link type="text/css" href="#{request.contextPath}/resources/css/bootstrap.css" rel="stylesheet"/>  <!--BOOTSTRAP 3 CSS FILE-->
+        <link href="#{request.contextPath}/resources/css/css.css" rel="stylesheet" type="text/css"/> <!-- Google web font link-->
+        <link type="text/css" href="#{request.contextPath}/resources/css/font-awesome.css" rel="stylesheet"/> <!--Font Awesome CSS FILE-->
+        <link type="text/css" href="#{request.contextPath}/resources/css/custom.css" rel="stylesheet"/>  <!--CUSTOM CSS FILE-->
+        <link type="text/css" href="#{request.contextPath}/resources/css/animate.css" rel="stylesheet"/>  <!--animate.css FILE-->
+
+</h:head>
+<h:body>
+
+        <section>
+            <div class="container">
+                <div class="row row1">
+                    <div class="col-md-12">
+                        <h3 style="visibility: visible;-webkit-animation-duration: 2s; -moz-animation-duration: 2s; animation-duration: 2s;" class="center capital f1 wow fadeInLeft animated" data-wow-duration="2s">Something went Wrong!</h3>
+                        <h1 style="visibility: visible;-webkit-animation-duration: 2s; -moz-animation-duration: 2s; animation-duration: 2s;" id="error" class="center wow fadeInRight animated" data-wow-duration="2s">404</h1>
+                        <p style="visibility: visible;-webkit-animation-delay: 2s; -moz-animation-delay: 2s; animation-delay: 2s;" class="center wow bounceIn animated" data-wow-delay="2s">Page not Found!</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="visibility: visible;-webkit-animation-delay: 2800ms; -moz-animation-delay: 2800ms; animation-delay: 2800ms;" id="cflask-holder" class="wow fadeIn animated" data-wow-delay="2800ms">
+                            <span style="visibility: visible;-webkit-animation-delay: 3000ms; -moz-animation-delay: 3000ms; animation-delay: 3000ms;" class="wow tada  animated" data-wow-delay="3000ms"><i style="visibility: visible;-webkit-animation-delay: 3300ms; -moz-animation-delay: 3300ms; animation-delay: 3300ms;" class="fa fa-flask fa-5x flask wow flip animated" data-wow-delay="3300ms"></i> 
+                                <i id="b1" class="bubble"></i>
+                                <i id="b2" class="bubble"></i>
+                                <i id="b3" class="bubble"></i>
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row"> <!--Search Form Start-->
+                    <div class="col-md-12">     
+                        <div style="visibility: visible;-webkit-animation-delay: 4000ms; -moz-animation-delay: 4000ms; animation-delay: 4000ms;" class="col-md-6 col-md-offset-3 search-form wow fadeInUp animated" data-wow-delay="4000ms">
+                            <form action="#" method="get">
+                                <input placeholder="Search" class="col-md-9 col-xs-12" type="text"/>
+                                <input value="Search" class="col-md-3 col-xs-12" type="submit"/>
+                            </form>
+                        </div>
+                    </div>
+                </div> <!--Search Form End-->   
+
+
+                <div class="row"> <!--Links Start-->
+                    <div class="col-md-12">
+                        <div class="links-wrapper col-md-6 col-md-offset-3">
+                            <ul class="links col-md-9">
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4400ms; -moz-animation-delay: 4400ms; animation-delay: 4400ms;" class="wow fadeInRight" data-wow-delay="4400ms"><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4300ms; -moz-animation-delay: 4300ms; animation-delay: 4300ms;" class="wow fadeInRight" data-wow-delay="4300ms"><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4200ms; -moz-animation-delay: 4200ms; animation-delay: 4200ms;" class="wow fadeInRight" data-wow-delay="4200ms"><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4200ms; -moz-animation-delay: 4200ms; animation-delay: 4200ms;" class="wow fadeInLeft" data-wow-delay="4200ms"><a href="#"><i class="fa fa-google-plus fa-2x"></i></a></li>
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4300ms; -moz-animation-delay: 4300ms; animation-delay: 4300ms;" class="wow fadeInLeft" data-wow-delay="4300ms"><a href="#"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                                <li style="visibility: hidden; -webkit-animation-name: none; -moz-animation-name: none; animation-name: none;-webkit-animation-delay: 4400ms; -moz-animation-delay: 4400ms; animation-delay: 4400ms;" class="wow fadeInLeft" data-wow-delay="4400ms"><a href="#"><i class="fa fa-dribbble fa-2x"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div> <!-- Links End--> 
+            </div>
+        </section>
+
+        <!--ADDING THE REQUIRED SCRIPT FILES-->
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/jquery-1.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/countUp.js"></script>
+        <script type="text/javascript" src="#{request.contextPath}/resources/js/wow.js"></script>
+
+        <!--Initiating the CountUp Script-->
+        <script type="text/javascript">
+            "use strict";
+            var count = new countUp("error", 0, 404, 0, 3);
+
+            window.onload = function() {
+                // fire animation
+                count.start();
+            }
+        </script>
+
+        <!--Initiating the Wow Script-->
+        <script>  
+            "use strict";
+            var wow = new WOW(
+            {
+                animateClass: 'animated',
+                offset:       100
+            }
+        );
+            wow.init();
+        </script>
+
+
+    
+
+</h:body>
+</html>

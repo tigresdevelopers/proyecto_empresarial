@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+      
+<h:head>
+<title>Home</title>
+</h:head> 
+<h:body> 
+	
+
+	
+	<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" >
+        <h:outputText value="Salir"/>
+    </h:outputLink>
+    
+	<form action="j_spring_security_logout" method="post">
+	<input type="submit" value="Log out" />
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form>
+    
+        
+	<h2>Bienvenidos al Home</h2>
+	<h:form>
+		<label>${prop['config.app.services.web']}</label>
+		<br/>
+		<h:outputLink value="#{prop['config.app.resources.web']}">recursos</h:outputLink>
+		<br/>
+		<h:outputLabel value="#{testclient.nombre}" />
+		<br/>	
+		<h:outputLabel value="#{testclient.usuarioForm.nombre}" />	
+	</h:form>
+
+<script src="${prop['config.app.resources.web']}/js/mytester.js" ></script>
+</h:body> 
+</html>

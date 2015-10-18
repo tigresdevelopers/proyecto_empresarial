@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns="http://www.springframework.org/schema/security"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+ http://www.springframework.org/schema/security 
+ http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+ <http pattern="/application/error/**"    security="none" />
+ <http pattern="/application/security/**" security="none" />
+ <http pattern="/application/template/**" security="none" />
+ 
+ 
+ <http auto-config="true" use-expressions="true" >
+ 
+  <!-- 	<csrf disabled="true"/> -->
+	<intercept-url pattern="/application/view/**" access="hasAnyRole('ROLE_Admin','ROLE_Usuario')" />
+ 	
+ 	<form-login 
+ 	 login-processing-url="/j_spring_security_check"  
+ 	 login-page="/login.tiger"
+ 	 authentication-failure-url="/login.tiger?erro=true" 
+ 	 username-parameter="username"
+ 	 password-parameter="password" />
+ 	 
+ 	 <logout invalidate-session="true" delete-cookies="JSESSIONID" 
+ 	 logout-url="/j_spring_security_logout" logout-success-url="/login.tiger" />
+ 	 <access-denied-handler error-page="/application/error/403.tiger" />
+ 	 
+ </http>
+
+<authentication-manager alias="authenticationManager">
+      <authentication-provider user-service-ref="userDetailsService">
+      <password-encoder hash="bcrypt" />
+      </authentication-provider>
+ </authentication-manager>
+ 
+ 
+ 
+<!-- 
+	<authentication-manager>
+		 <authentication-provider>
+		 <user-service>
+		 <user name="leonxandercs" password="123456" authorities="ROLE_Usuario" />
+		 </user-service>
+		 </authentication-provider>
+	 </authentication-manager>
+  -->
+
+
+</bean:beans>

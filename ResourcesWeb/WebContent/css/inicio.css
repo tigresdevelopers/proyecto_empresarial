@@ -1,0 +1,49 @@
+/******************************
+Wrapper
+******************************/
+#images{
+	display: flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	margin: 1em;
+}
+/******************************
+Image Gallery
+******************************/
+#images .elemento{
+	
+	background: #37962A; /* Old browsers */
+	background: -moz-linear-gradient(top, #499bea 0%, #207ce5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#499bea), color-stop(100%,#207ce5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #499bea 0%,#207ce5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #499bea 0%,#207ce5 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #499bea 0%,#207ce5 100%); /* W3C */
+	list-style:none;
+	margin:0px 5px;
+	opacity:0.6;
+	/*box-shadow:#000 0px 0px 5px 0px;*/
+	-webkit-animation: scale 3s ease-in-out infinite alternate; 
+}
+
+#images .elemento:hover{
+	opacity:1.0;
+}
+.elemento >a > img{
+	width: 35px;
+}
+.margen{
+	margin-bottom: 0px;
+}
+/******************************
+Animations
+******************************/
+@-webkit-keyframes scale {
+  0% {
+	  
+  }
+  
+  100% {
+ 	 -webkit-transform: scale(1.2);
+  }
+}

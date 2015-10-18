@@ -1,0 +1,275 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.social.network</groupId>
+<artifactId>SocialNetwork</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>war</packaging>
+  
+ <properties>
+ 
+  	<!-- Generic properties -->
+	<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<java.version>1.8</java.version>
+	
+	<!-- Spring -->
+	<spring.version>4.0.3.RELEASE</spring.version>
+	<aspectj.version>1.7.4</aspectj.version>
+	
+	<!-- Spring Security -->
+	<spring.security>4.0.2.RELEASE</spring.security>
+	<commons-loggin.version>1.2</commons-loggin.version>
+	
+	<!-- Spring-jackson -->
+	<jackson.databind-version>2.2.3</jackson.databind-version>
+		
+	<!-- JSF Version -->
+	<jsf.version>2.2.10</jsf.version>
+	
+	<!-- Primefaces -->
+	<primefaces.version>5.1</primefaces.version>
+	
+	<!-- Logging -->
+	<logback.version>1.0.13</logback.version>
+	<slf4j.version>1.7.5</slf4j.version>
+	
+ </properties>
+  
+<repositories>
+<!-- Repository for Primefaces themes -->
+	<repository>
+		<id>prime-repo</id>
+		<name>Prime Repo</name>
+		<url>http://repository.primefaces.org</url>
+	</repository>
+</repositories> 
+
+<dependencies>
+ 		<!-- JSF Dependencies -->
+	<dependency>
+		<groupId>com.sun.faces</groupId>
+		<artifactId>jsf-api</artifactId>
+		<version>${jsf.version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>com.sun.faces</groupId>
+		<artifactId>jsf-impl</artifactId>
+		<version>${jsf.version}</version>
+	</dependency>
+	
+	<!-- Primefaces  -->
+ 	<dependency>
+		<groupId>org.primefaces</groupId>
+		<artifactId>primefaces</artifactId>
+		<version>${primefaces.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.primefaces.themes</groupId>
+		<artifactId>delta</artifactId>
+		<version>1.0.10</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.2.4</version>
+	</dependency>
+ 		
+ 	<!-- Spring Dependencies -->
+ 	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-expression</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-web</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<!-- Jackson dependencies -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>${jackson.databind-version}</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.4.1</version>
+	</dependency>
+ 	<!-- @Inject -->
+	<dependency>
+		<groupId>javax.inject</groupId>
+		<artifactId>javax.inject</artifactId>
+		<version>1</version>
+	</dependency>
+	<!-- AspectJ -->
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+		<version>${aspectj.version}</version>
+	</dependency>
+ 		
+ 		<!-- Spring Security -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${spring.security}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${spring.security}</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>${commons-loggin.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+
+	<!-- Logging with SLF4J & LogBack -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>${slf4j.version}</version>
+		<scope>compile</scope>
+   </dependency>
+ 		<!-- log dependency -->
+      <dependency>
+       	<groupId>log4j</groupId>
+       	<artifactId>log4j</artifactId>
+       	<version>1.2.16</version>
+      </dependency>
+      
+      <!-- JSON DEPENDENCY -->
+      <dependency>
+       	<groupId>commons-discovery</groupId>
+       	<artifactId>commons-discovery</artifactId>
+       	<version>0.4</version>
+      </dependency>
+      <dependency>
+       	<groupId>net.sf.json-lib</groupId>
+       	<artifactId>json-lib</artifactId>
+       	<version>2.4</version>
+       	<classifier>jdk15</classifier>
+      </dependency>
+ 	   
+ 	   <!-- http://repo1.maven.org/maven -->
+ 	   <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+		<scope>provided</scope>
+   </dependency>
+ 	   <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+		<version>1.2</version>
+   </dependency>
+   <dependency>
+		<groupId>javax</groupId>
+		<artifactId>javaee-web-api</artifactId>
+		<version>7.0</version>
+		<scope>provided</scope>
+  </dependency>
+  <!-- Domain dependencies -->
+  <dependency>
+   	<groupId>com.social.network</groupId>
+   	<artifactId>Domain</artifactId>
+   	<version>0.0.1-SNAPSHOT</version>
+  </dependency>
+  
+</dependencies>
+  
+ <build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.1</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				<compilerArguments>
+					<endorseddirs>${endorsed.dir}</endorseddirs>
+				</compilerArguments>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.5</version>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<version>2.9</version>
+			<executions>
+				<execution>
+					<phase>validate</phase>
+					<goals>
+						<goal>copy</goal>
+					</goals>
+					<configuration>
+						<outputDirectory>${endorsed.dir}</outputDirectory>
+						<silent>true</silent>
+						<artifactItems>
+							<artifactItem>
+								<groupId>javax</groupId>
+								<artifactId>javaee-endorsed-api</artifactId>
+								<version>7.0</version>
+								<type>jar</type>
+							</artifactItem>
+						</artifactItems>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+</build>
+  
+</project>
