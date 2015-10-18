@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.network.social.domain.bean.Rol;
 import com.network.social.domain.util.ResultObject;
 import com.network.social.domain.util.UtilUser;
+import com.network.social.domain.util.form.RolForm;
 
 /**
  * Handles requests for the application home page.
@@ -47,11 +47,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/security/authenticate/rol/{username}",method=RequestMethod.GET)
-	public @ResponseBody List<Rol> getRoles(@PathVariable String username){
+	public @ResponseBody List<RolForm> getRoles(@PathVariable String username){
 
-		List<Rol> roles=new ArrayList<Rol>();
-		Rol x=new Rol(1, "Usuario");
-		Rol y=new Rol(1, "Admin");
+		List<RolForm> roles=new ArrayList<RolForm>();
+		RolForm x=new RolForm(1, "Usuario");
+		RolForm y=new RolForm(1, "Admin");
 		roles.add(x);
 		roles.add(y);
 		

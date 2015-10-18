@@ -1,8 +1,7 @@
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\controller\TestRestClient.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\spring\security\LoginSuccessHandler.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\form\UsuarioForm.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\spring\util\SpringUser.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\config\PropiedadAdmin.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\spring\security\PasswordEncoder.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\spring\util\AdminConfigPropiedad.java
-H:\Alexander\worskspace_social_network\SocialNetwork\src\main\java\com\network\social\web\spring\security\UserDetailsServiceImpl.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\TestRestClient.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\SpringUser.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\PropiedadAdmin.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\PasswordEncoder.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\AdminConfigPropiedad.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\LoginSuccessHandler.java
+C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\UserDetailsServiceImpl.java

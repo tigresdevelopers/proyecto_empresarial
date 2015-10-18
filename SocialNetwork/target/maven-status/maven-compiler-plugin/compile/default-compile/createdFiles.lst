@@ -5,6 +5,5 @@ com\network\social\web\spring\util\AdminConfigPropiedad$URL_BASE.class
 com\network\social\web\spring\security\LoginSuccessHandler.class
 com\network\social\web\spring\security\UserDetailsServiceImpl.class
 com\network\social\web\controller\TestRestClient.class
-com\network\social\web\form\UsuarioForm.class
 com\network\social\web\spring\util\AdminConfigPropiedad$URI.class
 com\network\social\web\spring\util\SpringUser.class
