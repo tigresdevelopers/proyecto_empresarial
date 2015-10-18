@@ -1,18 +1,22 @@
-package com.network.social.domain.bean;
+package com.network.social.domain.util.form;
 
 import java.io.Serializable;
-
-public class Rol implements Serializable {
+/**
+ * 
+ * @author Pantera
+ *
+ */
+public class RolForm implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
 	private String descripcion;
 	
-	public Rol() {
+	public RolForm() {
 	}
 	
-	public Rol(int id, String descripcion) {
+	public RolForm(int id, String descripcion) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;

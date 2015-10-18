@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.network.social.domain.bean.Rol;
+import com.network.social.domain.util.form.RolForm;
 
 @Entity
 @Table(name = "USUARIO")
@@ -51,7 +51,7 @@ public class Usuario extends BaseBean {
 	private Set<Etiqueta> etiquetas = new HashSet<Etiqueta>(0);
 	private Set<Publicacion> publicacionsForIdusuario = new HashSet<Publicacion>(0);
 	@Transient
-	public Rol[] roles;
+	public RolForm[] roles;
 	
 	
 	public Usuario() {
