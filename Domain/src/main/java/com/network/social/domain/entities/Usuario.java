@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -17,10 +19,23 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.network.social.domain.util.form.RolForm;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.network.social.domain.util.form.RolForm;
+/**
+ * 
+ * @author :Alexander Chavez Simbron
+ * @date   :19/10/2015
+ * @time   :17:25 P.M
+ */
 @Entity
 @Table(name = "USUARIO")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -109,7 +124,8 @@ public class Usuario extends BaseBean {
 	}
 
 	@Id
-
+	@GenericGenerator(name="SQ_GENERATOR",strategy="sequence",parameters={@Parameter(name="sequence",value="SQ_USUARIO")})
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SQ_GENERATOR")
 	@Column(name = "IDUSUARIO", unique = true, nullable = false, precision = 22, scale = 0)
 	public Integer getIdusuario() {
 		return this.idusuario;
@@ -119,6 +135,7 @@ public class Usuario extends BaseBean {
 		this.idusuario = idusuario;
 	}
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDSITUACION", nullable = false)
 	public Situacion getSituacionSentimental() {
@@ -230,6 +247,8 @@ public class Usuario extends BaseBean {
 		this.theme = theme;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<ListaContacto> getListaContactoses() {
 		return this.listaContactoses;
@@ -239,6 +258,8 @@ public class Usuario extends BaseBean {
 		this.listaContactoses = listaContactoses;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuarioReceiver")
 	public Set<Solicitud> getSolicitudsForIdusuarioReceiver() {
 		return this.solicitudsForIdusuarioReceiver;
@@ -248,6 +269,8 @@ public class Usuario extends BaseBean {
 		this.solicitudsForIdusuarioReceiver = solicitudsForIdusuarioReceiver;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Album> getAlbums() {
 		return this.albums;
@@ -257,6 +280,8 @@ public class Usuario extends BaseBean {
 		this.albums = albums;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByMyid")
 	public Set<Contacto> getContactosForMyid() {
 		return this.contactosForMyid;
@@ -266,6 +291,8 @@ public class Usuario extends BaseBean {
 		this.contactosForMyid = contactosForMyid;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
@@ -275,6 +302,8 @@ public class Usuario extends BaseBean {
 		this.comentarios = comentarios;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuarioReceiver")
 	public Set<Publicacion> getPublicacionsForIdusuarioReceiver() {
 		return this.publicacionsForIdusuarioReceiver;
@@ -284,6 +313,8 @@ public class Usuario extends BaseBean {
 		this.publicacionsForIdusuarioReceiver = publicacionsForIdusuarioReceiver;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuario")
 	public Set<Solicitud> getSolicitudsForIdusuario() {
 		return this.solicitudsForIdusuario;
@@ -293,6 +324,8 @@ public class Usuario extends BaseBean {
 		this.solicitudsForIdusuario = solicitudsForIdusuario;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuario")
 	public Set<Contacto> getContactosForIdusuario() {
 		return this.contactosForIdusuario;
@@ -302,6 +335,8 @@ public class Usuario extends BaseBean {
 		this.contactosForIdusuario = contactosForIdusuario;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<GrupoUsuario> getGrupoUsuarios() {
 		return this.grupoUsuarios;
@@ -311,6 +346,8 @@ public class Usuario extends BaseBean {
 		this.grupoUsuarios = grupoUsuarios;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Like> getLikes() {
 		return this.likes;
@@ -320,6 +357,8 @@ public class Usuario extends BaseBean {
 		this.likes = likes;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
 	public Set<Idioma> getIdiomas() {
 		return this.idiomas;
@@ -329,6 +368,7 @@ public class Usuario extends BaseBean {
 		this.idiomas = idiomas;
 	}
 
+	@JsonBackReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Etiqueta> getEtiquetas() {
 		return this.etiquetas;
@@ -338,6 +378,8 @@ public class Usuario extends BaseBean {
 		this.etiquetas = etiquetas;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuario")
 	public Set<Publicacion> getPublicacionsForIdusuario() {
 		return this.publicacionsForIdusuario;

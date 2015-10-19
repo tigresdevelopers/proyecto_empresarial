@@ -7,12 +7,27 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+/**
+ * 
+ * @author :Alexander Chavez Simbron
+ * @date   :19/10/2015
+ * @time   :17:25 P.M
+ */
 @Entity
 @Table(name = "SITUACION_SENTIMENTAL")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Situacion extends BaseBean {
 	private static final long serialVersionUID = 1L;
 	
@@ -34,7 +49,8 @@ public class Situacion extends BaseBean {
 	}
 
 	@Id
-
+	@GenericGenerator(name="SQ_GENERATOR",strategy="sequence",parameters={@Parameter(name="sequence",value="SQ_SITUACION_SENTIMENTAL")})
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SQ_GENERATOR")
 	@Column(name = "IDSITUACION", unique = true, nullable = false, precision = 22, scale = 0)
 	public Integer getIdsituacion() {
 		return this.idsituacion;
@@ -53,6 +69,8 @@ public class Situacion extends BaseBean {
 		this.descripcion = descripcion;
 	}
 
+	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "situacionSentimental")
 	public Set<Usuario> getUsuarios() {
 		return this.usuarios;

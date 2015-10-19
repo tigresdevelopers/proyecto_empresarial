@@ -3,14 +3,28 @@ package com.network.social.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+/**
+ * 
+ * @author :Alexander Chavez Simbron
+ * @date   :19/10/2015
+ * @time   :17:25 P.M
+ */
 @Entity
 @Table(name = "ETIQUETA")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Etiqueta extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +52,8 @@ public class Etiqueta extends BaseBean {
 	}
 
 	@Id
-
+	@GenericGenerator(name="SQ_GENERATOR",strategy="sequence",parameters={@Parameter(name="sequence",value="SQ_ETIQUETA")})
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SQ_GENERATOR")
 	@Column(name = "IDETIQUETA", unique = true, nullable = false, precision = 22, scale = 0)
 	public Integer getIdetiqueta() {
 		return this.idetiqueta;
@@ -48,6 +63,7 @@ public class Etiqueta extends BaseBean {
 		this.idetiqueta = idetiqueta;
 	}
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -58,6 +74,7 @@ public class Etiqueta extends BaseBean {
 		this.multimedia = multimedia;
 	}
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -68,6 +85,7 @@ public class Etiqueta extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {
@@ -77,7 +95,8 @@ public class Etiqueta extends BaseBean {
 	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
 	}
-
+	
+	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
