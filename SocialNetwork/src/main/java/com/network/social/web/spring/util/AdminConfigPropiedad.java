@@ -5,8 +5,8 @@ public class AdminConfigPropiedad {
 	public enum URI {
 		
 		SERVICE_ACCESO_OBTENER_USUARIO("uri.service.acceso.usuario.get"),
-		SERVICE_ACCESO_OBTENER_ROLES("uri.service.acceso.obtenerRoles"),
-		SERVICE_AMQ_MAIL_ENVIAR("uri.service.email.enviar"),
+		SERVICE_ALBUM_BY_USUARIO("uri.service.album.usuario"),
+		SERVICE_ALBUM_CREATE("uri.service.album.create"),
 		SERVICE_VENTA_VENTABYID("uri.service.venta.ventaById");
 		
 		private final String uri;
@@ -32,6 +32,20 @@ public class AdminConfigPropiedad {
 
 		public String getUrl() {
 			return url;
+		}
+	}
+	
+	public static enum LINK {
+		ALBUM_LIST("album.list");
+
+		private final String link;
+
+		LINK(String link) {
+			this.link = link;
+		}
+
+		public String getLink() {
+			return link;
 		}
 	}
 
