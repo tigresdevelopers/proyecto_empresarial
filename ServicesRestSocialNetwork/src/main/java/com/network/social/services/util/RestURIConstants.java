@@ -18,6 +18,12 @@ public class RestURIConstants {
 	public static final String USUARIO_UPDATE="/update";
 	public static final String USUARIO_DELETE="/delete";
 	
+	public static final String MULTIMEDIA="multimedia";
+	public static final String MULTIMEDIA_FIND="/find/{idmultimedia}";
+	public static final String MULTIMEDIA_BULKINSERT="/find";
+	public static final String MULTIMEDIA_CREATE="/create";
+	public static final String MULTIMEDIA_UPDATE="/update";
+	public static final String MULTIMEDIA_DELETE="/delete";
 	
 	
 	public static final String LOGIN = "/cliente/login/{dni}";
