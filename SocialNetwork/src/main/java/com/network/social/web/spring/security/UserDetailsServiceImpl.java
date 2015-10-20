@@ -9,9 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.network.social.domain.entities.Usuario;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.form.RolForm;
 import com.network.social.web.form.UsuarioForm;
@@ -45,30 +41,24 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		LOGGER.info("##userDetailsService.loadUserByUsername:"+username);
 		
 		try {
-			Usuario usuario=null;
 			Set<RolForm> roles=null;
 			String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ACCESO_OBTENER_USUARIO);
 
 			UsuarioForm user=new UsuarioForm();
 			user.setEmail(username);
-			
-			usuario=new Usuario();
-			usuario.setEmail(username);
-//			UsuarioForm usuarioForm=restTemplate.postForObject(url, new HttpEntity<Usuario>(usuario),UsuarioForm.class);
-			usuario=restTemplate.postForObject(url,new HttpEntity<Usuario>(usuario), Usuario.class);
+
+			UsuarioForm usuarioForm=restTemplate.postForObject(url, new HttpEntity<UsuarioForm>(user),UsuarioForm.class);
+//			usuario=restTemplate.postForObject(url,new HttpEntity<Usuario>(usuario), Usuario.class);
 
 			
 			
-			if(usuario!=null){
-//			if(usuarioForm!=null){
-//				usuario=new Usuario();
-//				usuario.setEmail(usuarioForm.getEmail());
-//				usuario.setClave(usuarioForm.getClave());
-//				roles=usuarioForm.getRoles();
-//				
-//				List<GrantedAuthority> authorities=buildUserAuthority(roles);
+			if(usuarioForm!=null){
+				usuarioForm.setEmail(usuarioForm.getEmail());
+				usuarioForm.setClave(usuarioForm.getClave());
+				roles=usuarioForm.getRoles();
+
 				List<GrantedAuthority> authorities=buildUserAuthority(roles);
-				return buildUserForAuthentication(usuario, authorities);
+				return buildUserForAuthentication(usuarioForm, authorities);
 				
 			}else
 				throw new BadCredentialsException("Username not found.");
@@ -80,7 +70,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 	
-	private User buildUserForAuthentication(Usuario usuario,List<GrantedAuthority> authorities){
+	private User buildUserForAuthentication(UsuarioForm usuario,List<GrantedAuthority> authorities){
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;

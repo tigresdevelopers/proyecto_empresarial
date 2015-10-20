@@ -22,11 +22,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.network.social.domain.util.UtilUser;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -35,8 +32,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "USUARIO")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idusuario")
 public class Usuario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -67,7 +62,7 @@ public class Usuario extends BaseBean {
 	private Set<Etiqueta> etiquetas = new HashSet<Etiqueta>(0);
 	private Set<Publicacion> publicacionsForIdusuario = new HashSet<Publicacion>(0);
 	@Transient
-	public Rol[] roles;
+	public Rol[] roles=UtilUser.ROLES;
 	
 	
 	public Usuario() {
@@ -136,7 +131,7 @@ public class Usuario extends BaseBean {
 		this.idusuario = idusuario;
 	}
 
-	@JsonIdentityReference(alwaysAsId=true)
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDSITUACION", nullable = false)
 	public Situacion getSituacionSentimental() {

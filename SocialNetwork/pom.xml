@@ -21,7 +21,7 @@
 	<commons-loggin.version>1.2</commons-loggin.version>
 	
 	<!-- Spring-jackson -->
-	<jackson.databind-version>2.3.3</jackson.databind-version>
+	<jackson.databind-version>2.5.3</jackson.databind-version>
 		
 	<!-- JSF Version -->
 	<jsf.version>2.2.10</jsf.version>
@@ -130,8 +130,13 @@
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
 		<artifactId>jackson-core</artifactId>
-		<version>2.4.1</version>
+		<version>${jackson.databind-version}</version>
 	</dependency>
+	<dependency>
+		  <groupId>com.fasterxml.jackson.datatype</groupId>
+		  <artifactId>jackson-datatype-hibernate4</artifactId>
+		  <version>${jackson.databind-version}</version>
+		</dependency>  
  	<!-- @Inject -->
 	<dependency>
 		<groupId>javax.inject</groupId>
