@@ -15,9 +15,9 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "NOTIFICACIONES", uniqueConstraints = { @UniqueConstraint(columnNames = "IDCOMENTARIO"),
 		@UniqueConstraint(columnNames = "IDPUBLICACION"), @UniqueConstraint(columnNames = "IDLIKE") })
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Notificacion extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -67,8 +68,6 @@ public class Notificacion extends BaseBean {
 		this.idnotificacion = idnotificacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLIKE", unique = true)
 	public Like getLike() {
@@ -79,8 +78,6 @@ public class Notificacion extends BaseBean {
 		this.like = like;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION", unique = true)
 	public Publicacion getPublicacion() {
@@ -91,8 +88,6 @@ public class Notificacion extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO", unique = true)
 	public Comentario getComentario() {

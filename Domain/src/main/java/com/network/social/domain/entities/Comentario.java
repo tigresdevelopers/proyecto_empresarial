@@ -20,10 +20,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * 
@@ -34,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "COMENTARIO")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Comentario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -87,8 +87,6 @@ public class Comentario extends BaseBean {
 		this.idcomentario = idcomentario;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -99,8 +97,6 @@ public class Comentario extends BaseBean {
 		this.multimedia = multimedia;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -111,8 +107,6 @@ public class Comentario extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDALBUM")
 	public Album getAlbum() {
@@ -123,7 +117,6 @@ public class Comentario extends BaseBean {
 		this.album = album;
 	}
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -162,7 +155,6 @@ public class Comentario extends BaseBean {
 		this.likes = likes;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comentario")
 	public Set<Etiqueta> getEtiquetas() {
 		return this.etiquetas;
@@ -172,8 +164,6 @@ public class Comentario extends BaseBean {
 		this.etiquetas = etiquetas;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comentario")
 	public Set<Notificacion> getNotificacioneses() {
 		return this.notificacioneses;
@@ -183,8 +173,6 @@ public class Comentario extends BaseBean {
 		this.notificacioneses = notificacioneses;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comentario")
 	public Set<Like> getLikes_1() {
 		return this.likes_1;
@@ -194,8 +182,6 @@ public class Comentario extends BaseBean {
 		this.likes_1 = likes_1;
 	}
 	
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comentario")
 	public Set<Actividad> getActividads() {
 		return this.actividads;

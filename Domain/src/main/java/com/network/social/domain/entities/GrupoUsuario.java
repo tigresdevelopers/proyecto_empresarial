@@ -14,8 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "GRUPO_USUARIO")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class GrupoUsuario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -65,7 +67,6 @@ public class GrupoUsuario extends BaseBean {
 		this.id = id;
 	}
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false, insertable = false, updatable = false)
 	public Usuario getUsuario() {
@@ -76,7 +77,6 @@ public class GrupoUsuario extends BaseBean {
 		this.usuario = usuario;
 	}
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGRUPO", nullable = false, insertable = false, updatable = false)
 	public Grupo getGrupo() {

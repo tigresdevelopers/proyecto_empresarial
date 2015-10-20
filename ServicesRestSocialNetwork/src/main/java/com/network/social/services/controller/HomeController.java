@@ -13,19 +13,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.network.social.domain.entities.Actividad;
-import com.network.social.domain.entities.Album;
-import com.network.social.domain.entities.Contacto;
 import com.network.social.domain.entities.Etiqueta;
 import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.ResultObject;
-import com.network.social.domain.util.UtilUser;
-import com.network.social.domain.util.form.RolForm;
 import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.AlbumService;
 import com.network.social.services.service.ComentarioService;
@@ -122,12 +116,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="etiqueta/list",method=RequestMethod.GET)
-	public @ResponseBody List<Etiqueta> getEtiquetas(@PathVariable Integer  id){
+	public @ResponseBody List<Etiqueta> getEtiquetas(){
 		return etiquetaService.findAll();
 	}
 	
 	@RequestMapping(value="usuario/list",method=RequestMethod.GET)
-	public @ResponseBody List<Usuario> getUsuarios(@PathVariable Integer  id){
+	public @ResponseBody List<Usuario> getUsuarios(){
 		return usuarioService.findAll();
 	}
 	

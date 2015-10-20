@@ -18,10 +18,9 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -31,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "ALBUM", uniqueConstraints = @UniqueConstraint(columnNames = "IDPUBLICACION") )
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Album extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -80,8 +80,6 @@ public class Album extends BaseBean {
 		this.idalbum = idalbum;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION", unique = true, nullable = false)
 	public Publicacion getPublicacion() {
@@ -92,8 +90,6 @@ public class Album extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
-	@JsonBackReference 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO")
 	public Usuario getUsuario() {
@@ -104,8 +100,6 @@ public class Album extends BaseBean {
 		this.usuario = usuario;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGRUPO")
 	public Grupo getGrupo() {
@@ -143,7 +137,6 @@ public class Album extends BaseBean {
 		this.likes = likes;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -153,7 +146,6 @@ public class Album extends BaseBean {
 		this.multimedias = multimedias;
 	}
 	
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Like> getLikes_1() {
 		return this.likes_1;
@@ -163,7 +155,6 @@ public class Album extends BaseBean {
 		this.likes_1 = likes_1;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;

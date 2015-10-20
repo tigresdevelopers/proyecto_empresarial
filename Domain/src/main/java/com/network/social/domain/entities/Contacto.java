@@ -17,9 +17,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "CONTACTO")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Contacto extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -79,8 +80,6 @@ public class Contacto extends BaseBean {
 		this.idcontacto = idcontacto;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLISTA_CONTACTOS")
 	public ListaContacto getListaContactos() {
@@ -91,8 +90,6 @@ public class Contacto extends BaseBean {
 		this.listaContactos = listaContactos;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MYID", nullable = false)
 	public Usuario getUsuarioByMyid() {
@@ -103,8 +100,6 @@ public class Contacto extends BaseBean {
 		this.usuarioByMyid = usuarioByMyid;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuarioByIdusuario() {
@@ -115,8 +110,6 @@ public class Contacto extends BaseBean {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 	
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDTIPO_CONTACTO")
 	public TipoContacto getTipoContacto() {

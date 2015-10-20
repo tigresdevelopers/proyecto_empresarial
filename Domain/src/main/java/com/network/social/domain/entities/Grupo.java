@@ -18,8 +18,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "GRUPO")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Grupo extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -98,7 +100,6 @@ public class Grupo extends BaseBean {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<Album> getAlbums() {
 		return this.albums;
@@ -108,7 +109,6 @@ public class Grupo extends BaseBean {
 		this.albums = albums;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;
@@ -118,7 +118,6 @@ public class Grupo extends BaseBean {
 		this.publicacions = publicacions;
 	}
 
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<GrupoUsuario> getGrupoUsuarios() {
 		return this.grupoUsuarios;

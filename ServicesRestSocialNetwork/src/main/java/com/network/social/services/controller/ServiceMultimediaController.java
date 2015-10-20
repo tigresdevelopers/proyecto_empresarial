@@ -1,9 +1,18 @@
 package com.network.social.services.controller;
 
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA;
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_BULKINSERT;
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_CREATE;
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_DELETE;
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_FIND;
+import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_UPDATE;
+
+import java.util.Iterator;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,26 +23,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.network.social.domain.entities.Album;
-import com.network.social.domain.entities.Comentario;
 import com.network.social.domain.entities.Multimedia;
 import com.network.social.domain.entities.Publicacion;
 import com.network.social.domain.util.BResult;
-import com.network.social.domain.util.form.AlbumForm;
-import com.network.social.domain.util.form.ComentarioForm;
-import com.network.social.domain.util.form.MultimediaForm;
-import com.network.social.domain.util.form.UsuarioForm;
 import com.network.social.services.config.PropiedadService;
 import com.network.social.services.service.MultimediaService;
 import com.network.social.services.service.PublicacionService;
 import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
-import com.network.social.services.util.UtilEnum.ESTADO_REGISTRO_BASE;
-
-import static  com.network.social.services.util.RestURIConstants.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 /**
 * @author : Alexander Chavez Simbron
@@ -58,39 +55,10 @@ public class ServiceMultimediaController {
 
 	
 	@RequestMapping(value=MULTIMEDIA_FIND,method=RequestMethod.GET)
-	private ResponseEntity<MultimediaForm> find(@PathVariable Integer idmultimedia){
+	private ResponseEntity<Multimedia> find(@PathVariable Integer idmultimedia){
 		
-		MultimediaForm multimediaForm=new MultimediaForm();
 		Multimedia multimedia=multimediaService.findById(idmultimedia);
-		multimediaForm.setIdmultimedia(multimedia.getIdmultimedia());
-		multimediaForm.setLikes(multimedia.getLikes());
-		multimediaForm.setNombreArchivo(multimedia.getNombreArchivo());
-		
-		AlbumForm albumFrom=new AlbumForm();
-		albumFrom.setIdalbum(multimedia.getAlbum().getIdalbum());
-		
-		multimediaForm.setAlbum(albumFrom);
-		
-		List<ComentarioForm> comentarioForms=new ArrayList<>();
-		ComentarioForm comentarioForm=null;
-		
-		for (Comentario comentario : multimedia.getComentarios()) {
-			 comentarioForm=new ComentarioForm();
-			 comentarioForm.setIdcomentario(comentario.getIdcomentario());
-//			 comentarioForm.setContenido(comentario.getContenido());
-			 
-			 UsuarioForm usuarioForm=new UsuarioForm();
-			 usuarioForm.setIdusuario(comentario.getUsuario().getIdusuario());
-			 
-			 comentarioForm.setUsuario(usuarioForm);
-			 comentarioForm.setLikes(comentario.getLikes());
-			 comentarioForm.setMultimedia(multimediaForm);
-		}
-		
-//		multimediaForm.setComentarios(multimedia.getComentarios());
-//		multimediaForm.setEtiquetas(multimedia.getEtiquetas());
-		
-		return new ResponseEntity<MultimediaForm>(multimediaForm, HttpStatus.ACCEPTED);
+		return new ResponseEntity<Multimedia>(multimedia, HttpStatus.ACCEPTED);
 	}
 	
 	

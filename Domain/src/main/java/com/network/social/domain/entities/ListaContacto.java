@@ -21,10 +21,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -34,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "LISTA_CONTACTOS")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class ListaContacto extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -76,8 +76,6 @@ public class ListaContacto extends BaseBean {
 		this.idlistaContactos = idlistaContactos;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -107,8 +105,6 @@ public class ListaContacto extends BaseBean {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -118,8 +114,6 @@ public class ListaContacto extends BaseBean {
 		this.multimedias = multimedias;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Contacto> getContactos() {
 		return this.contactos;
@@ -129,8 +123,6 @@ public class ListaContacto extends BaseBean {
 		this.contactos = contactos;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;

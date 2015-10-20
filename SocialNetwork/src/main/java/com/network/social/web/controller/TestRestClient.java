@@ -10,8 +10,8 @@ import javax.faces.bean.ManagedProperty;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.domain.util.ResultObject;
-import com.network.social.domain.util.form.UsuarioForm;
 import com.network.social.web.config.PropiedadAdmin;
+import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 
 @ManagedBean(name="testclient")

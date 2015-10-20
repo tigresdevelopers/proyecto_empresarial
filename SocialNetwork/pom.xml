@@ -21,7 +21,7 @@
 	<commons-loggin.version>1.2</commons-loggin.version>
 	
 	<!-- Spring-jackson -->
-	<jackson.databind-version>2.2.3</jackson.databind-version>
+	<jackson.databind-version>2.3.3</jackson.databind-version>
 		
 	<!-- JSF Version -->
 	<jsf.version>2.2.10</jsf.version>

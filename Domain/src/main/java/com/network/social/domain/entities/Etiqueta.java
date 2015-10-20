@@ -13,9 +13,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "ETIQUETA")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Etiqueta extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +64,6 @@ public class Etiqueta extends BaseBean {
 		this.idetiqueta = idetiqueta;
 	}
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -74,7 +74,6 @@ public class Etiqueta extends BaseBean {
 		this.multimedia = multimedia;
 	}
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -85,7 +84,6 @@ public class Etiqueta extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {
@@ -96,7 +94,6 @@ public class Etiqueta extends BaseBean {
 		this.comentario = comentario;
 	}
 	
-	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {

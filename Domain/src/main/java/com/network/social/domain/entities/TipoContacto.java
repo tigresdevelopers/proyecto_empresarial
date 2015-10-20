@@ -15,9 +15,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "TIPO_CONTACTO")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class TipoContacto extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -73,8 +74,6 @@ public class TipoContacto extends BaseBean {
 		this.nombre = nombre;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -84,8 +83,6 @@ public class TipoContacto extends BaseBean {
 		this.multimedias = multimedias;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Contacto> getContactos() {
 		return this.contactos;
@@ -95,8 +92,6 @@ public class TipoContacto extends BaseBean {
 		this.contactos = contactos;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;

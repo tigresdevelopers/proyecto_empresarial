@@ -18,10 +18,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -31,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "PUBLICACION")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Publicacion extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -93,8 +93,6 @@ public class Publicacion extends BaseBean {
 		this.idpublicacion = idpublicacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLISTA_CONTACTOS")
 	public ListaContacto getListaContactos() {
@@ -105,8 +103,6 @@ public class Publicacion extends BaseBean {
 		this.listaContactos = listaContactos;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO_RECEIVER")
 	public Usuario getUsuarioByIdusuarioReceiver() {
@@ -117,8 +113,6 @@ public class Publicacion extends BaseBean {
 		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO")
 	public Usuario getUsuarioByIdusuario() {
@@ -129,8 +123,6 @@ public class Publicacion extends BaseBean {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDTIPO_CONTACTO")
 	public TipoContacto getTipoContacto() {
@@ -141,8 +133,6 @@ public class Publicacion extends BaseBean {
 		this.tipoContacto = tipoContacto;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGRUPO")
 	public Grupo getGrupo() {
@@ -180,7 +170,6 @@ public class Publicacion extends BaseBean {
 		this.likes = likes;
 	}
 	
-	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Etiqueta> getEtiquetas() {
 		return this.etiquetas;
@@ -190,8 +179,6 @@ public class Publicacion extends BaseBean {
 		this.etiquetas = etiquetas;
 	}
 	
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Album> getAlbums() {
 		return this.albums;
@@ -201,8 +188,6 @@ public class Publicacion extends BaseBean {
 		this.albums = albums;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Actividad> getActividads() {
 		return this.actividads;
@@ -212,8 +197,6 @@ public class Publicacion extends BaseBean {
 		this.actividads = actividads;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -223,8 +206,6 @@ public class Publicacion extends BaseBean {
 		this.multimedias = multimedias;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Like> getLikes_1() {
 		return this.likes_1;
@@ -234,8 +215,6 @@ public class Publicacion extends BaseBean {
 		this.likes_1 = likes_1;
 	}
 	
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
@@ -245,8 +224,6 @@ public class Publicacion extends BaseBean {
 		this.comentarios = comentarios;
 	}
 
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Notificacion> getNotificacioneses() {
 		return this.notificacioneses;

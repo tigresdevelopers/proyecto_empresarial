@@ -18,9 +18,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "SOLICITUD")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Solicitud extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -71,8 +72,6 @@ public class Solicitud extends BaseBean {
 		this.idsolicitud = idsolicitud;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO_RECEIVER", nullable = false)
 	public Usuario getUsuarioByIdusuarioReceiver() {
@@ -83,8 +82,6 @@ public class Solicitud extends BaseBean {
 		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuarioByIdusuario() {

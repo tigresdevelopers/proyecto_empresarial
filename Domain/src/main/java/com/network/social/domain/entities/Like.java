@@ -21,10 +21,9 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -34,6 +33,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "\"Like\"")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="@id")
 public class Like extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -82,8 +82,6 @@ public class Like extends BaseBean {
 		this.idlike = idlike;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -94,8 +92,6 @@ public class Like extends BaseBean {
 		this.multimedia = multimedia;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -106,8 +102,6 @@ public class Like extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDALBUM")
 	public Album getAlbum() {
@@ -118,8 +112,6 @@ public class Like extends BaseBean {
 		this.album = album;
 	}
 
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {
@@ -130,8 +122,6 @@ public class Like extends BaseBean {
 		this.comentario = comentario;
 	}
 	
-	@JsonBackReference
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -152,8 +142,6 @@ public class Like extends BaseBean {
 		this.fechaRegistro = fechaRegistro;
 	}
 	
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "like")
 	public Set<Notificacion> getNotificacioneses() {
 		return this.notificacioneses;
@@ -163,8 +151,6 @@ public class Like extends BaseBean {
 		this.notificacioneses = notificacioneses;
 	}
 	
-	@JsonManagedReference
-	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "like")
 	public Set<Actividad> getActividads() {
 		return this.actividads;
