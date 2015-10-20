@@ -14,11 +14,12 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.network.social.web.spring.util.AdminConfigPropiedad.LINK;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URL_BASE;
 
 /**
- * Proyecto: WebSaas
+ * Proyecto: Social Network
  * 
  * @date : 6/5/2015
  * @time : 11:17:35
@@ -26,7 +27,10 @@ import com.network.social.web.spring.util.AdminConfigPropiedad.URL_BASE;
  */
 
 @Service("propiedadAdmin")
-@PropertySources({ @PropertySource(value = "classpath:/configuration/configIP.properties", ignoreResourceNotFound = false), @PropertySource(value = "classpath:/configuration/configUri.properties", ignoreResourceNotFound = false) })
+@PropertySources({ @PropertySource(value = "classpath:/configuration/configIP.properties", ignoreResourceNotFound = false),
+	@PropertySource(value = "classpath:/configuration/configUri.properties", ignoreResourceNotFound = false),
+	@PropertySource(value="classpath:/configuration/links/navigationLinks.properties",ignoreResourceNotFound=false)
+})
 public class PropiedadAdmin {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(PropiedadAdmin.class);
@@ -61,6 +65,10 @@ public class PropiedadAdmin {
 
 	public String getURIServiceWeb(URI uri) {
 		return getProperty(URL_BASE.SERVICIOS_WEB.getUrl()) + getProperty(uri.getUri());
+	}
+	
+	public String getLinkUrl(LINK link){
+		return getProperty(link.getLink());
 	}
 		
 }
