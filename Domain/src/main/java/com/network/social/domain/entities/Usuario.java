@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.network.social.domain.util.form.RolForm;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -66,7 +65,7 @@ public class Usuario extends BaseBean {
 	private Set<Etiqueta> etiquetas = new HashSet<Etiqueta>(0);
 	private Set<Publicacion> publicacionsForIdusuario = new HashSet<Publicacion>(0);
 	@Transient
-	public RolForm[] roles;
+	public Rol[] roles;
 	
 	
 	public Usuario() {

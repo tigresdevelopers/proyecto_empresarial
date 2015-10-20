@@ -1,6 +1,7 @@
 package com.network.social.domain.util;
 
-import com.network.social.domain.util.form.RolForm;
+import com.network.social.domain.entities.Rol;
+
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -12,6 +13,7 @@ public class UtilUser {
 
 	public static final String USERNAME="leonxandercs";
 	public static final String PASSWORD="$2a$10$iLRdgu/NIm/1UOZZvPeBn.XOdH.kcKOS1.C2kFiWkEdVbPsfEADZu";
-	public static final RolForm[] ROLES=new RolForm[]{new RolForm(1, "Usuario"),new RolForm(2,"Admin")};
+	public static final Rol[] ROLES=new Rol[]{new Rol(1, "Usuario"),new Rol(2,"Admin")};
+		
 	
 }
