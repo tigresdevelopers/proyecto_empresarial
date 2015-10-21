@@ -52,6 +52,11 @@ public class UsuarioForm extends BaseForm {
 	}
 
 	
+	public UsuarioForm(Integer idusuario) {
+		super();
+		this.idusuario = idusuario;
+	}
+
 	public UsuarioForm(Integer idusuario, SituacionForm situacionSentimental,
 			String nombre, String apePaterno, String apeMaterno,
 			Date fechaNacimiento, String email, String clave, String celular,

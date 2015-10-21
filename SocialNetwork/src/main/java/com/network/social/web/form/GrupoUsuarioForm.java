@@ -19,6 +19,20 @@ public class GrupoUsuarioForm extends BaseForm {
 	public GrupoUsuarioForm() {
 	}
 
+	public GrupoUsuarioForm(UsuarioForm usuario) {
+		super();
+		this.usuario = usuario;
+	}
+
+	public GrupoUsuarioForm(UsuarioForm usuario, GrupoForm grupo, char admin,
+			Date fechaRegistro) {
+		super();
+		this.usuario = usuario;
+		this.grupo = grupo;
+		this.admin = admin;
+		this.fechaRegistro = fechaRegistro;
+	}
+
 	public UsuarioForm getUsuario() {
 		return usuario;
 	}

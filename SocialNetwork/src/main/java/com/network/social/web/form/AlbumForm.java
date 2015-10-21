@@ -25,6 +25,31 @@ public class AlbumForm extends BaseForm {
 	public AlbumForm() {
 	}
 
+	
+	public AlbumForm(Integer idalbum) {
+		super();
+		this.idalbum = idalbum;
+	}
+
+
+	public AlbumForm(Integer idalbum, PublicacionForm publicacion,
+			UsuarioForm usuario, GrupoForm grupo, String nombre,
+			String descripcion, Integer likes, Set<MultimediaForm> multimedias,
+			Set<LikeForm> likes_1, Set<ComentarioForm> comentarios) {
+		super();
+		this.idalbum = idalbum;
+		this.publicacion = publicacion;
+		this.usuario = usuario;
+		this.grupo = grupo;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.likes = likes;
+		this.multimedias = multimedias;
+		this.likes_1 = likes_1;
+		this.comentarios = comentarios;
+	}
+
+
 	public Integer getIdalbum() {
 		return idalbum;
 	}

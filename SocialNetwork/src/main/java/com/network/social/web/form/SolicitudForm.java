@@ -20,6 +20,22 @@ public class SolicitudForm extends BaseForm {
 	public SolicitudForm() {
 	}
 
+	public SolicitudForm(Integer idsolicitud) {
+		super();
+		this.idsolicitud = idsolicitud;
+	}
+
+	public SolicitudForm(Integer idsolicitud,
+			UsuarioForm usuarioByIdusuarioReceiver,
+			UsuarioForm usuarioByIdusuario, Date fechaSolicitud, Integer estado) {
+		super();
+		this.idsolicitud = idsolicitud;
+		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
+		this.usuarioByIdusuario = usuarioByIdusuario;
+		this.fechaSolicitud = fechaSolicitud;
+		this.estado = estado;
+	}
+
 	public Integer getIdsolicitud() {
 		return idsolicitud;
 	}

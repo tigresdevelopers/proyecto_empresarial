@@ -25,6 +25,25 @@ public class GrupoForm extends BaseForm {
 	public GrupoForm() {
 	}
 
+	public GrupoForm(Integer idgrupo) {
+		super();
+		this.idgrupo = idgrupo;
+	}
+
+	public GrupoForm(Integer idgrupo, String nombre, String descripcion,
+			Date fechaCreacion, Set<AlbumForm> albums,
+			Set<PublicacionForm> publicacions,
+			Set<GrupoUsuarioForm> grupoUsuarios) {
+		super();
+		this.idgrupo = idgrupo;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.albums = albums;
+		this.publicacions = publicacions;
+		this.grupoUsuarios = grupoUsuarios;
+	}
+
 	public Integer getIdgrupo() {
 		return idgrupo;
 	}

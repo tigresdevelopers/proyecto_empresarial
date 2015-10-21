@@ -22,6 +22,29 @@ public class ContactoForm extends BaseForm {
 	public ContactoForm() {
 	}
 
+	
+	public ContactoForm(Integer idcontacto) {
+		super();
+		this.idcontacto = idcontacto;
+	}
+
+
+	public ContactoForm(Integer idcontacto, ListaContactoForm listaContactos,
+			UsuarioForm usuarioByMyid, UsuarioForm usuarioByIdusuario,
+			TipoContactoForm tipoContacto, Date fechaInicioAmistad,
+			char seguidor, char bloqueado) {
+		super();
+		this.idcontacto = idcontacto;
+		this.listaContactos = listaContactos;
+		this.usuarioByMyid = usuarioByMyid;
+		this.usuarioByIdusuario = usuarioByIdusuario;
+		this.tipoContacto = tipoContacto;
+		this.fechaInicioAmistad = fechaInicioAmistad;
+		this.seguidor = seguidor;
+		this.bloqueado = bloqueado;
+	}
+
+
 	public Integer getIdcontacto() {
 		return idcontacto;
 	}

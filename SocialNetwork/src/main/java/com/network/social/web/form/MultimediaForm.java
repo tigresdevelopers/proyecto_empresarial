@@ -26,6 +26,36 @@ public class MultimediaForm extends BaseForm {
 
 	public MultimediaForm() {
 	}
+	
+	
+
+	public MultimediaForm(Integer idmultimedia) {
+		super();
+		this.idmultimedia = idmultimedia;
+	}
+
+	public MultimediaForm(Integer idmultimedia, PublicacionForm publicacion,
+			AlbumForm album, ListaContactoForm listaContactos,
+			TipoContactoForm tipoContacto, String nombreArchivo,
+			String descripcion, Integer tipo, Integer likes,
+			Set<ComentarioForm> comentarios, Set<LikeForm> likes_1,
+			Set<EtiquetaForm> etiquetas) {
+		super();
+		this.idmultimedia = idmultimedia;
+		this.publicacion = publicacion;
+		this.album = album;
+		this.listaContactos = listaContactos;
+		this.tipoContacto = tipoContacto;
+		this.nombreArchivo = nombreArchivo;
+		this.descripcion = descripcion;
+		this.tipo = tipo;
+		this.likes = likes;
+		this.comentarios = comentarios;
+		this.likes_1 = likes_1;
+		this.etiquetas = etiquetas;
+	}
+
+
 
 	public Integer getIdmultimedia() {
 		return idmultimedia;

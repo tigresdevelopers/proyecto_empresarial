@@ -28,6 +28,11 @@ public class ComentarioForm extends BaseForm {
 	public ComentarioForm() {
 	}
 
+	public ComentarioForm(Integer idcomentario) {
+		super();
+		this.idcomentario = idcomentario;
+	}
+	
 	public ComentarioForm(Integer idcomentario, UsuarioForm usuario) {
 		this.idcomentario = idcomentario;
 		this.usuario = usuario;

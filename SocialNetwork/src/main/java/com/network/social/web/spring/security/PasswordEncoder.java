@@ -2,10 +2,9 @@ package com.network.social.web.spring.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
- * 
- * @author Alexander Chavez
- * @date   11/10/2015
- * @time   2:20pm
+ * @author :Alexander Chavez Simbron
+ * @date   :20/10/2015
+ * @time   :13:18:13
  */
 public class PasswordEncoder {
 

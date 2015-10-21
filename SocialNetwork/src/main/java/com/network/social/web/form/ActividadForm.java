@@ -21,6 +21,30 @@ public class ActividadForm extends BaseForm {
 	public ActividadForm() {
 	}
 
+	
+	
+	public ActividadForm(Integer idactividad) {
+		super();
+		this.idactividad = idactividad;
+	}
+
+
+
+	public ActividadForm(Integer idactividad, LikeForm like,
+			PublicacionForm publicacion, ComentarioForm comentario,
+			String descripcion, Integer idusuario, Date fechaActividad) {
+		super();
+		this.idactividad = idactividad;
+		this.like = like;
+		this.publicacion = publicacion;
+		this.comentario = comentario;
+		this.descripcion = descripcion;
+		this.idusuario = idusuario;
+		this.fechaActividad = fechaActividad;
+	}
+
+
+
 	public Integer getIdactividad() {
 		return idactividad;
 	}

@@ -31,6 +31,45 @@ public class PublicacionForm extends BaseForm {
 	public PublicacionForm() {
 	}
 
+	
+	
+	public PublicacionForm(Integer idpublicacion) {
+		super();
+		this.idpublicacion = idpublicacion;
+	}
+
+
+
+	public PublicacionForm(Integer idpublicacion,
+			ListaContactoForm listaContactos,
+			UsuarioForm usuarioByIdusuarioReceiver,
+			UsuarioForm usuarioByIdusuario, TipoContactoForm tipoContacto,
+			GrupoForm grupo, String contenido, String nombreArchivo,
+			Integer likes, Set<EtiquetaForm> etiquetas, Set<AlbumForm> albums,
+			Set<ActividadForm> actividads, Set<MultimediaForm> multimedias,
+			Set<LikeForm> likes_1, Set<ComentarioForm> comentarios,
+			Set<NotificacionForm> notificacioneses) {
+		super();
+		this.idpublicacion = idpublicacion;
+		this.listaContactos = listaContactos;
+		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
+		this.usuarioByIdusuario = usuarioByIdusuario;
+		this.tipoContacto = tipoContacto;
+		this.grupo = grupo;
+		this.contenido = contenido;
+		this.nombreArchivo = nombreArchivo;
+		this.likes = likes;
+		this.etiquetas = etiquetas;
+		this.albums = albums;
+		this.actividads = actividads;
+		this.multimedias = multimedias;
+		this.likes_1 = likes_1;
+		this.comentarios = comentarios;
+		this.notificacioneses = notificacioneses;
+	}
+
+
+
 	public Integer getIdpublicacion() {
 		return idpublicacion;
 	}

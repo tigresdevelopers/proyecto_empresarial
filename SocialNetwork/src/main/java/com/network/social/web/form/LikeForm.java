@@ -26,6 +26,28 @@ public class LikeForm extends BaseForm {
 	public LikeForm() {
 	}
 
+	public LikeForm(Integer idlike) {
+		super();
+		this.idlike = idlike;
+	}
+
+	public LikeForm(Integer idlike, MultimediaForm multimedia,
+			PublicacionForm publicacion, AlbumForm album,
+			ComentarioForm comentario, UsuarioForm usuario, Date fechaRegistro,
+			Set<NotificacionForm> notificacioneses,
+			Set<ActividadForm> actividads) {
+		super();
+		this.idlike = idlike;
+		this.multimedia = multimedia;
+		this.publicacion = publicacion;
+		this.album = album;
+		this.comentario = comentario;
+		this.usuario = usuario;
+		this.fechaRegistro = fechaRegistro;
+		this.notificacioneses = notificacioneses;
+		this.actividads = actividads;
+	}
+
 	public Integer getIdlike() {
 		return idlike;
 	}

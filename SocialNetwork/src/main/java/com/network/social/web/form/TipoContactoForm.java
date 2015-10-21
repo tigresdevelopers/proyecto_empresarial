@@ -20,6 +20,22 @@ public class TipoContactoForm extends BaseForm {
 	public TipoContactoForm() {
 	}
 
+	public TipoContactoForm(Integer idtipoContacto) {
+		super();
+		this.idtipoContacto = idtipoContacto;
+	}
+
+	public TipoContactoForm(Integer idtipoContacto, String nombre,
+			Set<MultimediaForm> multimedias, Set<ContactoForm> contactos,
+			Set<PublicacionForm> publicacions) {
+		super();
+		this.idtipoContacto = idtipoContacto;
+		this.nombre = nombre;
+		this.multimedias = multimedias;
+		this.contactos = contactos;
+		this.publicacions = publicacions;
+	}
+
 	public Integer getIdtipoContacto() {
 		return idtipoContacto;
 	}

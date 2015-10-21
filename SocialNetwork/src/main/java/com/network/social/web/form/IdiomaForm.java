@@ -18,6 +18,18 @@ public class IdiomaForm extends BaseForm {
 	public IdiomaForm() {
 	}
 
+	public IdiomaForm(Integer ididioma) {
+		super();
+		this.ididioma = ididioma;
+	}
+
+	public IdiomaForm(Integer ididioma, String nombre, Set<UsuarioForm> usuarios) {
+		super();
+		this.ididioma = ididioma;
+		this.nombre = nombre;
+		this.usuarios = usuarios;
+	}
+
 	public Integer getIdidioma() {
 		return ididioma;
 	}

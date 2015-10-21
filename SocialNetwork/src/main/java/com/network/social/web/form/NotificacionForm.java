@@ -18,6 +18,23 @@ public class NotificacionForm extends BaseForm {
 	public NotificacionForm() {
 	}
 
+	public NotificacionForm(Integer idnotificacion) {
+		super();
+		this.idnotificacion = idnotificacion;
+	}
+
+	public NotificacionForm(Integer idnotificacion, LikeForm like,
+			PublicacionForm publicacion, ComentarioForm comentario,
+			Character leido, String descripcion) {
+		super();
+		this.idnotificacion = idnotificacion;
+		this.like = like;
+		this.publicacion = publicacion;
+		this.comentario = comentario;
+		this.leido = leido;
+		this.descripcion = descripcion;
+	}
+
 	public Integer getIdnotificacion() {
 		return idnotificacion;
 	}

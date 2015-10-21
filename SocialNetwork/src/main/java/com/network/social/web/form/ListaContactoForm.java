@@ -24,6 +24,24 @@ public class ListaContactoForm extends BaseForm {
 	public ListaContactoForm() {
 	}
 
+	public ListaContactoForm(Integer idlistaContactos) {
+		super();
+		this.idlistaContactos = idlistaContactos;
+	}
+
+	public ListaContactoForm(Integer idlistaContactos, UsuarioForm usuario,
+			String nombre, Date fechaCreacion, Set<MultimediaForm> multimedias,
+			Set<ContactoForm> contactos, Set<PublicacionForm> publicacions) {
+		super();
+		this.idlistaContactos = idlistaContactos;
+		this.usuario = usuario;
+		this.nombre = nombre;
+		this.fechaCreacion = fechaCreacion;
+		this.multimedias = multimedias;
+		this.contactos = contactos;
+		this.publicacions = publicacions;
+	}
+
 	public Integer getIdlistaContactos() {
 		return idlistaContactos;
 	}

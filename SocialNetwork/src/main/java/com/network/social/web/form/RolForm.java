@@ -16,6 +16,11 @@ public class RolForm extends BaseForm {
 	public RolForm() {
 	}
 	
+	public RolForm(int id) {
+		super();
+		this.id = id;
+	}
+
 	public RolForm(int id, String descripcion) {
 		super();
 		this.id = id;
