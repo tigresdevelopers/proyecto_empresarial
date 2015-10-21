@@ -45,6 +45,13 @@ public class Actividad extends BaseBean {
 
 	public Actividad() {
 	}
+	
+	
+
+	public Actividad(Integer idactividad) {
+		super();
+		this.idactividad = idactividad;
+	}
 
 	public Actividad(Integer idactividad, Integer idusuario) {
 		this.idactividad = idactividad;

@@ -4,7 +4,7 @@ package com.network.social.services.util;
 public class RestURIConstants {
 	
 	public static final String GET_ALL="/list";
-	public static final String GET_FILTERING="/list/{filter}";
+	public static final String GET_FILTERING="/list/filtering/{filter}";
 	public static final String GET="/get{id}";
 	public static final String POST="/create";
 	public static final String PUT="/update";
