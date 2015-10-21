@@ -26,7 +26,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.network.social.domain.util.UtilUser;
@@ -39,7 +38,6 @@ import com.network.social.domain.util.UtilUser;
 @Entity
 @Table(name = "USUARIO")
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idusuario")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -301,6 +299,7 @@ public class Usuario extends BaseBean {
 	}
 	
 	@JsonIgnore
+	@JsonBackReference(value="comentario-usuario")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
@@ -321,6 +320,7 @@ public class Usuario extends BaseBean {
 	}
 
 	@JsonIgnore
+	@JsonBackReference("solicitud-usuario")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuario")
 	public Set<Solicitud> getSolicitudsForIdusuario() {
 		return this.solicitudsForIdusuario;
@@ -381,6 +381,7 @@ public class Usuario extends BaseBean {
 		this.etiquetas = etiquetas;
 	}
 
+	@JsonBackReference(value="publicacion-usuario")
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioByIdusuario")
 	public Set<Publicacion> getPublicacionsForIdusuario() {

@@ -22,6 +22,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -80,6 +83,7 @@ public class Like extends BaseBean {
 		this.idlike = idlike;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -89,7 +93,14 @@ public class Like extends BaseBean {
 	public void setMultimedia(Multimedia multimedia) {
 		this.multimedia = multimedia;
 	}
+	
+	@JsonSetter
+	public void setMultimedia(Integer id) {
+		this.multimedia = new Multimedia();
+		this.multimedia.setIdmultimedia(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -100,6 +111,13 @@ public class Like extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		this.publicacion = new Publicacion();
+		this.publicacion.setIdpublicacion(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDALBUM")
 	public Album getAlbum() {
@@ -110,16 +128,30 @@ public class Like extends BaseBean {
 		this.album = album;
 	}
 
+	@JsonSetter
+	public void setAlbum(Integer id) {
+		this.album = new Album();
+		this.album.setIdalbum(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {
 		return this.comentario;
 	}
-
+	
 	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
 	}
 	
+	@JsonSetter
+	public void setComentario(Integer id) {
+		this.comentario =new Comentario();
+		this.comentario.setIdcomentario(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -127,9 +159,15 @@ public class Like extends BaseBean {
 	}
 
 	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+		this.usuario =usuario;
 	}
-
+	
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		this.usuario = new Usuario();
+		this.usuario.setIdusuario(id);
+	}
+	
 	@Column(name = "FECHA_REGISTRO", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getFechaRegistro() {
@@ -140,6 +178,7 @@ public class Like extends BaseBean {
 		this.fechaRegistro = fechaRegistro;
 	}
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "like")
 	public Set<Notificacion> getNotificacioneses() {
 		return this.notificacioneses;
@@ -149,6 +188,7 @@ public class Like extends BaseBean {
 		this.notificacioneses = notificacioneses;
 	}
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "like")
 	public Set<Actividad> getActividads() {
 		return this.actividads;

@@ -19,6 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -84,6 +87,7 @@ public class Multimedia extends BaseBean {
 		this.idmultimedia = idmultimedia;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION", nullable = false)
 	public Publicacion getPublicacion() {
@@ -94,6 +98,13 @@ public class Multimedia extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		this.publicacion =new Publicacion();
+		this.publicacion.setIdpublicacion(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDALBUM", nullable = false)
 	public Album getAlbum() {
@@ -104,6 +115,13 @@ public class Multimedia extends BaseBean {
 		this.album = album;
 	}
 
+	@JsonSetter
+	public void setAlbum(Integer id) {
+		this.album = new Album();
+		this.album.setIdalbum(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLISTA_CONTACTOS")
 	public ListaContacto getListaContactos() {
@@ -113,7 +131,14 @@ public class Multimedia extends BaseBean {
 	public void setListaContactos(ListaContacto listaContactos) {
 		this.listaContactos = listaContactos;
 	}
-
+	
+	@JsonSetter
+	public void setListaContactos(Integer  id) {
+		this.listaContactos = new ListaContacto();
+		this.listaContactos.setIdlistaContactos(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDTIPO_CONTACTO")
 	public TipoContacto getTipoContacto() {
@@ -124,6 +149,12 @@ public class Multimedia extends BaseBean {
 		this.tipoContacto = tipoContacto;
 	}
 
+	@JsonSetter
+	public void setTipoContacto(Integer id) {
+		this.tipoContacto = new TipoContacto();
+		this.tipoContacto.setIdtipoContacto(id);
+	}
+	
 	@Column(name = "NOMBRE_ARCHIVO", nullable = false, length = 200)
 	public String getNombreArchivo() {
 		return this.nombreArchivo;
@@ -159,7 +190,8 @@ public class Multimedia extends BaseBean {
 	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "multimedia")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;
@@ -169,6 +201,7 @@ public class Multimedia extends BaseBean {
 		this.comentarios = comentarios;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "multimedia")
 	public Set<Like> getLikes_1() {
 		return this.likes_1;
@@ -177,7 +210,8 @@ public class Multimedia extends BaseBean {
 	public void setLikes_1(Set<Like> likes_1) {
 		this.likes_1 = likes_1;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "multimedia")
 	public Set<Etiqueta> getEtiquetas() {
 		return this.etiquetas;

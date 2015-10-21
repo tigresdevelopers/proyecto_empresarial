@@ -18,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -69,6 +70,7 @@ public class Idioma extends BaseBean {
 		this.nombre = nombre;
 	}
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "USUARIO_IDIOMA", joinColumns = {
 			@JoinColumn(name = "IDIDIOMA", nullable = false, updatable = false) }, inverseJoinColumns = {

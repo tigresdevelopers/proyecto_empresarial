@@ -22,6 +22,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -74,6 +77,7 @@ public class ListaContacto extends BaseBean {
 		this.idlistaContactos = idlistaContactos;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -82,6 +86,11 @@ public class ListaContacto extends BaseBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		this.usuario = new Usuario();
+		this.usuario.setIdusuario(id);
 	}
 
 	@Column(name = "NOMBRE", length = 100)
@@ -103,6 +112,7 @@ public class ListaContacto extends BaseBean {
 		this.fechaCreacion = fechaCreacion;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -111,7 +121,8 @@ public class ListaContacto extends BaseBean {
 	public void setMultimedias(Set<Multimedia> multimedias) {
 		this.multimedias = multimedias;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Contacto> getContactos() {
 		return this.contactos;
@@ -121,6 +132,7 @@ public class ListaContacto extends BaseBean {
 		this.contactos = contactos;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "listaContactos")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;

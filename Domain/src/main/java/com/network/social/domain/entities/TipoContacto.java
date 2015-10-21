@@ -16,6 +16,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -72,6 +73,7 @@ public class TipoContacto extends BaseBean {
 		this.nombre = nombre;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -81,6 +83,7 @@ public class TipoContacto extends BaseBean {
 		this.multimedias = multimedias;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Contacto> getContactos() {
 		return this.contactos;
@@ -90,6 +93,7 @@ public class TipoContacto extends BaseBean {
 		this.contactos = contactos;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tipoContacto")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;

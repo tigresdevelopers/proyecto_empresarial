@@ -19,6 +19,10 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -78,6 +82,7 @@ public class Album extends BaseBean {
 		this.idalbum = idalbum;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION", unique = true, nullable = false)
 	public Publicacion getPublicacion() {
@@ -87,7 +92,14 @@ public class Album extends BaseBean {
 	public void setPublicacion(Publicacion publicacion) {
 		this.publicacion = publicacion;
 	}
+	
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		this.publicacion =new Publicacion();
+		this.publicacion.setIdpublicacion(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO")
 	public Usuario getUsuario() {
@@ -97,7 +109,14 @@ public class Album extends BaseBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		this.usuario = new Usuario();
+		this.usuario.setIdusuario(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGRUPO")
 	public Grupo getGrupo() {
@@ -108,6 +127,12 @@ public class Album extends BaseBean {
 		this.grupo = grupo;
 	}
 
+	@JsonSetter
+	public void setGrupo(Integer id) {
+		this.grupo =new Grupo();
+		this.grupo.setIdgrupo(id);
+	}
+	
 	@Column(name = "NOMBRE", length = 50)
 	public String getNombre() {
 		return this.nombre;
@@ -134,7 +159,8 @@ public class Album extends BaseBean {
 	public void setLikes(Integer likes) {
 		this.likes = likes;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Multimedia> getMultimedias() {
 		return this.multimedias;
@@ -144,6 +170,7 @@ public class Album extends BaseBean {
 		this.multimedias = multimedias;
 	}
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Like> getLikes_1() {
 		return this.likes_1;
@@ -153,6 +180,7 @@ public class Album extends BaseBean {
 		this.likes_1 = likes_1;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
 	public Set<Comentario> getComentarios() {
 		return this.comentarios;

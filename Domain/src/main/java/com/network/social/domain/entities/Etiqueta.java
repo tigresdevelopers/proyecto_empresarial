@@ -13,9 +13,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -28,7 +28,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name = "ETIQUETA")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idetiqueta")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Etiqueta extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -102,6 +101,7 @@ public class Etiqueta extends BaseBean {
 	}
 	
 	@JsonIdentityReference(alwaysAsId=true)
+	@JsonBackReference(value="comentario-etiqueta")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {

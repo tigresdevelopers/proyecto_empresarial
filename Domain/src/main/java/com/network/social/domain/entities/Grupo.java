@@ -19,6 +19,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -98,6 +99,7 @@ public class Grupo extends BaseBean {
 		this.fechaCreacion = fechaCreacion;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<Album> getAlbums() {
 		return this.albums;
@@ -106,7 +108,8 @@ public class Grupo extends BaseBean {
 	public void setAlbums(Set<Album> albums) {
 		this.albums = albums;
 	}
-
+	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<Publicacion> getPublicacions() {
 		return this.publicacions;
@@ -116,6 +119,7 @@ public class Grupo extends BaseBean {
 		this.publicacions = publicacions;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "grupo")
 	public Set<GrupoUsuario> getGrupoUsuarios() {
 		return this.grupoUsuarios;

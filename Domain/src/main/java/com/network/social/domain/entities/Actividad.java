@@ -19,6 +19,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -71,7 +73,8 @@ public class Actividad extends BaseBean {
 	public void setIdactividad(Integer idactividad) {
 		this.idactividad = idactividad;
 	}
-
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLIKE", unique = true)
 	public Like getLike() {
@@ -81,7 +84,14 @@ public class Actividad extends BaseBean {
 	public void setLike(Like like) {
 		this.like = like;
 	}
+	
+	@JsonSetter
+	public void setLike(Integer id) {
+		this.like =new Like();
+		this.like.setIdlike(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION", unique = true)
 	public Publicacion getPublicacion() {
@@ -91,7 +101,14 @@ public class Actividad extends BaseBean {
 	public void setPublicacion(Publicacion publicacion) {
 		this.publicacion = publicacion;
 	}
+	
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		this.publicacion = new Publicacion();
+		this.publicacion.setIdpublicacion(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO", unique = true)
 	public Comentario getComentario() {
@@ -100,6 +117,12 @@ public class Actividad extends BaseBean {
 
 	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
+	}
+	
+	@JsonSetter
+	public void setComentario(Integer id) {
+		this.comentario = new Comentario();
+		this.comentario.setIdcomentario(id);
 	}
 
 	@Column(name = "DESCRIPCION", length = 50)

@@ -15,6 +15,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -65,6 +67,7 @@ public class GrupoUsuario extends BaseBean {
 		this.id = id;
 	}
 	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false, insertable = false, updatable = false)
 	public Usuario getUsuario() {
@@ -75,6 +78,13 @@ public class GrupoUsuario extends BaseBean {
 		this.usuario = usuario;
 	}
 
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		this.usuario = new Usuario();
+		this.usuario.setIdusuario(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDGRUPO", nullable = false, insertable = false, updatable = false)
 	public Grupo getGrupo() {
@@ -83,6 +93,12 @@ public class GrupoUsuario extends BaseBean {
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
+	}
+	
+	@JsonSetter
+	public void setGrupo(Integer id) {
+		this.grupo = new Grupo();
+		this.grupo.setIdgrupo(id);
 	}
 
 	@Column(name = "ADMIN", nullable = false, length = 1)

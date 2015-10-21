@@ -18,6 +18,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -78,6 +80,7 @@ public class Contacto extends BaseBean {
 		this.idcontacto = idcontacto;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDLISTA_CONTACTOS")
 	public ListaContacto getListaContactos() {
@@ -87,7 +90,14 @@ public class Contacto extends BaseBean {
 	public void setListaContactos(ListaContacto listaContactos) {
 		this.listaContactos = listaContactos;
 	}
+	
+	@JsonSetter
+	public void setListaContactos(Integer id) {
+		this.listaContactos = new ListaContacto();
+		this.listaContactos.setIdlistaContactos(id);
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "MYID", nullable = false)
 	public Usuario getUsuarioByMyid() {
@@ -98,6 +108,13 @@ public class Contacto extends BaseBean {
 		this.usuarioByMyid = usuarioByMyid;
 	}
 
+	@JsonSetter
+	public void setUsuarioByMyid(Integer id) {
+		this.usuarioByMyid = new Usuario();
+		this.usuarioByMyid.setIdusuario(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuarioByIdusuario() {
@@ -108,6 +125,13 @@ public class Contacto extends BaseBean {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 	
+	@JsonSetter
+	public void setUsuarioByIdusuario(Integer id) {
+		this.usuarioByIdusuario = new Usuario();
+		this.usuarioByIdusuario.setIdusuario(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDTIPO_CONTACTO")
 	public TipoContacto getTipoContacto() {
@@ -116,6 +140,12 @@ public class Contacto extends BaseBean {
 
 	public void setTipoContacto(TipoContacto tipoContacto) {
 		this.tipoContacto = tipoContacto;
+	}
+	
+	@JsonSetter
+	public void setTipoContacto(Integer id) {
+		this.tipoContacto =new TipoContacto();
+		this.tipoContacto.setIdtipoContacto(id);
 	}
 
 	@Column(name = "FECHA_INICIO_AMISTAD", nullable = false)

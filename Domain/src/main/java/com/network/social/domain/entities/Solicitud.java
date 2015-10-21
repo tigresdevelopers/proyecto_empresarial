@@ -19,6 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -70,6 +73,7 @@ public class Solicitud extends BaseBean {
 		this.idsolicitud = idsolicitud;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO_RECEIVER", nullable = false)
 	public Usuario getUsuarioByIdusuarioReceiver() {
@@ -80,6 +84,13 @@ public class Solicitud extends BaseBean {
 		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuarioReceiver(Integer id) {
+		this.usuarioByIdusuarioReceiver = new Usuario();
+		this.usuarioByIdusuarioReceiver.setIdusuario(id);
+	}
+	
+	@JsonManagedReference(value="solicitud-usuario")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuarioByIdusuario() {
