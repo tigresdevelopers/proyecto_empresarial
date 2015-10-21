@@ -19,13 +19,10 @@ import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URL_BASE;
 
 /**
- * Proyecto: Social Network
- * 
- * @date : 6/5/2015
- * @time : 11:17:35
- * @author : Alexander Chavez.
+ * @author :Alexander Chavez Simbron
+ * @date   :20/10/2015
+ * @time   :13:18:13
  */
-
 @Service("propiedadAdmin")
 @PropertySources({ @PropertySource(value = "classpath:/configuration/configIP.properties", ignoreResourceNotFound = false),
 	@PropertySource(value = "classpath:/configuration/configUri.properties", ignoreResourceNotFound = false),

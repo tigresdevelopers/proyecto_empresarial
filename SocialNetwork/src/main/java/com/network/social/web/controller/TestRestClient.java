@@ -13,7 +13,11 @@ import com.network.social.domain.util.ResultObject;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
-
+/**
+ * @author :Alexander Chavez Simbron
+ * @date   :20/10/2015
+ * @time   :13:18:13
+ */
 @ManagedBean(name="testclient")
 public class TestRestClient implements Serializable {
 	

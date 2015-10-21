@@ -2,6 +2,7 @@ package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.ALBUM;
 import static com.network.social.services.util.RestURIConstants.ALBUM_LIST_BY_USER;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -28,8 +29,14 @@ public class ServiceAlbumController {
 	private AlbumService albumService;
 		
 	
+	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
+	private @ResponseBody List<Album> getAll(){
+		return albumService.findAll();
+	}
+	
+	
 	@RequestMapping(value=ALBUM_LIST_BY_USER,method=RequestMethod.GET)
-	public @ResponseBody ResultObject list(@PathVariable Integer idusuario){
+	private @ResponseBody ResultObject list(@PathVariable Integer idusuario){
 		
 		ResultObject result=new ResultObject();
 		List<Map<String,Object>> data=new ArrayList<>();
@@ -50,33 +57,5 @@ public class ServiceAlbumController {
 		return result;
 	}
 	
-//	@RequestMapping(value=ALBUM_LIST_BY_USER,method=RequestMethod.GET)
-//	public @ResponseBody List<Album> list(@PathVariable Integer idusuario){
-//		
-//		List<Album> lista=albumService.listAlbumbyUserId(idusuario);
-//		return lista;
-//	}
-	
-//	@RequestMapping(value=ALBUM_LIST_BY_USER,method=RequestMethod.GET)
-//	public @ResponseBody ResultObject list(@PathVariable Integer idusuario){
-//		
-//		ResultObject result=new ResultObject();
-//		List<Map<String,Object>> data=new ArrayList<>();
-//	
-//		List<Map<String, Object>> lista=albumService.return_cursor(DaoUtil.SP_ALBUM_USUARIO,idusuario);
-//			
-//			for (Map<String, Object> obj: lista) {
-//				Map<String, Object> map=new LinkedHashMap<>();
-//				map.put("id",obj.get("idalbum"));
-//				map.put("nombre",obj.get("nombre"));
-//				map.put("descripcion",obj.get("descripcion"));
-//				map.put("likes",obj.get("likes"));
-//				data.add(map);
-//			}
-//
-//		result.setData(data);
-//
-//		return result;
-//	}
 	
 }

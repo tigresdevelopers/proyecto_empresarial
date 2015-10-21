@@ -9,7 +9,11 @@ import javax.faces.bean.SessionScoped;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.util.AdminConfigPropiedad.LINK;
-
+/**
+ * @author :Alexander Chavez Simbron
+ * @date   :20/10/2015
+ * @time   :13:18:13
+ */
 @SessionScoped
 @ManagedBean(name="link")
 public class LinkController implements Serializable {

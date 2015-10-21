@@ -1,11 +1,12 @@
 package com.network.social.services.controller;
 
+import static com.network.social.services.util.RestURIConstants.DELETE;
+import static com.network.social.services.util.RestURIConstants.GET;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
 import static com.network.social.services.util.RestURIConstants.MULTIMEDIA;
 import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_BULKINSERT;
-import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_CREATE;
-import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_DELETE;
-import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_FIND;
-import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_UPDATE;
+import static com.network.social.services.util.RestURIConstants.POST;
+import static com.network.social.services.util.RestURIConstants.PUT;
 
 import java.util.Iterator;
 import java.util.List;
@@ -54,15 +55,20 @@ public class ServiceMultimediaController {
 	private MultimediaService multimediaService;
 
 	
-	@RequestMapping(value=MULTIMEDIA_FIND,method=RequestMethod.GET)
-	private ResponseEntity<Multimedia> find(@PathVariable Integer idmultimedia){
+	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
+	private @ResponseBody List<Multimedia> getAll(){
+		return multimediaService.findAll();
+	}
+	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private ResponseEntity<Multimedia> find(@PathVariable Integer id){
 		
-		Multimedia multimedia=multimediaService.findById(idmultimedia);
+		Multimedia multimedia=multimediaService.findById(id);
 		return new ResponseEntity<Multimedia>(multimedia, HttpStatus.ACCEPTED);
 	}
 	
 	
-	@RequestMapping(value=MULTIMEDIA_CREATE,method=RequestMethod.POST)
+	@RequestMapping(value=POST,method=RequestMethod.POST)
 	private @ResponseBody BResult create(@RequestBody Multimedia multimedia){
 
 		LOGGER.info("## ServiceMultimedia -->create");
@@ -163,7 +169,7 @@ public class ServiceMultimediaController {
 		return bResult;
 	}
 	
-	@RequestMapping(value=MULTIMEDIA_UPDATE,method=RequestMethod.POST)
+	@RequestMapping(value=PUT,method=RequestMethod.POST)
 	private @ResponseBody BResult update(@RequestBody Multimedia multimedia){
 
 		LOGGER.info("## ServiceMultimedia -->update");
@@ -209,7 +215,7 @@ public class ServiceMultimediaController {
 	}
 	
 	
-	@RequestMapping(value=MULTIMEDIA_DELETE,method=RequestMethod.POST)
+	@RequestMapping(value=DELETE,method=RequestMethod.POST)
 	private @ResponseBody BResult delete(@RequestBody Multimedia multimedia){
 
 		LOGGER.info("## ServiceMultimedia -->delete");
