@@ -16,8 +16,31 @@ public class SituacionForm extends BaseForm {
 	private String descripcion;
 	private Set<UsuarioForm> usuarios = new HashSet<UsuarioForm>(0);
 
+	
 	public SituacionForm() {
 	}
+	
+	
+	
+	public SituacionForm(Integer idsituacion) {
+		super();
+		this.idsituacion = idsituacion;
+	}
+	
+	public SituacionForm(Integer idsituacion, String descripcion) {
+		super();
+		this.idsituacion = idsituacion;
+		this.descripcion = descripcion;
+	}
+
+	public SituacionForm(Integer idsituacion, String descripcion,
+			Set<UsuarioForm> usuarios) {
+		super();
+		this.idsituacion = idsituacion;
+		this.descripcion = descripcion;
+		this.usuarios = usuarios;
+	}
+
 
 	public Integer getIdsituacion() {
 		return idsituacion;

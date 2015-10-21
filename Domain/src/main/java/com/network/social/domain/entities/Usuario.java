@@ -22,7 +22,13 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.network.social.domain.util.UtilUser;
 /**
  * 
@@ -32,6 +38,8 @@ import com.network.social.domain.util.UtilUser;
  */
 @Entity
 @Table(name = "USUARIO")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idusuario")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -131,7 +139,7 @@ public class Usuario extends BaseBean {
 		this.idusuario = idusuario;
 	}
 
-	@JsonIgnore
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDSITUACION", nullable = false)
 	public Situacion getSituacionSentimental() {
@@ -141,6 +149,15 @@ public class Usuario extends BaseBean {
 	public void setSituacionSentimental(Situacion situacionSentimental) {
 		this.situacionSentimental = situacionSentimental;
 	}
+	
+	@JsonSetter
+	public void setSituacionSentimental(Integer id) {
+		if (id!=null) {
+			this.situacionSentimental =new Situacion();
+			this.situacionSentimental.setIdsituacion(id);
+		}
+	}
+	
 
 	@Column(name = "NOMBRE", nullable = false, length = 50)
 	public String getNombre() {
@@ -353,6 +370,7 @@ public class Usuario extends BaseBean {
 		this.idiomas = idiomas;
 	}
 
+	@JsonBackReference
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	public Set<Etiqueta> getEtiquetas() {

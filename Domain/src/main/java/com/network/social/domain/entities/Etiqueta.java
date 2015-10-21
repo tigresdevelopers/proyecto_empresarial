@@ -12,6 +12,13 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -20,6 +27,8 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name = "ETIQUETA")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idetiqueta")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Etiqueta extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
@@ -58,6 +67,7 @@ public class Etiqueta extends BaseBean {
 		this.idetiqueta = idetiqueta;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -68,6 +78,13 @@ public class Etiqueta extends BaseBean {
 		this.multimedia = multimedia;
 	}
 
+	@JsonSetter
+	public void setMultimedia(Integer id) {
+		this.multimedia = new Multimedia();
+		this.multimedia.setIdmultimedia(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
@@ -78,6 +95,13 @@ public class Etiqueta extends BaseBean {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		this.publicacion =new Publicacion();
+		this.publicacion.setIdpublicacion(id);
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDCOMENTARIO")
 	public Comentario getComentario() {
@@ -88,6 +112,14 @@ public class Etiqueta extends BaseBean {
 		this.comentario = comentario;
 	}
 	
+	@JsonSetter
+	public void setComentario(Integer id) {
+		this.comentario = new Comentario();
+		this.comentario.setIdcomentario(id);
+	}
+	
+//	@JsonIdentityReference(alwaysAsId=true)
+	@JsonManagedReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDUSUARIO", nullable = false)
 	public Usuario getUsuario() {
@@ -97,5 +129,10 @@ public class Etiqueta extends BaseBean {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+	
+//	@JsonSetter
+//	public void setUsuario(Integer id) {
+//		this.usuario =new Usuario();
+//		this.usuario.setIdusuario(id);
+//	}
 }

@@ -15,6 +15,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -23,6 +27,7 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name = "SITUACION_SENTIMENTAL")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idsituacion")
 public class Situacion extends BaseBean {
 	private static final long serialVersionUID = 1L;
 	
@@ -64,6 +69,7 @@ public class Situacion extends BaseBean {
 		this.descripcion = descripcion;
 	}
 
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "situacionSentimental")
 	public Set<Usuario> getUsuarios() {
 		return this.usuarios;

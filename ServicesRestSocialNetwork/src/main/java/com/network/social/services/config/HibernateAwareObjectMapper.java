@@ -16,7 +16,6 @@ public class HibernateAwareObjectMapper extends ObjectMapper {
    public HibernateAwareObjectMapper() {
         configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        
         registerModule(getHibernate4Module());
     }
 

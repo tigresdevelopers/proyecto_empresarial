@@ -17,6 +17,9 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -26,6 +29,7 @@ import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "ACTIVIDAD", uniqueConstraints = { @UniqueConstraint(columnNames = "IDCOMENTARIO"),
 		@UniqueConstraint(columnNames = "IDPUBLICACION"), @UniqueConstraint(columnNames = "IDLIKE") })
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idactividad")
 public class Actividad extends BaseBean {
 	private static final long serialVersionUID = 1L;
 	

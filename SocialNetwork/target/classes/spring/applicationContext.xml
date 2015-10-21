@@ -53,6 +53,9 @@
     <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="prefixJson" value="false" />
         <property name="supportedMediaTypes" value="application/json" />
+    	<property name="objectMapper">
+            <bean class="com.network.social.web.config.HibernateAwareObjectMapper" />
+        </property>
     </bean>
    
    <!-- End restTemplate  -->

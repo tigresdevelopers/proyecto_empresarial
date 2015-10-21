@@ -25,6 +25,8 @@ public class ServiceUsuarioController {
      Usuario u=usuarioService.findByUsername(usuario.getEmail());
      u.setEmail(u.getEmail());
      u.setClave(u.getClave());
+     u.setSituacionSentimental(u.getSituacionSentimental());
+     System.out.println(u.getSituacionSentimental().getIdsituacion());
      u.roles=u.roles;
    
      return u;

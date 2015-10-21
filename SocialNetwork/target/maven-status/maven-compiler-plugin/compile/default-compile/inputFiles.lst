@@ -1,31 +1,32 @@
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\SpringUser.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\SolicitudForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\BaseForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\GrupoUsuarioForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\LikeForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ContactoForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ComentarioForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\AdminConfigPropiedad.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\AlbumForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\MultimediaForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\UtilEnum.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\PropiedadAdmin.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\PasswordEncoder.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ActividadForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\IdiomaForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\UsuarioForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\NotificacionForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\AlbumController.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\RolForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\LoginSuccessHandler.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\SituacionForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\UserDetailsServiceImpl.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\jsf\util\Faces.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\TestRestClient.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ListaContactoForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\TipoContactoForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\LinkController.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\EtiquetaForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\PublicacionForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\GrupoForm.java
-C:\Users\Pantera\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\UtilHardCode.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\TipoContactoForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\GrupoForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\NotificacionForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\SolicitudForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ComentarioForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\UsuarioForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\UtilHardCode.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\UtilEnum.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\GrupoUsuarioForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ActividadForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\RolForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ContactoForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\SpringUser.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\AlbumForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\EtiquetaForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\PropiedadAdmin.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\jsf\util\Faces.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\PasswordEncoder.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\util\AdminConfigPropiedad.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\TestRestClient.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\LinkController.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\SituacionForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\UserDetailsServiceImpl.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\IdiomaForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\MultimediaForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\ListaContactoForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\spring\security\LoginSuccessHandler.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\config\HibernateAwareObjectMapper.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\BaseForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\LikeForm.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\controller\AlbumController.java
+C:\Users\Windows 7\git\proyecto_empresarial\SocialNetwork\src\main\java\com\network\social\web\form\PublicacionForm.java

@@ -51,6 +51,51 @@ public class UsuarioForm extends BaseForm {
 		this.clave = clave;
 	}
 
+	
+	public UsuarioForm(Integer idusuario, SituacionForm situacionSentimental,
+			String nombre, String apePaterno, String apeMaterno,
+			Date fechaNacimiento, String email, String clave, String celular,
+			Integer sexo, Date fechaRegistro, char estado, String theme,
+			Set<ListaContactoForm> listaContactoses,
+			Set<SolicitudForm> solicitudsForIdusuarioReceiver,
+			Set<AlbumForm> albums, Set<ContactoForm> contactosForMyid,
+			Set<ComentarioForm> comentarios,
+			Set<PublicacionForm> publicacionsForIdusuarioReceiver,
+			Set<SolicitudForm> solicitudsForIdusuario,
+			Set<ContactoForm> contactosForIdusuario,
+			Set<GrupoUsuarioForm> grupoUsuarios, Set<LikeForm> likes,
+			Set<IdiomaForm> idiomas, Set<EtiquetaForm> etiquetas,
+			Set<PublicacionForm> publicacionsForIdusuario, Set<RolForm> roles) {
+		super();
+		this.idusuario = idusuario;
+		this.situacionSentimental = situacionSentimental;
+		this.nombre = nombre;
+		this.apePaterno = apePaterno;
+		this.apeMaterno = apeMaterno;
+		this.fechaNacimiento = fechaNacimiento;
+		this.email = email;
+		this.clave = clave;
+		this.celular = celular;
+		this.sexo = sexo;
+		this.fechaRegistro = fechaRegistro;
+		this.estado = estado;
+		this.theme = theme;
+		this.listaContactoses = listaContactoses;
+		this.solicitudsForIdusuarioReceiver = solicitudsForIdusuarioReceiver;
+		this.albums = albums;
+		this.contactosForMyid = contactosForMyid;
+		this.comentarios = comentarios;
+		this.publicacionsForIdusuarioReceiver = publicacionsForIdusuarioReceiver;
+		this.solicitudsForIdusuario = solicitudsForIdusuario;
+		this.contactosForIdusuario = contactosForIdusuario;
+		this.grupoUsuarios = grupoUsuarios;
+		this.likes = likes;
+		this.idiomas = idiomas;
+		this.etiquetas = etiquetas;
+		this.publicacionsForIdusuario = publicacionsForIdusuario;
+		this.roles = roles;
+	}
+
 	public Integer getIdusuario() {
 		return idusuario;
 	}
@@ -167,7 +212,8 @@ public class UsuarioForm extends BaseForm {
 		return solicitudsForIdusuarioReceiver;
 	}
 
-	public void setSolicitudsForIdusuarioReceiver(Set<SolicitudForm> solicitudsForIdusuarioReceiver) {
+	public void setSolicitudsForIdusuarioReceiver(
+			Set<SolicitudForm> solicitudsForIdusuarioReceiver) {
 		this.solicitudsForIdusuarioReceiver = solicitudsForIdusuarioReceiver;
 	}
 
@@ -199,7 +245,8 @@ public class UsuarioForm extends BaseForm {
 		return publicacionsForIdusuarioReceiver;
 	}
 
-	public void setPublicacionsForIdusuarioReceiver(Set<PublicacionForm> publicacionsForIdusuarioReceiver) {
+	public void setPublicacionsForIdusuarioReceiver(
+			Set<PublicacionForm> publicacionsForIdusuarioReceiver) {
 		this.publicacionsForIdusuarioReceiver = publicacionsForIdusuarioReceiver;
 	}
 
@@ -255,7 +302,8 @@ public class UsuarioForm extends BaseForm {
 		return publicacionsForIdusuario;
 	}
 
-	public void setPublicacionsForIdusuario(Set<PublicacionForm> publicacionsForIdusuario) {
+	public void setPublicacionsForIdusuario(
+			Set<PublicacionForm> publicacionsForIdusuario) {
 		this.publicacionsForIdusuario = publicacionsForIdusuario;
 	}
 
@@ -268,8 +316,5 @@ public class UsuarioForm extends BaseForm {
 	}
 
 	
-
-
-
 	
 }

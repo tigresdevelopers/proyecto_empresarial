@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Services Restful Social Network !  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  The server is running...  ${serverTime}. </P>
 </body>
 </html>

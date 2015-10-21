@@ -16,6 +16,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -24,6 +27,7 @@ import org.hibernate.annotations.Parameter;
  */
 @Entity
 @Table(name = "IDIOMA")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "ididioma")
 public class Idioma extends BaseBean {
 	private static final long serialVersionUID = 1L;
 
