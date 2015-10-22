@@ -200,7 +200,7 @@ public class Publicacion extends BaseBean {
 		this.likes = likes;
 	}
 	
-	@JsonIgnore
+	@JsonManagedReference(value="publicacion-etiqueta")
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicacion")
 	public Set<Etiqueta> getEtiquetas() {
 		return this.etiquetas;

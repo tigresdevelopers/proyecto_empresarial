@@ -67,6 +67,7 @@ public class Etiqueta extends BaseBean {
 	}
 
 	@JsonIdentityReference(alwaysAsId=true)
+	@JsonBackReference(value="multimedia-etiqueta")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDMULTIMEDIA")
 	public Multimedia getMultimedia() {
@@ -84,6 +85,7 @@ public class Etiqueta extends BaseBean {
 	}
 	
 	@JsonIdentityReference(alwaysAsId=true)
+	@JsonBackReference(value="publicacion-etiqueta")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "IDPUBLICACION")
 	public Publicacion getPublicacion() {
