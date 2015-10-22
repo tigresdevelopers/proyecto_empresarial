@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class NotificacionServiceImpl extends BaseServiceImpl<Notificacion, Integ
 	public NotificacionServiceImpl(NotificacionDao notificacionDao) {
 		super(notificacionDao);
 		this.notificacionDao=notificacionDao;
+	}
+
+	@Override
+	public List<Notificacion> getAllbyUser(Integer id) {
+		return notificacionDao.getAllbyUser(id);
 	}
 
 }

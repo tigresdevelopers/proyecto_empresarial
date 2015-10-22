@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class EtiquetaServiceImpl extends BaseServiceImpl<Etiqueta, Integer> impl
 	public EtiquetaServiceImpl(EtiquetaDao etiquetaDao) {
 		super(etiquetaDao);
 		this.etiquetaDao=etiquetaDao;
+	}
+
+	@Override
+	public List<Etiqueta> getAllbyMultimedia(Integer id) {
+		return etiquetaDao.getAllbyMultimedia(id);
 	}
 
 }

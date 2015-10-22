@@ -25,12 +25,13 @@ public class ServiceUsuarioController {
     private @ResponseBody Usuario getByUsername(@RequestBody Usuario usuario){
   	 
      Usuario u=usuarioService.findByUsername(usuario.getEmail());
-     u.setEmail(u.getEmail());
-     u.setClave(u.getClave());
-     u.setSituacionSentimental(u.getSituacionSentimental());
-     System.out.println(u.getSituacionSentimental().getIdsituacion());
-     u.roles=u.roles;
-   
+    if (u!=null) {
+    	 u.setEmail(u.getEmail());
+         u.setClave(u.getClave());
+         u.setSituacionSentimental(u.getSituacionSentimental());
+         System.out.println(u.getSituacionSentimental().getIdsituacion());
+         u.roles=u.roles;
+	}
      return u;
      
     }

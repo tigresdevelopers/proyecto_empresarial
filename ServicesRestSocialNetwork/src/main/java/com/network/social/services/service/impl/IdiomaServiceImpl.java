@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class IdiomaServiceImpl  extends BaseServiceImpl<Idioma, Integer> impleme
 	public IdiomaServiceImpl(IdiomaDao idiomaDao) {
 		super(idiomaDao);
 		this.idiomaDao=idiomaDao;
+	}
+
+	@Override
+	public List<Idioma> getAllbyUser(Integer id) {
+		return idiomaDao.getAllbyUser(id);
 	}
 
 }

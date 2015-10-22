@@ -73,6 +73,11 @@ public class Usuario extends BaseBean {
 	
 	public Usuario() {
 	}
+	
+	public Usuario(Integer idusuario) {
+		super();
+		this.idusuario = idusuario;
+	}
 
 	public Usuario(Integer idusuario, Situacion situacionSentimental, String nombre, String apePaterno,
 			String apeMaterno, Date fechaNacimiento, String email, Integer sexo, Date fechaRegistro,

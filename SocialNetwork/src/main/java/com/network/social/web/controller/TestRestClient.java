@@ -35,7 +35,7 @@ public class TestRestClient implements Serializable {
 	@PostConstruct
 	public void init(){
 		
-		String url="http://localhost:8081/ServicesRestSocialNetwork/json";
+		String url="http://localhost:8080/ServicesRestSocialNetwork/json";
 		ResultObject obj=restTemplate.getForObject(url, ResultObject.class);
 		
 		for (Map<String, Object> map : obj.getData()) {

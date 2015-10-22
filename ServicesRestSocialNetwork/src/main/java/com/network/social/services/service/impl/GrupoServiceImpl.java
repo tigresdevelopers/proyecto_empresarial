@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class GrupoServiceImpl extends BaseServiceImpl<Grupo, Integer> implements
 	public GrupoServiceImpl(GrupoDao grupoDao) {
 		super(grupoDao);
 		this.grupoDao=grupoDao;
+	}
+
+	@Override
+	public List<Grupo> getAllbyUser(Integer id) {
+		return grupoDao.getAllbyUser(id);
 	}
 
 }

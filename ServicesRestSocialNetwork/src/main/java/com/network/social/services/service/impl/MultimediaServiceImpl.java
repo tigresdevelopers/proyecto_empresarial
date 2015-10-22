@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,26 @@ public class MultimediaServiceImpl extends BaseServiceImpl<Multimedia, Integer> 
 	public MultimediaServiceImpl(MultimediaDao multimediaDao) {
 		super(multimediaDao);
 		this.multimediaDao=multimediaDao;
+	}
+
+	@Override
+	public List<Multimedia> getAllbyUser(Integer id) {
+		return multimediaDao.getAllbyUser(id);
+	}
+
+	@Override
+	public List<Multimedia> getAllbyAlbum(Integer id) {
+		return multimediaDao.getAllbyAlbum(id);
+	}
+
+	@Override
+	public List<Multimedia> getAllbyGrupo(Integer id) {
+		return multimediaDao.getAllbyGrupo(id);
+	}
+
+	@Override
+	public List<Multimedia> getAllbyPublicacion(Integer id) {
+		return multimediaDao.getAllbyPublicacion(id);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ActividadServiceImpl extends BaseServiceImpl<Actividad, Integer> im
 	public ActividadServiceImpl(ActividadDao actividadDao) {
 		super(actividadDao);
 		this.actividadDao=actividadDao;
+	}
+
+	@Override
+	public List<Actividad> getAllbyUser(Integer id) {
+		return actividadDao.getAllbyUser(id);
 	}
 
 }

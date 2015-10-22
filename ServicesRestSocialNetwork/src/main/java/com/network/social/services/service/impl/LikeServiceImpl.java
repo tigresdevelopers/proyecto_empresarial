@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,26 @@ public class LikeServiceImpl extends BaseServiceImpl<Like, Integer> implements L
 	public LikeServiceImpl(LikeDao likeDao) {
 		super(likeDao);
 		this.likeDao=likeDao;
+	}
+
+	@Override
+	public List<Like> getAllbyMultimedia(Integer id) {
+		return likeDao.getAllbyMultimedia(id);
+	}
+
+	@Override
+	public List<Like> getAllbyAlbum(Integer id) {
+		return likeDao.getAllbyAlbum(id);
+	}
+
+	@Override
+	public List<Like> getAllbyPublicacion(Integer id) {
+		return likeDao.getAllbyPublicacion(id);
+	}
+
+	@Override
+	public List<Like> getAllbyComentario(Integer id) {
+		return likeDao.getAllbyComentario(id);
 	}
 
 	

@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,11 @@ public class ContactoServiceImpl extends BaseServiceImpl<Contacto, Integer> impl
 	public ContactoServiceImpl(ContactoDao contactoDao) {
 		super(contactoDao);
 		this.contactoDao=contactoDao;
+	}
+
+	@Override
+	public List<Contacto> getAllbyUser(Integer id) {
+		return contactoDao.getAllbyUser(id);
 	}
 
 	

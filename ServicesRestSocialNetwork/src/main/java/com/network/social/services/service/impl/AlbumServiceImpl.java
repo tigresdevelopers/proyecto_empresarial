@@ -24,6 +24,16 @@ public class AlbumServiceImpl extends BaseServiceImpl<Album, Integer> implements
 	public List<Album> listAlbumbyUserId(Integer id) {
 		return albumDao.listAlbumbyUserId(id);
 	}
+
+	@Override
+	public List<Album> getAllbyUser(Integer id) {
+		return albumDao.getAllbyUser(id);
+	}
+
+	@Override
+	public List<Album> getAllbyGrupo(Integer id) {
+		return albumDao.getAllbyGrupo(id);
+	}
 	
 
 }

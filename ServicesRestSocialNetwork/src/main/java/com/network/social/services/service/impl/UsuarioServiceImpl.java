@@ -1,5 +1,7 @@
 package com.network.social.services.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,26 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Integer> impleme
 	@Override
 	public Usuario findByUsername(String username) {
 		return usuarioDao.findByUsername(username);
+	}
+
+	@Override
+	public List<Usuario> getAllbyUser(Integer id) {
+		return usuarioDao.getAllbyUser(id);
+	}
+
+	@Override
+	public List<Usuario> getAllbyGrupo(Integer id) {
+		return usuarioDao.getAllbyGrupo(id);
+	}
+
+	@Override
+	public List<Usuario> getAllbyListaContacto(Integer id) {
+		return usuarioDao.getAllbyListaContacto(id);
+	}
+
+	@Override
+	public List<Usuario> getAllbyTipoContacto(Integer id) {
+		return usuarioDao.getAllbyTipoContacto(id);
 	}
 
 }
