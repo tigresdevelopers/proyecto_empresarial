@@ -5,6 +5,7 @@ import static com.network.social.services.util.RestURIConstants.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,11 @@ public class ServiceTipoContactoController {
 
 	@Autowired
 	private TipoContactoService tipoContactoService;
+	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private @ResponseBody TipoContacto get(@PathVariable Integer id){
+		return tipoContactoService.findById(id);
+	}
 	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<TipoContacto> getAll(){

@@ -12,7 +12,7 @@ public interface UsuarioService extends BaseService<Usuario, Integer> {
 	
 	public List<Usuario> getAllbyGrupo(Integer id);
 	
-	public List<Usuario> getAllbyListaContacto(Integer id);
+	public List<Usuario> getAllbyListaContacto(Integer id,Integer idlista);
 	
-	public List<Usuario> getAllbyTipoContacto(Integer id);
+	public List<Usuario> getAllbyTipoContacto(Integer id,Integer idtipo);
 }

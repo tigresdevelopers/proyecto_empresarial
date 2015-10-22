@@ -5,6 +5,7 @@ import static com.network.social.services.util.RestURIConstants.*;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,16 @@ public class ServiceContactoController {
 
 	@Autowired
 	private ContactoService contactoService;
+	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private @ResponseBody Contacto get(@PathVariable Integer id){
+		return contactoService.findById(id);
+	}
+	
+	@RequestMapping(value=GET_FILTERING,method=RequestMethod.GET)
+	private @ResponseBody List<Contacto> getAllbyUser(@PathVariable Integer filter){
+		return contactoService.getAllbyUser(filter);
+	}
 	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<Contacto> getAll(){

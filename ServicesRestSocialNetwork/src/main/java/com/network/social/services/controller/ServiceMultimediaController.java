@@ -1,6 +1,6 @@
 package com.network.social.services.controller;
 
-import static com.network.social.services.util.RestURIConstants.DELETE;
+import static com.network.social.services.util.RestURIConstants.*;
 import static com.network.social.services.util.RestURIConstants.GET;
 import static com.network.social.services.util.RestURIConstants.GET_ALL;
 import static com.network.social.services.util.RestURIConstants.MULTIMEDIA;
@@ -38,7 +38,6 @@ import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 * @date   : 18 de oct. de 2015
 * @time   : 11:38:51 p. m.
 */
-
 @RestController
 @RequestMapping(value=MULTIMEDIA)
 public class ServiceMultimediaController {
@@ -55,16 +54,36 @@ public class ServiceMultimediaController {
 	private MultimediaService multimediaService;
 
 	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private ResponseEntity<Multimedia> get(@PathVariable Integer id){
+		
+		Multimedia multimedia=multimediaService.findById(id);
+		return new ResponseEntity<Multimedia>(multimedia, HttpStatus.ACCEPTED);
+	}
+	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<Multimedia> getAll(){
 		return multimediaService.findAll();
 	}
 	
-	@RequestMapping(value=GET,method=RequestMethod.GET)
-	private ResponseEntity<Multimedia> find(@PathVariable Integer id){
-		
-		Multimedia multimedia=multimediaService.findById(id);
-		return new ResponseEntity<Multimedia>(multimedia, HttpStatus.ACCEPTED);
+	@RequestMapping(value=GET_FILTERING,method=RequestMethod.GET)
+	private @ResponseBody List<Multimedia> getAllbyUser(@PathVariable Integer filter){
+		return multimediaService.getAllbyUser(filter);
+	}
+	
+	@RequestMapping(value=GET_FILTERING_ALBUM,method=RequestMethod.GET)
+	private @ResponseBody List<Multimedia> getAllbyAlbum(@PathVariable Integer filter){
+		return multimediaService.getAllbyAlbum(filter);
+	}
+	
+	@RequestMapping(value=GET_FILTERING_GROUP,method=RequestMethod.GET)
+	private @ResponseBody List<Multimedia> getAllbyGrupo(@PathVariable Integer filter){
+		return multimediaService.getAllbyGrupo(filter);
+	}
+	
+	@RequestMapping(value=GET_FILTERING_PUBLICACION,method=RequestMethod.GET)
+	private @ResponseBody List<Multimedia> getAllbyPublicacion(@PathVariable Integer filter){
+		return multimediaService.getAllbyPublicacion(filter);
 	}
 	
 	

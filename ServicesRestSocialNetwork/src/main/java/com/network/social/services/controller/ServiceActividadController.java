@@ -1,6 +1,7 @@
 package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.ACTIVIDAD;
+import static com.network.social.services.util.RestURIConstants.GET;
 import static com.network.social.services.util.RestURIConstants.GET_ALL;
 import static com.network.social.services.util.RestURIConstants.GET_FILTERING;
 
@@ -28,6 +29,11 @@ public class ServiceActividadController {
 
 	@Autowired
 	private ActividadService actividadService;
+	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private @ResponseBody Actividad get(@PathVariable Integer id){
+		return actividadService.findById(id);
+	}
 	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<Actividad> getAll(){

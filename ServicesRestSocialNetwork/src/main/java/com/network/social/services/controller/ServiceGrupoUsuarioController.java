@@ -1,6 +1,7 @@
 package com.network.social.services.controller;
 
-import static com.network.social.services.util.RestURIConstants.*;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
+import static com.network.social.services.util.RestURIConstants.GRUPO_USUARIO;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ServiceGrupoUsuarioController {
 
 	@Autowired
 	private GrupoUsuarioService grupoUsuarioService;
+
 	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<GrupoUsuario> getAll(){

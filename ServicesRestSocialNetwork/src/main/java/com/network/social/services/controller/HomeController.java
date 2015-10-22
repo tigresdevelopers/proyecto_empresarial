@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.network.social.domain.util.ResultObject;
-
-
+/**
+ * @author :Alexander Chavez Simbron
+ * @date   :21/10/2015
+ * @time   :16:12:17
+ */
 @Controller
 public class HomeController {
 	

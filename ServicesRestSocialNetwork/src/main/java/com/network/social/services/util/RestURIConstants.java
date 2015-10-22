@@ -4,8 +4,17 @@ package com.network.social.services.util;
 public class RestURIConstants {
 	
 	public static final String GET_ALL="/list";
-	public static final String GET_FILTERING="/list/filtering/{filter}";
-	public static final String GET="/get{id}";
+	public static final String GET_FILTERING="/list/filtering/user/{filter}";
+	public static final String GET_FILTERING_GROUP="/list/filtering/group/{filter}";
+	public static final String GET_FILTERING_MULTIMEDIA="/list/filtering/multimedia/{filter}";
+	public static final String GET_FILTERING_ALBUM="/list/filtering/album/{filter}";
+	public static final String GET_FILTERING_PUBLICACION="/list/filtering/publicacion/{filter}";
+	public static final String GET_FILTERING_COMENTARIO="/list/filtering/comentario/{filter}";
+	public static final String GET_FILTERING_TIPOCONTACTO="/list/filtering/tipocontacto/{id}/{filter}";
+	public static final String GET_FILTERING_LISTACONTACTO="/list/filtering/listacontacto/{id}/{filter}";
+	
+	
+	public static final String GET="/get/{id}";
 	public static final String POST="/create";
 	public static final String PUT="/update";
 	public static final String DELETE="/delete";

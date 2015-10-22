@@ -3,6 +3,7 @@ package com.network.social.services.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,16 @@ public class ServiceEtiquetaController {
 
 	@Autowired
 	private EtiquetaService etiquetaService;
+	
+	@RequestMapping(value=GET,method=RequestMethod.GET)
+	private @ResponseBody Etiqueta get(@PathVariable Integer id){
+		return etiquetaService.findById(id);
+	}
+	
+	@RequestMapping(value=GET_FILTERING_MULTIMEDIA,method=RequestMethod.GET)
+	private @ResponseBody List<Etiqueta> getAllbyMultimedia(@PathVariable Integer filter){
+		return etiquetaService.getAllbyMultimedia(filter);
+	}
 	
 	@RequestMapping(value=GET_ALL,method=RequestMethod.GET)
 	private @ResponseBody List<Etiqueta> getEtiquetas(){

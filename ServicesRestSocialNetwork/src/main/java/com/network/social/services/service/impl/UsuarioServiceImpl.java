@@ -36,13 +36,13 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario,Integer> impleme
 	}
 
 	@Override
-	public List<Usuario> getAllbyListaContacto(Integer id) {
-		return usuarioDao.getAllbyListaContacto(id);
+	public List<Usuario> getAllbyListaContacto(Integer id,Integer idlista) {
+		return usuarioDao.getAllbyListaContacto(id,idlista);
 	}
 
 	@Override
-	public List<Usuario> getAllbyTipoContacto(Integer id) {
-		return usuarioDao.getAllbyTipoContacto(id);
+	public List<Usuario> getAllbyTipoContacto(Integer id,Integer idtipo) {
+		return usuarioDao.getAllbyTipoContacto(id,idtipo);
 	}
 
 }

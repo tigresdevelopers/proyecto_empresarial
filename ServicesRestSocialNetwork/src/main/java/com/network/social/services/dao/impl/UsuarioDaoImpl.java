@@ -56,12 +56,12 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Integer> implements Usu
 	}
 
 	@Override
-	public List<Usuario> getAllbyListaContacto(Integer id) {
+	public List<Usuario> getAllbyListaContacto(Integer id,Integer lista) {
 		return null;
 	}
 
 	@Override
-	public List<Usuario> getAllbyTipoContacto(Integer id) {
+	public List<Usuario> getAllbyTipoContacto(Integer id,Integer tipo) {
 		return null;
 	}
 
