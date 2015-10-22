@@ -25,6 +25,7 @@ public class DAOUtil {
 	public static enum QUERY_HQL{
 		
 		USUARIO_BY_EMAIL("usuario.email","email"),
+		USUARIO_CONTACTOS("usuario.contactos.usuario","idusuario"),
 		ALBUM_USUARIO("album.usuario","idusuario"),
 		ALBUM_GRUPO("album.grupo","idgrupo"),
 		ACTIVIDAD_USUARIO("actividad.usuario"),
