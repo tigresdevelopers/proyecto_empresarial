@@ -2,8 +2,10 @@ package com.network.social.domain.entities;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,6 +22,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -52,6 +55,12 @@ public class Comentario extends BaseBean {
 	private Set<Like> likes_1 = new HashSet<Like>();
 	private Set<Actividad> actividads = new HashSet<Actividad>();
 
+
+	private Comentario comentarioParent;
+
+	private List<Comentario> comentarios;
+	
+	
 	public Comentario() {
 	}
 
@@ -219,4 +228,27 @@ public class Comentario extends BaseBean {
 		this.actividads = actividads;
 	}
 
+	@JsonIgnore
+	@JsonBackReference(value="comentario-comentarios")
+	@ManyToOne
+	@JoinColumn(name="IDPARENT")
+	public Comentario getComentarioParent() {
+		return comentarioParent;
+	}
+	
+	public void setComentarioParent(Comentario comentarioParent) {
+		this.comentarioParent = comentarioParent;
+	}
+	
+	@JsonManagedReference(value="comentario-comentarios")
+	@OneToMany(mappedBy="comentarioParent",cascade=CascadeType.ALL)
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
+
+	
 }

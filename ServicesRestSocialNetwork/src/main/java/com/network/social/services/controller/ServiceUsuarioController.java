@@ -1,7 +1,21 @@
 package com.network.social.services.controller;
 
+import static com.network.social.services.util.RestURIConstants.DELETE;
+import static com.network.social.services.util.RestURIConstants.GET;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_GROUP;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_LISTACONTACTO;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_TIPOCONTACTO;
+import static com.network.social.services.util.RestURIConstants.POST;
+import static com.network.social.services.util.RestURIConstants.PUT;
+import static com.network.social.services.util.RestURIConstants.USUARIO;
+import static com.network.social.services.util.RestURIConstants.USUARIO_FIND_USERNAME;
+
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,9 +25,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.network.social.domain.entities.Usuario;
+import com.network.social.domain.util.BResult;
 import com.network.social.services.service.UsuarioService;
-
-import static com.network.social.services.util.RestURIConstants.*;
+import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
  * @date   :21/10/2015
@@ -23,6 +37,8 @@ import static com.network.social.services.util.RestURIConstants.*;
 @RequestMapping(value=USUARIO)
 public class ServiceUsuarioController {
 
+	Logger LOGGER=LoggerFactory.getLogger(ServiceUsuarioController.class);
+	
 	@Autowired
     private UsuarioService usuarioService;
 	
@@ -71,4 +87,91 @@ public class ServiceUsuarioController {
 	}
 	
 	
+	
+   @RequestMapping(value=POST,method=RequestMethod.POST,consumes="application/json") 
+   private @ResponseBody BResult post(@RequestBody Usuario usuario){
+	 
+		LOGGER.info("## ServiceUsuarioController -->create");
+		BResult bResult =null;
+		try{
+			if(usuario!=null){
+				bResult=new BResult();
+				bResult.setEstado(usuarioService.save(usuario));
+				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
+				if (bResult.getEstado()>0) {
+					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
+				}else{
+					LOGGER.info("Error al registrar Usuario -->"+usuario.getEmail()+":"+usuario.getNombre()+"-"+usuario.getApeMaterno());
+					bResult = new BResult();
+					bResult.setEstado(ESTADO_OPERACION.TRANSACCION_NO_PROCESADO.getCodigo());
+				}
+			}	
+		}catch(Exception ex){
+			LOGGER.info("EXCEPTION SERVICE", ex);
+			bResult = new BResult();
+			bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
+			bResult.setMensaje("exception proceso");
+		}
+		LOGGER.info("## response :"+bResult.getCodigo());
+		return bResult;
+    }
+	
+   @RequestMapping(value=PUT,method=RequestMethod.POST,consumes="application/json") 
+   private @ResponseBody BResult put(@RequestBody Usuario usuario){
+	 
+		LOGGER.info("## ServiceUsuarioController -->create");
+		BResult bResult =null;
+		try{
+			if(usuario!=null){
+				bResult=new BResult();
+				usuarioService.update(usuario);
+				bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
+				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
+				if (bResult.getEstado()>0) {
+					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
+				}else{
+					LOGGER.info("Error al actualizar Usuario -->"+usuario.getEmail()+":"+usuario.getNombre()+"-"+usuario.getApeMaterno());
+					bResult = new BResult();
+					bResult.setEstado(ESTADO_OPERACION.TRANSACCION_NO_PROCESADO.getCodigo());
+				}
+			}	
+		}catch(Exception ex){
+			LOGGER.info("EXCEPTION SERVICE", ex);
+			bResult = new BResult();
+			bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
+			bResult.setMensaje("exception proceso");
+		}
+		LOGGER.info("## response :"+bResult.getCodigo());
+		return bResult;
+    }
+   
+   @RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
+   private @ResponseBody BResult delete(@PathVariable Integer id){
+	 
+		LOGGER.info("## ServiceUsuarioController -->create");
+		BResult bResult =null;
+		try{
+			if(id>0){
+				bResult=new BResult();
+				Usuario persistentInstance=new Usuario(id);
+				usuarioService.delete(persistentInstance);
+				bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
+				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
+				if (bResult.getEstado()>0) {
+					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
+				}else{
+					LOGGER.info("Error al eliminar Usuario -->"+id);
+					bResult = new BResult();
+					bResult.setEstado(ESTADO_OPERACION.TRANSACCION_NO_PROCESADO.getCodigo());
+				}
+			}	
+		}catch(Exception ex){
+			LOGGER.info("EXCEPTION SERVICE", ex);
+			bResult = new BResult();
+			bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
+			bResult.setMensaje("exception proceso");
+		}
+		LOGGER.info("## response :"+bResult.getCodigo());
+		return bResult;
+    }
 }

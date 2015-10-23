@@ -21,6 +21,7 @@ public class UtilEnum {
 	}
 	
 	public static enum ESTADO_OPERACION{
+		CORRECTO(100),
 		EXITO(0),
 		ERROR(1),
 		EXCEPTION(10),
@@ -50,7 +51,7 @@ public class UtilEnum {
 		}
 	}
 	
-	public static enum ESTADO_REGISTRO_BASE{
+	public static enum ESTADO_SOLICITUD{
 		//transicion eliminado 
 		ELIMINADO(0,"Eliminado",""),
 		
@@ -76,7 +77,7 @@ public class UtilEnum {
 		private final String  texto;
 		private final String keyMsg;
 		
-		private ESTADO_REGISTRO_BASE(int estado, String texto, String keyMsg){
+		private ESTADO_SOLICITUD(int estado, String texto, String keyMsg){
 			this.codigo = estado;
 			this.texto=texto;
 			this.keyMsg = keyMsg;
@@ -152,16 +153,16 @@ public class UtilEnum {
 	}
 	
 	public static enum GENERO {
-		MASCULINO("M", "Masculino"),FEMENINO ("F", "Femenino ");
-		private final String codigo;
+		MASCULINO(0, "Masculino"),FEMENINO (1, "Femenino ");
+		private final int codigo;
 		private final String texto;
 		
-		private GENERO(String codigo, String texto) {
+		private GENERO(int codigo, String texto) {
 			this.codigo = codigo;
 			this.texto = texto;
 		}
 		
-		public String getCodigo() {
+		public int getCodigo() {
 			return codigo;
 		}
 		
