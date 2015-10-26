@@ -106,15 +106,13 @@ public class ServiceSolicitudController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Solicitud solicitud){
 		 
 			LOGGER.info("## ServiceSolicitudController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(solicitud.getIdsolicitud()>0){
 					bResult=new BResult();
-					Solicitud solicitud=new Solicitud();
-					solicitud.setIdsolicitud(id);
 					solicitudService.delete(solicitud);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## solicitud eliminado ->"+bResult.getEstado());
@@ -132,7 +130,7 @@ public class ServiceSolicitudController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 }

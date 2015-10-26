@@ -1,5 +1,7 @@
 package com.network.social.web.spring.security;
 
+import static com.network.social.web.jsf.util.Faces.*;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,7 +15,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import org.springframework.stereotype.Component;
 
 import com.network.social.web.spring.util.SpringUser;
-
  /**
   * Proyecto: AdminSaas
   * @date	: 9/6/2015
@@ -32,16 +33,16 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 		
 		SpringUser user= (SpringUser) authentication.getPrincipal();
 		LOGGER.info("## USER LOGIN:"+user.getUsername());
-//		UtilWeb.setUsuarioLogin(request,user.getUsuario());
 		
-		LOGGER.info("## LOAD PERIODO ACTUAL");
-		//UtilWeb.setPeriodoActual(request,procesosComun.obtenerActualPeriodo());
+		System.out.println(user.getUsername()+"-->yo soy el logeado");
 		
-		LOGGER.info("## SETER ANIO");
-		//UtilWeb.setAnioInicioPeriodo(request,procesosComun.obtenerAnioInicioPeriodo());
+		String nombre=user.getUsuario().getNombre()+" "+user.getUsuario().getApePaterno();
 		
-		LOGGER.info("## LOAD DATA MENUS");
-		//UtilWeb.cargarMenuOperaciones(request, procesosComun, user.getUsuario());
+		request.getSession().setAttribute(ATTRIBUTE_USER, user.getUsuario());
+		request.getSession().setAttribute(ATTRIBUTE_USER_NAME,nombre);
+		
+	
+		
 		//AKI CARGA MENUS
 		LOGGER.info("FIN INVOKE SUCCESS HANDLER");
 		super.onAuthenticationSuccess(request, response, authentication);

@@ -17,7 +17,7 @@ public class RestURIConstants {
 	public static final String GET="/get/{id}";
 	public static final String POST="/create";
 	public static final String PUT="/update";
-	public static final String DELETE="/delete/{id}";
+	public static final String DELETE="/delete";
 	
 	public static final String ACTIVIDAD="actividad";
 	public static final String ALBUM="album";

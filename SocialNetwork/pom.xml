@@ -19,7 +19,8 @@
 	<!-- Spring Security -->
 	<spring.security>4.0.2.RELEASE</spring.security>
 	<commons-loggin.version>1.2</commons-loggin.version>
-	
+	<!-- hibernate -->
+	<hibernate.version>4.3.10.Final</hibernate.version>
 	<!-- Spring-jackson -->
 	<jackson.databind-version>2.5.3</jackson.databind-version>
 		
@@ -121,6 +122,12 @@
 		<artifactId>spring-aop</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
+	<!-- hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
 	<!-- Jackson dependencies -->
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
@@ -217,12 +224,6 @@
 		<artifactId>javaee-web-api</artifactId>
 		<version>7.0</version>
 		<scope>provided</scope>
-  </dependency>
-  <!-- Domain dependencies -->
-  <dependency>
-   	<groupId>com.social.network</groupId>
-   	<artifactId>Domain</artifactId>
-   	<version>0.0.1-SNAPSHOT</version>
   </dependency>
   
 </dependencies>

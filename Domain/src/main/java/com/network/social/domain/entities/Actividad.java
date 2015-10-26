@@ -72,7 +72,7 @@ public class Actividad extends BaseBean {
 	@Id
 	@GenericGenerator(name="SQ_GENERATOR",strategy="sequence",parameters={@Parameter(name="sequence",value="SQ_ACTIVIDAD")})
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SQ_GENERATOR")
-	@Column(name = "IDACTIVIDAD", unique = true, nullable = false, precision = 22, scale = 0)
+	@Column(name = "IDACTIVIDAD", unique = true,precision = 22, scale = 0)
 	public Integer getIdactividad() {
 		return this.idactividad;
 	}
@@ -141,7 +141,7 @@ public class Actividad extends BaseBean {
 		this.descripcion = descripcion;
 	}
 
-	@Column(name = "IDUSUARIO", nullable = false, precision = 22, scale = 0)
+	@Column(name = "IDUSUARIO",precision = 22, scale = 0)
 	public Integer getIdusuario() {
 		return this.idusuario;
 	}

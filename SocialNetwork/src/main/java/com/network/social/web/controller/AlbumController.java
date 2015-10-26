@@ -16,11 +16,11 @@ import javax.faces.bean.SessionScoped;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.network.social.domain.entities.Album;
-import com.network.social.domain.util.BResult;
-import com.network.social.domain.util.ResultObject;
 import com.network.social.web.config.PropiedadAdmin;
+import com.network.social.web.form.AlbumForm;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
+import com.network.social.web.spring.util.BResult;
+import com.network.social.web.spring.util.ResultObject;
 import com.network.social.web.spring.util.UtilHardCode;
 
 /**
@@ -40,13 +40,13 @@ public class AlbumController implements Serializable {
 	@ManagedProperty(value="#{propiedadAdmin}")
 	private PropiedadAdmin propiedadAdmin;
 	
-	private List<Album> albums;
-	private Album album;
+	private List<AlbumForm> albums;
+	private AlbumForm album;
 
 	@PostConstruct
 	public void init(){
 		
-		this.albums=new ArrayList<Album>();
+		this.albums=new ArrayList<AlbumForm>();
 		
 		Map<String, Object> urlVariables=new HashMap<>();
 		urlVariables.put("idusuario",UtilHardCode.usuario.getIdusuario());
@@ -55,7 +55,7 @@ public class AlbumController implements Serializable {
 				propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ALBUM_BY_USUARIO), ResultObject.class,urlVariables);
 		
 		for (Map<String, Object> entity : res.getData()) {
-			Album album=new Album();
+			AlbumForm album=new AlbumForm();
 			album.setIdalbum(Integer.valueOf(entity.get("id").toString()));
 			album.setNombre(entity.get("nombre")!=null?entity.get("nombre").toString():"");
 			album.setDescripcion(entity.get("descripcion")!=null?entity.get("descripcion").toString():"");
@@ -73,7 +73,7 @@ public class AlbumController implements Serializable {
 		album.setUsuario(UtilHardCode.usuario);
 		
 		BResult bresult=restTemplate.postForObject(propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ALBUM_CREATE),
-				new HttpEntity<Album>(this.album),BResult.class);
+				new HttpEntity<AlbumForm>(this.album),BResult.class);
 		
 		System.out.println(bresult.getEstado());
 		System.out.println(bresult);
@@ -85,16 +85,16 @@ public class AlbumController implements Serializable {
 	
 	
 	
-	public List<Album> getAlbums() {
+	public List<AlbumForm> getAlbums() {
 		return albums;
 	}
-	public void setAlbums(List<Album> albums) {
+	public void setAlbums(List<AlbumForm> albums) {
 		this.albums = albums;
 	}
-	public Album getAlbum() {
+	public AlbumForm getAlbum() {
 		return album;
 	}
-	public void setAlbum(Album album) {
+	public void setAlbum(AlbumForm album) {
 		this.album = album;
 	}
 

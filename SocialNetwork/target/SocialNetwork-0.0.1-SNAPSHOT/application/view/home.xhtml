@@ -10,29 +10,39 @@
 </h:head> 
 <h:body> 
 	
+	<ui:composition template="/application/template/template.xhtml" >
+	
+		<ui:define name="body">
+			
+		<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" >
+	        <h:outputText value="Salir"/>
+	    </h:outputLink>
+	    
+		<form action="j_spring_security_logout" method="post">
+		<input type="submit" value="Log out" />
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
+	    
+	        
+		<h2>Bienvenidos al Home</h2>
+		<h:form>
+			<label>${prop['config.app.services.web']}</label>
+			<br/>
+			<h:outputLink value="#{prop['config.app.resources.web']}">recursos</h:outputLink>
+			<br/>
+			<h:outputLabel value="#{testclient.nombre}" />
+			<br/>	
+			<h:outputLabel value="#{testclient.usuarioForm.nombre}" />	
+		</h:form>
+	
+	<script src="${prop['config.app.resources.web']}/js/mytester.js" ></script>
+		
+		
+		</ui:define>
+
+	</ui:composition>
 
 	
-	<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" >
-        <h:outputText value="Salir"/>
-    </h:outputLink>
-    
-	<form action="j_spring_security_logout" method="post">
-	<input type="submit" value="Log out" />
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	</form>
-    
-        
-	<h2>Bienvenidos al Home</h2>
-	<h:form>
-		<label>${prop['config.app.services.web']}</label>
-		<br/>
-		<h:outputLink value="#{prop['config.app.resources.web']}">recursos</h:outputLink>
-		<br/>
-		<h:outputLabel value="#{testclient.nombre}" />
-		<br/>	
-		<h:outputLabel value="#{testclient.usuarioForm.nombre}" />	
-	</h:form>
-
-<script src="${prop['config.app.resources.web']}/js/mytester.js" ></script>
+	
 </h:body> 
 </html>

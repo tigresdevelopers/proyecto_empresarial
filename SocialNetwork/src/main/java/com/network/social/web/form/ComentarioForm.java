@@ -2,6 +2,7 @@ package com.network.social.web.form;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 /**
  * 
@@ -24,7 +25,10 @@ public class ComentarioForm extends BaseForm {
 	private Set<NotificacionForm> notificacioneses = new HashSet<NotificacionForm>();
 	private Set<LikeForm> likes_1 = new HashSet<LikeForm>();
 	private Set<ActividadForm> actividads = new HashSet<ActividadForm>();
-
+	private ComentarioForm comentarioParent;
+	private List<ComentarioForm> comentarios;
+	
+	
 	public ComentarioForm() {
 	}
 
@@ -149,6 +153,22 @@ public class ComentarioForm extends BaseForm {
 
 	public void setActividads(Set<ActividadForm> actividads) {
 		this.actividads = actividads;
+	}
+
+	public ComentarioForm getComentarioParent() {
+		return comentarioParent;
+	}
+
+	public void setComentarioParent(ComentarioForm comentarioParent) {
+		this.comentarioParent = comentarioParent;
+	}
+
+	public List<ComentarioForm> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<ComentarioForm> comentarios) {
+		this.comentarios = comentarios;
 	}
 	
 	

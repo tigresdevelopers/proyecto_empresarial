@@ -1,7 +1,7 @@
 package com.network.social.web.spring.util;
 
-import com.network.social.domain.entities.Album;
-import com.network.social.domain.entities.Usuario;
+import com.network.social.web.form.AlbumForm;
+import com.network.social.web.form.UsuarioForm;
 
 /**
 * @author : Alexander Chavez Simbron
@@ -10,13 +10,13 @@ import com.network.social.domain.entities.Usuario;
 */
 public class UtilHardCode{
 
-	public static Usuario usuario;
-	public static Album album;
+	public static UsuarioForm usuario;
+	public static AlbumForm  album;
 	
 	
 	static{
 		
-		usuario=new Usuario();
+		usuario=new UsuarioForm();
 		usuario.setIdusuario(3);
 		usuario.setNombre("Alexander");
 		usuario.setEmail("leonxandercs");
@@ -26,7 +26,7 @@ public class UtilHardCode{
 		usuario.setEstado('1');
 		
 
-		album=new Album();
+		album=new AlbumForm();
 		album.setNombre("album prueba {hora}");
 		album.setDescripcion("registro por post");
 		album.setLikes(0);

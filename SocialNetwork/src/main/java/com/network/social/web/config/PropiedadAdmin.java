@@ -57,7 +57,7 @@ public class PropiedadAdmin {
 	}
 
 	public String getURIServiceAdmin(URI uri) {
-		return getProperty(URL_BASE.SERVICIOS_SOCIAL_NETWORK.getUrl()) + getProperty(uri.getUri());
+		return getProperty(URL_BASE.SERVICIOS_SOCIAL_NETWORK.getUrl())+getProperty(uri.getController())+getProperty(uri.getUri());
 	}
 
 	public String getURIServiceWeb(URI uri) {

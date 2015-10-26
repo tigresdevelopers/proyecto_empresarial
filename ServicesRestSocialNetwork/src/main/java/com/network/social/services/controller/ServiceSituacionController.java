@@ -100,15 +100,13 @@ public class ServiceSituacionController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Situacion situacion){
 		 
 			LOGGER.info("## ServiceSituacionController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(situacion.getIdsituacion()>0){
 					bResult=new BResult();
-					Situacion situacion=new Situacion();
-					situacion.setIdsituacion(id);
 					situacionService.delete(situacion);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## situacion eliminado ->"+bResult.getEstado());
@@ -126,7 +124,7 @@ public class ServiceSituacionController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 	

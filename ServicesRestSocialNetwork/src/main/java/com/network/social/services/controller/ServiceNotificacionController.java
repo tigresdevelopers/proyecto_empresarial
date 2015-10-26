@@ -106,15 +106,13 @@ public class ServiceNotificacionController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Notificacion notificacion){
 		 
 			LOGGER.info("## ServiceListaContactoController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(notificacion.getIdnotificacion()>0){
 					bResult=new BResult();
-					Notificacion notificacion=new Notificacion();
-					notificacion.setIdnotificacion(id);
 					notificacionService.delete(notificacion);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## notificacion eliminado ->"+bResult.getEstado());
@@ -132,7 +130,7 @@ public class ServiceNotificacionController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 }

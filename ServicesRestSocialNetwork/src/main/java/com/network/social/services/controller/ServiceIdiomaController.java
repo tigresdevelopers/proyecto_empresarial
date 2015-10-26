@@ -107,15 +107,13 @@ public class ServiceIdiomaController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Idioma idioma){
 		 
 			LOGGER.info("## ServiceIdiomaController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(idioma.getIdidioma()>0){
 					bResult=new BResult();
-					Idioma idioma=new Idioma();
-					idioma.setIdidioma(id);
 					idiomaService.delete(idioma);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## idioma eliminado ->"+bResult.getEstado());
@@ -133,7 +131,7 @@ public class ServiceIdiomaController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 }

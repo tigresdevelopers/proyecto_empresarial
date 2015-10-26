@@ -83,7 +83,7 @@ public class Album extends BaseBean {
 
 	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDPUBLICACION", unique = true, nullable = false)
+	@JoinColumn(name = "IDPUBLICACION", unique = true)
 	public Publicacion getPublicacion() {
 		return this.publicacion;
 	}

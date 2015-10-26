@@ -22,7 +22,8 @@
  	 login-page="/login.tiger"
  	 authentication-failure-url="/login.tiger?erro=true" 
  	 username-parameter="username"
- 	 password-parameter="password" />
+ 	 password-parameter="password"
+ 	 authentication-success-handler-ref="myAuthenticationSuccessHandler" />
  	 
  	 <logout invalidate-session="true" delete-cookies="JSESSIONID" 
  	 logout-url="/j_spring_security_logout" logout-success-url="/login.tiger" />
@@ -34,9 +35,9 @@
       <authentication-provider user-service-ref="userDetailsService">
       <password-encoder hash="bcrypt" />
       </authentication-provider>
- </authentication-manager>
- 
- 
+</authentication-manager>
+  
+<bean:bean id="myAuthenticationSuccessHandler" class="com.network.social.web.spring.security.LoginSuccessHandler" /> 
  
 <!-- 
 	<authentication-manager>

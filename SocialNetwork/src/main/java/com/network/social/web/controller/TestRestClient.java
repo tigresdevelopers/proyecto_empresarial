@@ -9,9 +9,10 @@ import javax.faces.bean.ManagedProperty;
 
 import org.springframework.web.client.RestTemplate;
 
-import com.network.social.domain.util.ResultObject;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.form.UsuarioForm;
+import com.network.social.web.jsf.util.Faces;
+import com.network.social.web.spring.util.ResultObject;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 /**
  * @author :Alexander Chavez Simbron
@@ -43,10 +44,9 @@ public class TestRestClient implements Serializable {
 					map.get("usuario").toString(),
 					map.get("clave").toString()
 					);
-			System.out.println(map.get("usuario"));
 		}
 		
-		this.nombre="Alexander Chavez Simbron";
+		this.nombre=((UsuarioForm)Faces.getSessionAttribute("user")).getNombre();
 		System.out.println( propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ACCESO_OBTENER_USUARIO) );
 		
 	}

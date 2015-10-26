@@ -17,6 +17,7 @@ public class Faces {
      * Attributo alternativo para mostrar nombre del usuario logeado
      */
     public static String ATTRIBUTE_USER = "user";
+    public static String ATTRIBUTE_USER_NAME = "nombre";
     public static String ATTRIBUTE_CODIGO = "personLoged";
 
     /**
@@ -110,7 +111,8 @@ public class Faces {
      * error, fatal
      */
     public static void addMessage(String summary, String details, FacesMessage.Severity TYPE_MESSAGE) {
-        FacesMessage message = new FacesMessage(TYPE_MESSAGE, summary, details);
+        FacesMessage message = new FacesMessage(summary, details);
+        message.setSeverity(TYPE_MESSAGE);
         FacesContext.getCurrentInstance().addMessage(null, message);
         
         Faces.getRequestContext().update("growl");

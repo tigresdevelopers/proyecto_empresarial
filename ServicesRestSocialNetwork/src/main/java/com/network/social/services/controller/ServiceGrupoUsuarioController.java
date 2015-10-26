@@ -100,7 +100,7 @@ public class ServiceGrupoUsuarioController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable("id") Integer id,@RequestBody GrupoUsuario grupoUsuario){
+	   private @ResponseBody BResult delete(@RequestBody GrupoUsuario grupoUsuario){
 		 
 			LOGGER.info("## ServiceGrupoUsuarioController -->delete");
 			BResult bResult =null;
@@ -124,7 +124,7 @@ public class ServiceGrupoUsuarioController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 	

@@ -105,15 +105,13 @@ public class ServiceGrupoController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Grupo grupo){
 		 
 			LOGGER.info("## ServiceGrupoController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(grupo.getIdgrupo()>0){
 					bResult=new BResult();
-					Grupo grupo=new Grupo();
-					grupo.setIdgrupo(id);
 					grupoService.delete(grupo);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## grupo eliminado ->"+bResult.getEstado());
@@ -131,7 +129,7 @@ public class ServiceGrupoController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 	

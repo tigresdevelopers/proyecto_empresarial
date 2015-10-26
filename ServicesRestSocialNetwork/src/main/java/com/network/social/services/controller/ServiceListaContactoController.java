@@ -108,15 +108,13 @@ public class ServiceListaContactoController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody ListaContacto listaContacto){
 		 
 			LOGGER.info("## ServiceListaContactoController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
+				if(listaContacto.getIdlistaContactos()>0){
 					bResult=new BResult();
-					ListaContacto listaContacto=new ListaContacto();
-					listaContacto.setIdlistaContactos(id);
 					listaContactoService.delete(listaContacto);
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## listaContacto eliminado ->"+bResult.getEstado());
@@ -134,7 +132,7 @@ public class ServiceListaContactoController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 }

@@ -144,7 +144,7 @@ public class Usuario extends BaseBean {
 
 	@JsonIdentityReference(alwaysAsId=true)
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "IDSITUACION", nullable = false)
+	@JoinColumn(name = "IDSITUACION")
 	public Situacion getSituacionSentimental() {
 		return this.situacionSentimental;
 	}
@@ -162,7 +162,7 @@ public class Usuario extends BaseBean {
 	}
 	
 
-	@Column(name = "NOMBRE", nullable = false, length = 50)
+	@Column(name = "NOMBRE",length = 50)
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -171,7 +171,7 @@ public class Usuario extends BaseBean {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "APE_PATERNO", nullable = false, length = 50)
+	@Column(name = "APE_PATERNO",length = 50)
 	public String getApePaterno() {
 		return this.apePaterno;
 	}
@@ -180,7 +180,7 @@ public class Usuario extends BaseBean {
 		this.apePaterno = apePaterno;
 	}
 
-	@Column(name = "APE_MATERNO", nullable = false, length = 50)
+	@Column(name = "APE_MATERNO",length = 50)
 	public String getApeMaterno() {
 		return this.apeMaterno;
 	}
@@ -189,7 +189,7 @@ public class Usuario extends BaseBean {
 		this.apeMaterno = apeMaterno;
 	}
 
-	@Column(name = "FECHA_NACIMIENTO", nullable = false)
+	@Column(name = "FECHA_NACIMIENTO")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getFechaNacimiento() {
 		return this.fechaNacimiento;
@@ -199,7 +199,7 @@ public class Usuario extends BaseBean {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	@Column(name = "EMAIL", nullable = false, length = 50)
+	@Column(name = "EMAIL",length = 50)
 	public String getEmail() {
 		return this.email;
 	}
@@ -226,7 +226,7 @@ public class Usuario extends BaseBean {
 		this.celular = celular;
 	}
 
-	@Column(name = "SEXO", nullable = false, precision = 22, scale = 0)
+	@Column(name = "SEXO", precision = 22, scale = 0)
 	public Integer getSexo() {
 		return this.sexo;
 	}
@@ -235,7 +235,7 @@ public class Usuario extends BaseBean {
 		this.sexo = sexo;
 	}
 
-	@Column(name = "FECHA_REGISTRO", nullable = false)
+	@Column(name = "FECHA_REGISTRO")
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date getFechaRegistro() {
 		return this.fechaRegistro;
@@ -245,7 +245,7 @@ public class Usuario extends BaseBean {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	@Column(name = "ESTADO", nullable = false, length = 1)
+	@Column(name = "ESTADO",length = 1)
 	public char getEstado() {
 		return this.estado;
 	}

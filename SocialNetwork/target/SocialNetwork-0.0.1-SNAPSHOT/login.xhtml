@@ -28,7 +28,7 @@
     </div>
     <div class="main">
         <div class="login">
-            <form action="j_spring_security_check" method="post">
+            <form id="login" action="j_spring_security_check" method="post">
 				<h:outputText value="Usuario o Contraseña son incorretos!" rendered="#{param.erro}" style="color: darkred" />
 				<br/>
 				<p:inputText id="username" required="true" placeholder="Username" />
@@ -40,54 +40,7 @@
 			</form>
         </div>
         <div class="register">
-          <form>
-
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">perm_identity</i>
-                <input id="icon_prefix" type="text" class="validate" placeholder="Nombre"/>
-                
-              </div>
-              <div class="input-field col s12">
-                <i class="material-icons prefix">contacts</i>
-                <input id="icon_telephone" type="tel" class="validate" placeholder="Apellidos"/>
-              </div>
-              
-              <div class="input-field col s12">
-                <i class="material-icons prefix">email</i>
-                <input id="icon_telephone" type="tel" class="validate" placeholder="email"/>
-              </div>
-
-              <div class="input-field col s6">
-                <i class="material-icons prefix">password</i>
-                <input id="icon_telephone" type="tel" class="validate" placeholder="contraseña"/>
-                
-              </div>
-
-              <div class="input-field col s6">
-                <i class="material-icons prefix">fecha</i>
-                <input id="icon_telephone" type="tel" class="validate" placeholder="fecha"/>
-              </div>
-
-              
-
-              <div class="input-field col s12">
-                <p class="col s6">
-                  <input name="group1" type="radio" id="test1" />
-                  <label for="test1">Hombre</label>
-                </p>
-                <p class="col s6">
-                  <input name="group1" type="radio" id="test2" />
-                  <label for="test2">Mujer</label>
-                </p>
-                
-              </div>
-            </div>
-
-            
-            <button type="submit" value="Login">Register</button>
-            <span class="form-toggle">Return to Login</span>
-          </form>
+          	
         </div>
     </div>
 

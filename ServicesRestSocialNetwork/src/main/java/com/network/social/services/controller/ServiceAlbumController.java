@@ -145,16 +145,14 @@ public class ServiceAlbumController {
 	    }
 	
 	@RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-	   private @ResponseBody BResult delete(@PathVariable Integer id){
+	   private @ResponseBody BResult delete(@RequestBody Album album){
 		 
 			LOGGER.info("## ServiceAlbumController -->delete");
 			BResult bResult =null;
 			try{
-				if(id>0){
-					bResult=new BResult();
-					Album album=new Album();
-					album.setIdalbum(id);
+				if(album.getIdalbum()>0){
 					albumService.delete(album);
+					bResult=new BResult();
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## Album eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
@@ -171,7 +169,7 @@ public class ServiceAlbumController {
 				bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 				bResult.setMensaje("exception proceso");
 			}
-			LOGGER.info("## response :"+bResult.getCodigo());
+			LOGGER.info("## response :"+bResult.getEstado());
 			return bResult;
 	    }
 }

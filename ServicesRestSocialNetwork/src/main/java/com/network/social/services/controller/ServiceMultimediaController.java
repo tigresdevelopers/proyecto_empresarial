@@ -261,7 +261,7 @@ public class ServiceMultimediaController {
 			bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 			bResult.setMensaje("excepion proceso");
 		}
-		LOGGER.info("## response :"+bResult.getCodigo());
+		LOGGER.info("## response :"+bResult.getEstado());
 		return bResult;
 	}
 }

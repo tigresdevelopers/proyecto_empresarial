@@ -12,6 +12,7 @@ import static com.network.social.services.util.RestURIConstants.PUT;
 import static com.network.social.services.util.RestURIConstants.USUARIO;
 import static com.network.social.services.util.RestURIConstants.USUARIO_FIND_USERNAME;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -96,10 +97,13 @@ public class ServiceUsuarioController {
 		try{
 			if(usuario!=null){
 				bResult=new BResult();
+				usuario.setEstado('1');
+				usuario.setFechaRegistro(new Date());
 				bResult.setEstado(usuarioService.save(usuario));
 				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
 				if (bResult.getEstado()>0) {
 					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
+					bResult.setCodigo(ESTADO_OPERACION.EXITO.getCodigo());
 				}else{
 					LOGGER.info("Error al registrar Usuario -->"+usuario.getEmail()+":"+usuario.getNombre()+"-"+usuario.getApeMaterno());
 					bResult = new BResult();
@@ -146,21 +150,21 @@ public class ServiceUsuarioController {
     }
    
    @RequestMapping(value=DELETE,method=RequestMethod.POST,consumes="application/json") 
-   private @ResponseBody BResult delete(@PathVariable Integer id){
+   private @ResponseBody BResult delete(@RequestBody Usuario usuario){
 	 
 		LOGGER.info("## ServiceUsuarioController -->create");
 		BResult bResult =null;
 		try{
-			if(id>0){
+			if(usuario.getIdusuario()>0){
 				bResult=new BResult();
-				Usuario persistentInstance=new Usuario(id);
+				Usuario persistentInstance=new Usuario(usuario.getIdusuario());
 				usuarioService.delete(persistentInstance);
 				bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
 				if (bResult.getEstado()>0) {
 					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
 				}else{
-					LOGGER.info("Error al eliminar Usuario -->"+id);
+					LOGGER.info("Error al eliminar Usuario -->"+usuario.getIdusuario());
 					bResult = new BResult();
 					bResult.setEstado(ESTADO_OPERACION.TRANSACCION_NO_PROCESADO.getCodigo());
 				}
@@ -171,7 +175,7 @@ public class ServiceUsuarioController {
 			bResult.setEstado(ESTADO_OPERACION.EXCEPTION.getCodigo());
 			bResult.setMensaje("exception proceso");
 		}
-		LOGGER.info("## response :"+bResult.getCodigo());
+		LOGGER.info("## response :"+bResult.getEstado());
 		return bResult;
     }
 }

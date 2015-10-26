@@ -4,19 +4,34 @@ public class AdminConfigPropiedad {
 
 	public enum URI {
 		
-		SERVICE_ACCESO_OBTENER_USUARIO("uri.service.acceso.usuario.get"),
-		SERVICE_ALBUM_BY_USUARIO("uri.service.album.usuario"),
-		SERVICE_ALBUM_CREATE("uri.service.album.create"),
-		SERVICE_VENTA_VENTABYID("uri.service.venta.ventaById");
+		SERVICE_ACCESO_OBTENER_USUARIO("uri.service.usuario","uri.service.acceso.usuario.get"),
 		
+		SERVICE_USUARIO_CREATE("uri.service.usuario","uri.service.create"),
+		SERVICE_USUARIO_UPDATE("uri.service.usuario","uri.service.update"),
+		SERVICE_USUARIO_DELETE("uri.service.usuario","uri.service.delete"),
+		SERVICE_USUARIO_FIND("uri.service.usuario","uri.service.find"),
+		
+		
+		SERVICE_ALBUM_BY_USUARIO("album","uri.service.album.usuario"),
+		SERVICE_ALBUM_CREATE("album","uri.service.album.create")
+		
+		;
+		
+		private final String controller;
 		private final String uri;
-
-		URI(String valor) {
+		
+		
+		URI(String controller,String valor) {
+			this.controller=controller;
 			this.uri = valor;
 		}
-
+		
+		public String getController(){
+			return this.controller;
+		}
+		
 		public String getUri() {
-			return uri;
+			return this.uri;
 		}
 	}
 
