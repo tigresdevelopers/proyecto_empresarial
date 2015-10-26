@@ -7,6 +7,8 @@ public class DAOUtil {
 	public static enum SP_ORACLE{
 		
 		SP_LOGIN("usplogin(?,?)"),
+		SP_GET_COMENTARIOS("getComentarios_rs(?,?)"),
+		SP_GET_NOTIFICACIONES_RS("getNotificaciones_rs(?,?)"),
 		SP_PUBLICACION_USUARIO_TIPO(""),
 		SP_PUBLICACION_USUARIO_LISTA("")
 		;

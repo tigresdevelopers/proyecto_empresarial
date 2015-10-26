@@ -1,8 +1,15 @@
 package com.network.social.services.controller;
 
+import static com.network.social.services.util.RestURIConstants.DELETE;
+import static com.network.social.services.util.RestURIConstants.ETIQUETA;
+import static com.network.social.services.util.RestURIConstants.GET;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_MULTIMEDIA;
+import static com.network.social.services.util.RestURIConstants.POST;
+import static com.network.social.services.util.RestURIConstants.PUT;
+
 import java.util.List;
 
-import org.apache.taglibs.standard.lang.jstl.EqualityOperator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +24,6 @@ import com.network.social.domain.entities.Etiqueta;
 import com.network.social.domain.util.BResult;
 import com.network.social.services.service.EtiquetaService;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
-
-import static com.network.social.services.util.RestURIConstants.*;
 /**
  * @author :Alexander Chavez Simbron
  * @date   :21/10/2015
