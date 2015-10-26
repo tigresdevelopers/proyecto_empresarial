@@ -13,7 +13,20 @@ public class AdminConfigPropiedad {
 		
 		
 		SERVICE_ALBUM_BY_USUARIO("album","uri.service.album.usuario"),
-		SERVICE_ALBUM_CREATE("album","uri.service.album.create")
+		SERVICE_ALBUM_CREATE("uri.service.album","uri.service.create"),
+		SERVICE_ALBUM_UPDATE("uri.service.album","uri.service.update"),
+		SERVICE_ALBUM_DELETE("uri.service.album","uri.service.delete"),
+		SERVICE_ALBUM_FIND("uri.service.album","uri.service.find"),
+		
+		SERVICE_MULTIMEDIA_CREATE("uri.service.multimedia","uri.service.create"),
+		SERVICE_MULTIMEDIA_UPDATE("uri.service.multimedia","uri.service.update"),
+		SERVICE_MULTIMEDIA_DELETE("uri.service.multimedia","uri.service.delete"),
+		SERVICE_MULTIMEDIA_FIND("uri.service.multimedia","uri.service.find"),
+		
+		SERVICE_COMENTARIO_CREATE("uri.service.comentario","uri.service.create"),
+		SERVICE_COMENTARIO_UPDATE("uri.service.comentario","uri.service.update"),
+		SERVICE_COMENTARIO_DELETE("uri.service.comentario","uri.service.delete"),
+		SERVICE_COMENTARIO_FIND("uri.service.comentario","uri.service.find"),
 		
 		;
 		

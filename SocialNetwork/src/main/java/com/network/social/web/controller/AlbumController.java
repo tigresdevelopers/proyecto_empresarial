@@ -9,15 +9,22 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
+import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
 import com.network.social.web.form.AlbumForm;
+import com.network.social.web.form.UsuarioForm;
+import com.network.social.web.jsf.util.Faces;
+import static com.network.social.web.jsf.util.Faces.*;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.BResult;
 import com.network.social.web.spring.util.ResultObject;
@@ -33,6 +40,8 @@ import com.network.social.web.spring.util.UtilHardCode;
 @ManagedBean(name="album")
 public class AlbumController implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	Logger LOGGER=LoggerFactory.getLogger(AlbumController.class);
 	
 	@ManagedProperty(value="#{restTemplate}")
 	private RestTemplate restTemplate;
@@ -69,8 +78,7 @@ public class AlbumController implements Serializable {
 		
 		album=UtilHardCode.album;
 		album.setNombre(album.getNombre().replace("{hora}",new SimpleDateFormat("dd/MM/YYYY MM:SS").format(new Date())));
-		
-		album.setUsuario(UtilHardCode.usuario);
+		album.setUsuario((UsuarioForm)Faces.getSessionAttribute(ATTRIBUTE_USER));
 		
 		BResult bresult=restTemplate.postForObject(propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ALBUM_CREATE),
 				new HttpEntity<AlbumForm>(this.album),BResult.class);
@@ -79,8 +87,34 @@ public class AlbumController implements Serializable {
 		System.out.println(bresult);
 	}
 	
+	public void  update(){
+		LOGGER.info("## Actualizar Album");
+		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ALBUM_UPDATE);
+	    BResult result=restTemplate.postForObject(url, new HttpEntity<AlbumForm>(this.album),BResult.class);
+	    
+		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
+			LOGGER.info("## Album actualizado");
+			Faces.addMessage("Exito", "Usuairo actualizado", FacesMessage.SEVERITY_INFO);
+		}else{
+			LOGGER.info("## error al actualizar");
+			Faces.addMessage("Error", "Error al actualizar", FacesMessage.SEVERITY_ERROR);
+		}	
+	}
+	
 	public void delete(){
+		LOGGER.info("## Eliminar Album");
 		
+		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ALBUM_DELETE);
+	    
+	    BResult result=restTemplate.postForObject(url,new HttpEntity<AlbumForm>(this.album),BResult.class);
+	    
+		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
+			LOGGER.info("## album eliminado");
+			Faces.addMessage("Exito", "Album eliminado", FacesMessage.SEVERITY_INFO);
+		}else{
+			LOGGER.info("## error al eliminar");
+			Faces.addMessage("Error", "Error al eliminar", FacesMessage.SEVERITY_ERROR);
+		}
 	}
 	
 	
