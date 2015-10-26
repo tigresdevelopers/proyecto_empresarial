@@ -36,7 +36,7 @@ public class Notificacion extends BaseBean {
 	private Like like;
 	private Publicacion publicacion;
 	private Comentario comentario;
-	private Character leido;
+	private String leido;
 	private String descripcion;
 
 	public Notificacion() {
@@ -47,7 +47,7 @@ public class Notificacion extends BaseBean {
 	}
 
 	public Notificacion(Integer idnotificacion, Like like, Publicacion publicacion, Comentario comentario,
-			Character leido, String descripcion) {
+			String leido, String descripcion) {
 		this.idnotificacion = idnotificacion;
 		this.like = like;
 		this.publicacion = publicacion;
@@ -120,11 +120,11 @@ public class Notificacion extends BaseBean {
 	}
 	
 	@Column(name = "LEIDO", length = 1)
-	public Character getLeido() {
+	public String getLeido() {
 		return this.leido;
 	}
 
-	public void setLeido(Character leido) {
+	public void setLeido(String leido) {
 		this.leido = leido;
 	}
 

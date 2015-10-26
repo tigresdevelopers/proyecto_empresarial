@@ -64,6 +64,13 @@ public class Comentario extends BaseBean {
 	public Comentario() {
 	}
 
+	public Comentario(Integer idcomentario) {
+		super();
+		this.idcomentario = idcomentario;
+	}
+
+
+
 	public Comentario(Integer idcomentario, Usuario usuario) {
 		this.idcomentario = idcomentario;
 		this.usuario = usuario;

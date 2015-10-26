@@ -51,6 +51,11 @@ public class Like extends BaseBean {
 	public Like() {
 	}
 
+	public Like(Integer idlike) {
+		super();
+		this.idlike = idlike;
+	}
+
 	public Like(Integer idlike, Usuario usuario, Date fechaRegistro) {
 		this.idlike = idlike;
 		this.usuario = usuario;
