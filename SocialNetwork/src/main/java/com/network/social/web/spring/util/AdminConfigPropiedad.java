@@ -28,6 +28,57 @@ public class AdminConfigPropiedad {
 		SERVICE_COMENTARIO_DELETE("uri.service.comentario","uri.service.delete"),
 		SERVICE_COMENTARIO_FIND("uri.service.comentario","uri.service.find"),
 		
+		SERVICE_CONTACTO_CREATE("uri.service.contacto","uri.service.create"),
+		SERVICE_CONTACTO_UPDATE("uri.service.contacto","uri.service.update"),
+		SERVICE_CONTACTO_DELETE("uri.service.contacto","uri.service.delete"),
+		SERVICE_CONTACTO_FIND("uri.service.contacto","uri.service.find"),
+		
+		SERVICE_ETIQUETA_CREATE("uri.service.etiqueta","uri.service.create"),
+		SERVICE_ETIQUETA_UPDATE("uri.service.etiqueta","uri.service.update"),
+		SERVICE_ETIQUETA_DELETE("uri.service.etiqueta","uri.service.delete"),
+		SERVICE_ETIQUETA_FIND("uri.service.etiqueta","uri.service.find"),
+		
+		SERVICE_GRUPO_CREATE("uri.service.grupo","uri.service.create"),
+		SERVICE_GRUPO_UPDATE("uri.service.grupo","uri.service.update"),
+		SERVICE_GRUPO_DELETE("uri.service.grupo","uri.service.delete"),
+		SERVICE_GRUPO_FIND("uri.service.grupo","uri.service.find"),
+		
+		SERVICE_IDIOMA_CREATE("uri.service.idioma","uri.service.create"),
+		SERVICE_IDIOMA_UPDATE("uri.service.idioma","uri.service.update"),
+		SERVICE_IDIOMA_DELETE("uri.service.idioma","uri.service.delete"),
+		SERVICE_IDIOMA_FIND("uri.service.idioma","uri.service.find"),
+		
+		SERVICE_LIKE_CREATE("uri.service.like","uri.service.create"),
+		SERVICE_LIKE_UPDATE("uri.service.like","uri.service.update"),
+		SERVICE_LIKE_DELETE("uri.service.like","uri.service.delete"),
+		SERVICE_LIKE_FIND("uri.service.like","uri.service.find"),
+
+		SERVICE_LISTA_CREATE("uri.service.listacontacto","uri.service.create"),
+		SERVICE_LISTA_UPDATE("uri.service.listacontacto","uri.service.update"),
+		SERVICE_LISTA_DELETE("uri.service.listacontacto","uri.service.delete"),
+		SERVICE_LISTA_FIND("uri.service.listacontacto","uri.service.find"),
+		
+		
+		SERVICE_NOTIFICACION_CREATE("uri.service.notificacion","uri.service.create"),
+		SERVICE_NOTIFICACION_UPDATE("uri.service.notificacion","uri.service.update"),
+		SERVICE_NOTIFICACION_DELETE("uri.service.notificacion","uri.service.delete"),
+		SERVICE_NOTIFICACION_FIND("uri.service.notificacion","uri.service.find"),
+		
+		SERVICE_PUBLICACION_CREATE("uri.service.publicacion","uri.service.create"),
+		SERVICE_PUBLICACION_UPDATE("uri.service.publicacion","uri.service.update"),
+		SERVICE_PUBLICACION_DELETE("uri.service.publicacion","uri.service.delete"),
+		SERVICE_PUBLICACION_FIND("uri.service.publicacion","uri.service.find"),
+		
+		SERVICE_SITUACION_CREATE("uri.service.situacion","uri.service.create"),
+		SERVICE_SITUACION_UPDATE("uri.service.situacion","uri.service.update"),
+		SERVICE_SITUACION_DELETE("uri.service.situacion","uri.service.delete"),
+		SERVICE_SITUACION_FIND("uri.service.situacion","uri.service.find"),
+		
+		SERVICE_TIPO_CREATE("uri.service.tipocontacto","uri.service.create"),
+		SERVICE_TIPO_UPDATE("uri.service.tipocontacto","uri.service.update"),
+		SERVICE_TIPO_DELETE("uri.service.tipocontacto","uri.service.delete"),
+		SERVICE_TIPO_FIND("uri.service.tipocontacto","uri.service.find"),
+		
 		;
 		
 		private final String controller;
