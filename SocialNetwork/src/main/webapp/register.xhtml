@@ -29,14 +29,17 @@
     <div class="main" >
         <div class="register">
 
-   <form>
+   <h:form>
+   		<p:growl id="msg" showDetail="true"  showSummary="true" />
+   	
 		<div class="row">
 			<div class="form-group">
                       <div class="input-group">
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                       </span>
-                      <h:inputText value="#{usuario.usuario.nombre}" styleClass="form-control"  placeholder="Nombre" />
+                      <h:inputText value="#{usuario.usuario.nombre}" styleClass="form-control nombre"  placeholder="Nombre" 
+                      required="true" requiredMessage="Ingrese un Nombre"/>
                     </div>                    
                 </div>
 
@@ -45,25 +48,19 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-user"></i>
                       </span>
-                      <h:inputText value="#{usuario.apellidos}" styleClass="form-control" placeholder="Apellidos" />
+                      <h:inputText value="#{usuario.apellidos}" styleClass="form-control apellido" placeholder="Apellidos" 
+                      required="true" requiredMessage="Ingrese un Apellido" />
                     </div>                    
                 </div>
+
 
                 <div class="form-group">
                       <div class="input-group">
                       <span class="input-group-addon">
                         <i class="fa fa-envelope"></i>
                       </span>
-                     <h:inputSecret value="#{usuario.usuario.clave}" styleClass="form-control" placeholder="contraseña" />
-                    </div>                    
-                </div>
-
-                <div class="form-group">
-                      <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-phone-alt"></i>
-                      </span>
-                      <h:inputText value="#{usuario.usuario.email}" styleClass="form-control" placeholder="email" />
+                      <h:inputText value="#{usuario.usuario.email}" styleClass="form-control email" placeholder="email"
+                      required="true" requiredMessage="Ingrese su email" />
                     </div>                    
                 </div>
 
@@ -72,7 +69,17 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-tag"></i>
                       </span>
-                       <h:inputText value="#{usuario.usuario.celular}" styleClass="form-control" placeholder="celular" />
+                     <h:inputSecret value="#{usuario.usuario.clave}" styleClass="form-control clave" placeholder="contraseña" 
+                      required="true" requiredMessage="Ingrese una clave" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-phone-alt"></i>
+                      </span>
+                       <h:inputText value="#{usuario.usuario.celular}" styleClass="form-control celular" placeholder="celular" />
                     </div>                    
                 </div>
 
@@ -81,12 +88,13 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-calendar"></i>
                       </span>
-                      <p:calendar  value="#{usuario.usuario.fechaNacimiento}" placeholder="Nacimiento" />
+                      <p:calendar  value="#{usuario.usuario.fechaNacimiento}" placeholder="Nacimiento" 
+                      required="true" requiredMessage="Ingrese su fecha de Nacimiento" />
                     </div>                    
                 </div>
                 
-                <div class="form-group" >
-                	<h:selectOneRadio value="#{usuario.usuario.sexo}">
+                <div class="form-group">
+                	<h:selectOneRadio value="#{usuario.usuario.sexo}"  required="true" requiredMessage="Selecciona un Sexo" >
 					   	<f:selectItem itemValue="0" itemLabel="Masculino" />
 					   	<f:selectItem itemValue="1" itemLabel="Femenino" />
 					</h:selectOneRadio>
@@ -99,7 +107,7 @@
                   <h:commandButton  value="Registro" action="#{usuario.create()}"  styleClass="button"/>
                   <span id="return-login" class="form-toggle">Regresar al login</span>
               </div>
-            </form>
+            </h:form>
         </div>
     </div>
 
@@ -133,6 +141,12 @@
 	    "font-size": "1em",
     	"font-weight":"400"
 	});
+	
+	$('.nombre').attr('placeholder','Nombre').css({"font-size":"1em","font-weight":"400"});
+	$('.apellido').attr('placeholder','Apellidos').css({"font-size":"1em","font-weight":"400"});
+	$('.email').attr('placeholder','Email').css({"font-size":"1em","font-weight":"400"});
+	$('.clave').attr('placeholder','Contraseña').css({"font-size":"1em","font-weight":"400"});
+	$('.celular').attr('placeholder','Celular').css({"font-size":"1em","font-weight":"400"});
 	
 	$('body').on('focus','input[placeholder=Nacimiento]',function(e){
 		e.preventDefault();
