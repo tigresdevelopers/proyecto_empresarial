@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
 import com.network.social.web.form.ComentarioForm;
+import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.BResult;
@@ -48,6 +49,8 @@ public class ComentarioController implements Serializable{
 	
 	public void create(){
 		LOGGER.info("## Registrar Comentario");
+		
+		this.comentario.setUsuario((UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER));
 		
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_COMENTARIO_CREATE);
 	    BResult result=restTemplate.postForObject(url, new HttpEntity<ComentarioForm>(this.comentario),BResult.class);

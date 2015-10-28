@@ -1,6 +1,7 @@
 package com.network.social.web.controller;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +17,8 @@ import org.springframework.web.client.RestTemplate;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
 import com.network.social.web.form.GrupoForm;
+import com.network.social.web.form.GrupoUsuarioForm;
+import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.BResult;
@@ -40,6 +43,8 @@ public class GrupoController implements Serializable {
 
 	private GrupoForm grupo;
 	
+	private UsuarioForm member;
+	
 	private List<GrupoForm> grupos;
 
 	@PostConstruct
@@ -47,9 +52,59 @@ public class GrupoController implements Serializable {
 		this.grupo=new GrupoForm();
 	}
 	
+	public void addMember(){
+		LOGGER.info("## Agregar miembro");
+		
+		GrupoUsuarioForm gu=new GrupoUsuarioForm();
+		gu.setFechaRegistro(new Date());
+		gu.setGrupo(this.grupo);
+		gu.setAdmin('0');
+		gu.setUsuario(this.member);
+		
+		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_GRUPOUSUARIO_CREATE);
+	    BResult result=restTemplate.postForObject(url, new HttpEntity<GrupoUsuarioForm>(gu),BResult.class);
+	    
+		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
+			LOGGER.info("## Miembro registrado");
+			Faces.addMessage("Exito", "Miembro registrado", FacesMessage.SEVERITY_INFO);
+		}else{
+			LOGGER.info("## error al registrar");
+			Faces.addMessage("Error", "Error al registrar Miembro", FacesMessage.SEVERITY_ERROR);
+		}
+		
+	}
+	
+	public void deleteMember(){
+		LOGGER.info("## Eliminar miembro");
+		
+		GrupoUsuarioForm gu=new GrupoUsuarioForm();
+		gu.setFechaRegistro(new Date());
+		gu.setGrupo(this.grupo);
+		gu.setAdmin('0');
+		gu.setUsuario(this.member);
+		
+		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_GRUPOUSUARIO_DELETE);
+	    BResult result=restTemplate.postForObject(url, new HttpEntity<GrupoUsuarioForm>(gu),BResult.class);
+	    
+		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
+			LOGGER.info("## Miembro eliminado");
+			Faces.addMessage("Exito", "Miembro eliminado", FacesMessage.SEVERITY_INFO);
+		}else{
+			LOGGER.info("## error al registrar");
+			Faces.addMessage("Error", "Error al registrar eliminar", FacesMessage.SEVERITY_ERROR);
+		}
+		
+	}
 	
 	public void create(){
 		LOGGER.info("## Registrar Grupo");
+		
+		GrupoUsuarioForm gu=new GrupoUsuarioForm();
+		gu.setAdmin('1');
+		gu.setFechaRegistro(new Date());
+		gu.setUsuario((UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER));
+		
+		this.grupo.getGrupoUsuarios().add(gu);
 		
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_GRUPO_CREATE);
 	    BResult result=restTemplate.postForObject(url, new HttpEntity<GrupoForm>(this.grupo),BResult.class);
@@ -123,6 +178,14 @@ public class GrupoController implements Serializable {
 
 	public void setGrupos(List<GrupoForm> grupos) {
 		this.grupos = grupos;
+	}
+
+	public UsuarioForm getMember() {
+		return member;
+	}
+
+	public void setMember(UsuarioForm member) {
+		this.member = member;
 	}
 	
 	

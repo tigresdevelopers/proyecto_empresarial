@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
 import com.network.social.web.form.EtiquetaForm;
+import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.BResult;
@@ -49,6 +50,7 @@ public class EtiquetaController implements Serializable {
 	
 	public void create(){
 		LOGGER.info("## Registrar Etiqueta");
+		this.etiqueta.setUsuario((UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER));
 		
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_ETIQUETA_CREATE);
 	    BResult result=restTemplate.postForObject(url, new HttpEntity<EtiquetaForm>(this.etiqueta),BResult.class);

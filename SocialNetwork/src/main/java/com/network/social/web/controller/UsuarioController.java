@@ -1,5 +1,6 @@
 package com.network.social.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -61,7 +62,7 @@ public class UsuarioController {
 		}
 		
 		this.usuario.setClave(PasswordEncoder.encodePassword(this.usuario.getClave()));
-		
+		this.usuario.setFechaRegistro(new Date());
 		
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_USUARIO_CREATE);
 		

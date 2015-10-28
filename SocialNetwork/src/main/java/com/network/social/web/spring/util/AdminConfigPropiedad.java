@@ -79,6 +79,10 @@ public class AdminConfigPropiedad {
 		SERVICE_TIPO_DELETE("uri.service.tipocontacto","uri.service.delete"),
 		SERVICE_TIPO_FIND("uri.service.tipocontacto","uri.service.find"),
 		
+		SERVICE_GRUPOUSUARIO_CREATE("uri.service.grupousuario","uri.service.create"),
+		SERVICE_GRUPOUSUARIO_UPDATE("uri.service.grupousuario","uri.service.update"),
+		SERVICE_GRUPOUSUARIO_DELETE("uri.service.grupousuario","uri.service.delete"),
+		
 		;
 		
 		private final String controller;
