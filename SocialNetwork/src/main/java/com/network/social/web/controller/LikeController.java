@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import com.network.social.web.spring.util.BResult;
  * @date   :27/10/2015
  * @time   :11:24:56
  */
+@ManagedBean(name="like")
 public class LikeController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
