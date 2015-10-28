@@ -74,7 +74,7 @@ a:active {
 
 /* Layout Base - Page Header */
 .page-header {
-	background: #171717;
+	background: #273B47;
 	border-bottom: none;
 	border-left: 1px solid #3a3a3a;
 	box-shadow: 1px 3px 0 1px #cccccc;
@@ -85,7 +85,7 @@ a:active {
 
 /* Layout Base - Sidebar Left */
 .sidebar-left {
-	background: #1d2127;
+	background: #273B47;
 	box-shadow: -5px 0 0 #2f3139 inset;
 	color: #777777;
 	display: table-cell;
@@ -185,7 +185,7 @@ a:active {
 
 	/* Layout Fixed - Content Body */
 	html.fixed .content-body {
-		margin-left: 300px;
+		margin-left: 280px;
 	}
 
 	html.fixed .content-body.has-toolbar {
@@ -1407,11 +1407,11 @@ html.fixed .visible-xl-inline-block {
 
 /* Header */
 .header {
-	background-color: #f6f6f6;
-	background-image: -webkit-linear-gradient(#f6f6f6 0%, white 45%);
+	background-color: #fff;
+	/*background-image: -webkit-linear-gradient(#f6f6f6 0%, white 45%);
 	background-image: linear-gradient(#f6f6f6 0%, white 45%);
 	border-bottom: 1px solid #E9E9E6;
-	border-top: 3px solid #EDEDED;
+	border-top: 3px solid #EDEDED;*/
 	z-index: 1000;
 }
 
@@ -1425,7 +1425,7 @@ html.fixed .visible-xl-inline-block {
 }
 
 .header .separator {
-	background-color: #f6f6f6;
+	background-color: #89A93A;
 	background-image: -webkit-linear-gradient(#f6f6f6 60%, #ededed);
 	background-image: linear-gradient(#f6f6f6 60%, #ededed);
 	display: inline-block;
@@ -2314,13 +2314,13 @@ ul.nav-main > li.nav-active > i {
 }
 
 ul.nav-main > li.nav-expanded > a {
-	background: #21262d;
+	background: reddd;
 }
 
 ul.nav-main li a {
 	font-size: 13px;
 	font-size: 1.3rem;
-	color: #abb4be;
+	color: #fff;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
@@ -2346,7 +2346,7 @@ ul.nav-main li span {
 
 ul.nav-main li i {
 	font-size: 18px;
-	font-size: 1.8rem;
+	font-size: 2.2rem;
 	width: 1.1em;
 	margin-right: 0.5em;
 	text-align: center;
@@ -2377,12 +2377,24 @@ ul.nav-main li.nav-parent.nav-expanded > a:after {
 	content: '\f106';
 }
 
+.iconoNoticias{
+	color: #FF7043;
+}
+
+.iconoMensajes{
+	color: #FADC0F;
+}
+
+.iconoPerfil{
+	color: #F702F5;
+}
+
 ul.nav-main li.nav-parent.nav-expanded > ul.nav-children {
 	display: block;
 }
 
 ul.nav-main li .nav-children {
-	background: #191c21;
+	background: #2c5353;
 	box-shadow: 0px -3px 3px -3px rgba(0, 0, 0, 0.7) inset;
 	display: none;
 	padding: 10px 0;
@@ -5059,7 +5071,7 @@ html.dark .open > .dropdown-toggle.btn-default {
 }
 
 .notifications > li .notification-icon i {
-	color: #777;
+	color: #273B47;
 	line-height: 30px;
 	vertical-align: middle;
 }
@@ -5069,7 +5081,7 @@ html.dark .open > .dropdown-toggle.btn-default {
 }
 
 .notifications > li .notification-icon .badge {
-	background: #D2312D;
+	background: #ff4842;
 	color: #FFF;
 	font-size: 10px;
 	font-weight: normal;
@@ -17583,10 +17595,127 @@ html.dark .thumbnail {
 .perfil__foto{
 	position: absolute;
 	bottom: 0;
-	width: 10em;
+	left: 3em;
+    width: 12em;
+    border: 0.6em solid #fff;
 }
 
 .portada__foto{
 	width: 100%;
-	height: 30em;
+	height: 36em;
+}
+
+.subirAlbum{
+	margin-bottom: 1em;
+}
+
+
+
+
+
+/* ****************************************************** */
+
+
+p, .tab-content li, h1, h2, h3{ /* This insures that there's enough space between your paragraphs, headings, etc */
+    margin-bottom: 10px;
+}
+
+.tab-container h3{ /* Effects only the h3 headings inside the tabs */
+	font-size:147%;
+	color:#000;
+}
+/* `Containers
+----------------------------------------------------------------------------------------------------*/
+
+#container{ /* Use this to position the entire tab module */
+	margin: 0 auto;	
+	margin-top: 4%;	
+}
+
+.tab-container {
+	position: relative; /* It's important to keep this position relative and the absolute positions in this file the same */
+	width: 100%;
+	z-index: 0;
+
+}
+
+/* `Common Styles
+----------------------------------------------------------------------------------------------------*/
+
+/* Tabs */
+
+.tab-container > div { 
+	
+}
+
+.tab-container > div > a {
+	position: relative !important; /* Keeps the tabs in line with each other */
+	text-decoration: none;
+	color: #000;
+	display: inline-block;
+	font-size: 15px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 1px;
+	background: #ddd; /* old browsers */
+	border: dashed 2px #9b9b9b;
+	padding: 20px 55px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 0px;
+	border-radius: 3px;
+	-moz-box-shadow: 0 4px 10px -5px #000000;
+	box-shadow: 0 4px 10px -5px #000000;
+	-webkit-box-shadow: 0 4px 10px -5px #000000;
+	width: 50px;
+	height: 10px;
+}
+
+.tab-container > div:not(:target) > a {
+}	
+
+.tab-container > div:target > a { 
+    background: none repeat scroll 0 0 #948a81;
+    text-shadow: 0 1px 0 #4C4648;
+}
+
+.tab-container > div > div { 
+	background: #ddd;
+	z-index: -2;
+	top: 0;
+	padding: 20px;
+	border: solid 4px #aa0000;
+	outline: 2px dashed #9b9b9b;
+	outline-offset: -8px; /*Delete if you don't want an offset*/
+	min-height: 250px; /* Change this value if you need more or less content space */
+	position: absolute; /* Fixes IE 7 & 8 */
+	left: 180px;
+	width: 400px;
+}
+
+.tab-container > div:not(:target) > div { 
+	position: absolute; /* This keeps the tab module contained */
+}
+
+.tab-container > div:target > div { 
+	position: absolute; 
+	z-index: 3 !important; /* Brings the content to the front depending on the tab that was clicked */ 
+}
+
+div.tab-content{ /* Styles the inner content of the tabs */
+	
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tab-content img{ 
+	margin:0 auto; 
+	display:block; 
+	/*	padding-bottom: 20px;
+    padding-top: 10px;*/
+}
+
+
+img.amigos-fotos{
+	width: 6.5em;
 }

@@ -330,7 +330,7 @@ ul.nav-main > li.nav-active > i {
 }
 
 ul.nav-main li .nav-children li.nav-active > a {
-	color: #0088cc;
+	color: #98CA3F;
 }
 /* Nano Scroller Plugin */
 html.no-overflowscrolling .nano > .nano-pane > .nano-slider {
@@ -635,7 +635,8 @@ html body .tabs-primary .nav-tabs li a:hover,
 html.dark body .tabs-primary .nav-tabs li a:hover,
 html body .tabs-primary .nav-tabs.nav-justified li a:hover,
 html.dark body .tabs-primary .nav-tabs.nav-justified li a:hover {
-	color: #0088cc;
+	color: #273B47;
+;
 }
 
 html body .tabs-primary .nav-tabs li a:hover,
@@ -657,8 +658,8 @@ html body .tabs-primary .nav-tabs li.active a:focus,
 html.dark body .tabs-primary .nav-tabs li.active a:focus,
 html body .tabs-primary .nav-tabs.nav-justified li.active a:focus,
 html.dark body .tabs-primary .nav-tabs.nav-justified li.active a:focus {
-	border-top-color: #0088cc;
-	color: #0088cc;
+	border-top-color: #273B47;
+	color: #273B47;
 }
 
 html body .tabs-primary.tabs-bottom .nav-tabs li a:hover,
