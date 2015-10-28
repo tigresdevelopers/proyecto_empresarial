@@ -51,7 +51,7 @@
                </div>
                <h:inputHidden id="${_csrf.parameterName}" value="${_csrf.token}" />
                <button type="submit" value="Login">Ingresar</button>
-               <span class="form-toggle">No estoy registrado?</span>
+               <span id="register-me" class="form-toggle">No estoy registrado?</span>
            </form>
 		</div>
     </div>
@@ -72,7 +72,10 @@ $(function() {
 
 	$('#username').attr('placeholder','Usuario');
 	$('#password').attr('placeholder','Contraseña');
-		 
+		
+	$('#register-me').click(function(){
+		window.location.href="${request.contextPath}/register.tiger";	
+	 });
 	})
 </script>
           
