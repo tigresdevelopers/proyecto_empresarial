@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Grupo;
+import com.network.social.domain.entities.GrupoUsuario;
 import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.BResult;
 import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.GrupoService;
+import com.network.social.services.service.GrupoUsuarioService;
 import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
@@ -36,6 +38,9 @@ public class ServiceGrupoController {
 	
 	@Autowired
 	private GrupoService grupoService;
+	
+	@Autowired
+	private GrupoUsuarioService grupoUsuarioService;
 	
 	@Autowired
 	private ActividadService actividadService;
@@ -64,7 +69,14 @@ public class ServiceGrupoController {
 			try{
 				if(grupo!=null){
 					bResult=new BResult();
-					bResult.setEstado(grupoService.save(grupo));
+					
+					Integer idgrupo=grupoService.save(grupo);
+					bResult.setEstado(idgrupo);
+					
+					GrupoUsuario gu=grupo.getGrupoUsuarios().iterator().next();
+					gu.setGrupo(idgrupo);
+					
+					grupoUsuarioService.save(gu);
 					
 					Actividad historial=new Actividad();
 					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_GRUPO.getMessage());
