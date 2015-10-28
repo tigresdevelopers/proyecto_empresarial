@@ -4,9 +4,64 @@ public class UtilEnum {
 	
 	
 	public static enum MESSAGES{
+		
+		PUBLICACION_GENERADA_ALBUM("label.publicacion.generada.album"),
+		
 		PUBLICACION_GENERADA_FOTO_UPDATE("label.publicacion.generada.foto.update"),
 		PUBLICACION_GENERADA_FOTO("label.publicacion.generada.foto"),
-		PUBLICACION_GENERADA_FOTOS("label.publicacion.generada.fotos")
+		PUBLICACION_GENERADA_FOTOS("label.publicacion.generada.fotos"),
+		
+		PUBLICACION_SITUACION_UPDATE_USUARIO("publicacion.situacion.usuario"),
+		PUBLICACION_CELULAR_UPDATE_USUARIO("publicacion.celular.usuario"),
+		
+		ACTIVIDAD_SITUACION_UPDATE_USUARIO("actividad.situacion.usuario"),
+		ACTIVIDAD_CELULAR_UPDATE_USUARIO("actividad.situacion.usuario"),
+		
+		
+		ACTIVIDAD_CREATE_ALBUM("actividad.album.create"),
+		ACTIVIDAD_UPDATE_ALBUM("actividad.album.update"),
+		ACTIVIDAD_DELETE_ALBUM("actividad.album.delete"),
+		
+		ACTIVIDAD_CREATE_COMENTARIO("actividad.comentario.create"),
+		ACTIVIDAD_UPDATE_COMENTARIO("actividad.comentario.update"),
+		ACTIVIDAD_DELETE_COMENTARIO("actividad.comentario.delete"),
+		
+		ACTIVIDAD_CREATE_CONTACTO("actividad.contacto.create"),
+		ACTIVIDAD_UPDATE_CONTACTO("actividad.contacto.update"),
+		ACTIVIDAD_DELETE_CONTACTO("actividad.contacto.delete"),
+		
+		ACTIVIDAD_CREATE_ETIQUETA("actividad.etiqueta.create"),
+		ACTIVIDAD_UPDATE_ETIQUETA("actividad.etiqueta.update"),
+		ACTIVIDAD_DELETE_ETIQUETA("actividad.etiqueta.delete"),
+		
+		ACTIVIDAD_CREATE_GRUPO("actividad.grupo.create"),
+		ACTIVIDAD_UPDATE_GRUPO("actividad.grupo.update"),
+		ACTIVIDAD_DELETE_GRUPO("actividad.grupo.delete"),
+		
+		ACTIVIDAD_CREATE_GRUPOUSU("actividad.grupousu.create"),
+		ACTIVIDAD_UPDATE_GRUPOUSU("actividad.grupousu.update"),
+		ACTIVIDAD_DELETE_GRUPOUSU("actividad.grupousu.delete"),
+		
+		ACTIVIDAD_CREATE_LIKE("actividad.like.create"),
+		ACTIVIDAD_UPDATE_LIKE("actividad.like.update"),
+		ACTIVIDAD_DELETE_LIKE("actividad.like.delete"),
+		
+		ACTIVIDAD_CREATE_LISTA("actividad.lista.create"),
+		ACTIVIDAD_UPDATE_LISTA("actividad.lista.update"),
+		ACTIVIDAD_DELETE_LISTA("actividad.lista.delete"),
+		
+		ACTIVIDAD_CREATE_MULTIMEDIA("actividad.multimedia.create"),
+		ACTIVIDAD_UPDATE_MULTIMEDIA("actividad.multimedia.update"),
+		ACTIVIDAD_DELETE_MULTIMEDIA("actividad.multimedia.delete"),
+		
+		ACTIVIDAD_CREATE_PUBLICACION("actividad.publicacion.create"),
+		ACTIVIDAD_UPDATE_PUBLICACION("actividad.publicacion.update"),
+		ACTIVIDAD_DELETE_PUBLICACION("actividad.publicacion.delete"),
+		
+		ACTIVIDAD_CREATE_SITUACION("actividad.situacion.create"),
+		ACTIVIDAD_UPDATE_SITUACION("actividad.situacion.update"),
+		ACTIVIDAD_DELETE_SITUACION("actividad.situacion.delete"),
+		
 		;
 		
 		private String message;

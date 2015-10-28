@@ -2,6 +2,7 @@ package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Grupo;
+import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.GrupoService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -31,6 +36,10 @@ public class ServiceGrupoController {
 	
 	@Autowired
 	private GrupoService grupoService;
+	
+	@Autowired
+	private ActividadService actividadService;
+	
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
 	private @ResponseBody Grupo get(@PathVariable Integer id){
@@ -56,6 +65,15 @@ public class ServiceGrupoController {
 				if(grupo!=null){
 					bResult=new BResult();
 					bResult.setEstado(grupoService.save(grupo));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_GRUPO.getMessage());
+					Usuario u=grupo.getGrupoUsuarios().iterator().next().getUsuario();
+					historial.setIdusuario(u.getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					LOGGER.info("## grupo registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -84,6 +102,15 @@ public class ServiceGrupoController {
 				if(grupo!=null){
 					bResult=new BResult();
 					grupoService.update(grupo);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_GRUPO.getMessage());
+					Usuario u=grupo.getGrupoUsuarios().iterator().next().getUsuario();
+					historial.setIdusuario(u.getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## grupo actualizado ->"+grupo.getIdgrupo());
 					if (bResult.getEstado()>0) {
@@ -113,6 +140,15 @@ public class ServiceGrupoController {
 				if(grupo.getIdgrupo()>0){
 					bResult=new BResult();
 					grupoService.delete(grupo);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_GRUPO.getMessage());
+					Usuario u=grupo.getGrupoUsuarios().iterator().next().getUsuario();
+					historial.setIdusuario(u.getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## grupo eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {

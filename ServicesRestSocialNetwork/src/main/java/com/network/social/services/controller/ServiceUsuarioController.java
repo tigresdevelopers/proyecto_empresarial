@@ -25,10 +25,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
+import com.network.social.domain.entities.Publicacion;
+import com.network.social.domain.entities.TipoContacto;
 import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
+import com.network.social.services.service.PublicacionService;
 import com.network.social.services.service.UsuarioService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
+
+import oracle.net.aso.p;
 /**
  * @author :Alexander Chavez Simbron
  * @date   :21/10/2015
@@ -42,6 +50,13 @@ public class ServiceUsuarioController {
 	
 	@Autowired
     private UsuarioService usuarioService;
+	
+	@Autowired
+	private ActividadService actividadService;
+	
+	@Autowired
+	private PublicacionService publicacionService;
+	
 	
     @RequestMapping(value=USUARIO_FIND_USERNAME,method=RequestMethod.POST,consumes="application/json") 
     private @ResponseBody Usuario getByUsername(@RequestBody Usuario usuario){
@@ -128,7 +143,37 @@ public class ServiceUsuarioController {
 		try{
 			if(usuario!=null){
 				bResult=new BResult();
+				
+				Publicacion publicacion=new Publicacion();
+				publicacion.setUsuarioByIdusuario(usuario);
+				publicacion.setUsuarioByIdusuarioReceiver(usuario);
+				publicacion.setTipoContacto(new TipoContacto(2));
+				
+				Actividad historial=new Actividad();
+				historial.setIdusuario(usuario.getIdusuario());
+				historial.setFechaActividad(new Date());
+
+				Usuario compare=usuarioService.findById(usuario.getIdusuario());
+				
+				if (!compare.getSituacionSentimental().equals(usuario.getSituacionSentimental())) {
+					
+					publicacion.setContenido(UtilEnum.MESSAGES.PUBLICACION_SITUACION_UPDATE_USUARIO.getMessage());
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_SITUACION_UPDATE_USUARIO.getMessage());
+					
+				}else if (!compare.getCelular().equals(usuario.getCelular())) {
+					
+					publicacion.setContenido(UtilEnum.MESSAGES.PUBLICACION_CELULAR_UPDATE_USUARIO.getMessage());
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CELULAR_UPDATE_USUARIO.getMessage());
+					
+				}
+				
 				usuarioService.update(usuario);
+				
+				Integer idpublicacion=publicacionService.save(publicacion);
+				
+				historial.setPublicacion(idpublicacion);
+				actividadService.save(historial);
+				
 				bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 				LOGGER.info("## Usuario registrado ->"+bResult.getEstado());
 				if (bResult.getEstado()>0) {

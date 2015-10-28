@@ -11,6 +11,7 @@ import static com.network.social.services.util.RestURIConstants.POST;
 import static com.network.social.services.util.RestURIConstants.PUT;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Album;
+import com.network.social.domain.entities.Publicacion;
+import com.network.social.domain.entities.TipoContacto;
 import com.network.social.domain.util.BResult;
 import com.network.social.domain.util.ResultObject;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.AlbumService;
+import com.network.social.services.service.PublicacionService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -40,6 +47,13 @@ import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 public class ServiceAlbumController {
 
 	Logger LOGGER=LoggerFactory.getLogger(ServiceAlbumController.class);
+	
+	
+	@Autowired
+	private ActividadService actividadService;
+	
+	@Autowired
+	private PublicacionService publicacionService;
 	
 	@Autowired
 	private AlbumService albumService;
@@ -95,7 +109,28 @@ public class ServiceAlbumController {
 			try{
 				if(album!=null){
 					bResult=new BResult();
+					
+					Publicacion obj=new Publicacion();
+					obj.setUsuarioByIdusuario(album.getUsuario());
+					obj.setUsuarioByIdusuarioReceiver(album.getUsuario());
+					obj.setContenido(UtilEnum.MESSAGES.PUBLICACION_GENERADA_ALBUM.getMessage());
+					obj.setTipoContacto(new TipoContacto(2));
+					
+					Integer idpublicacion=publicacionService.save(obj);
+					
+					album.setPublicacion(idpublicacion);
+					
 					bResult.setEstado(albumService.save(album));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_ALBUM.getMessage());
+					historial.setIdusuario(album.getUsuario().getIdusuario());
+					historial.setPublicacion(obj);
+					historial.setFechaActividad(new Date());
+					
+					actividadService.save(historial);
+					
+					
 					LOGGER.info("## Album registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -123,7 +158,16 @@ public class ServiceAlbumController {
 			try{
 				if(album!=null){
 					bResult=new BResult();
+					
 					albumService.update(album);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_ALBUM.getMessage());
+					historial.setIdusuario(album.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## Album actualizado ->"+album.getIdalbum());
 					if (bResult.getEstado()>0) {
@@ -152,6 +196,14 @@ public class ServiceAlbumController {
 			try{
 				if(album.getIdalbum()>0){
 					albumService.delete(album);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_ALBUM.getMessage());
+					historial.setIdusuario(album.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					
+					actividadService.save(historial);
+					
 					bResult=new BResult();
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## Album eliminado ->"+bResult.getEstado());

@@ -2,6 +2,7 @@ package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Like;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.LikeService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -31,6 +35,10 @@ public class ServiceLikeController {
 	
 	@Autowired
 	private LikeService likeService;
+	
+	@Autowired
+	private ActividadService actividadService;
+
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
 	private @ResponseBody Like get(@PathVariable Integer id){
@@ -72,6 +80,15 @@ public class ServiceLikeController {
 				if(like!=null){
 					bResult=new BResult();
 					bResult.setEstado(likeService.save(like));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_LIKE.getMessage());
+					historial.setIdusuario(like.getUsuario().getIdusuario());
+					historial.setLike(like);
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					LOGGER.info("## like registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -100,6 +117,15 @@ public class ServiceLikeController {
 				if(like!=null){
 					bResult=new BResult();
 					likeService.update(like);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_LIKE.getMessage());
+					historial.setIdusuario(like.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## like actualizado ->"+like.getIdlike());
 					if (bResult.getEstado()>0) {
@@ -129,6 +155,15 @@ public class ServiceLikeController {
 				if(like.getIdlike()>0){
 					bResult=new BResult();
 					likeService.delete(like);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_LIKE.getMessage());
+					historial.setIdusuario(like.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## like eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {

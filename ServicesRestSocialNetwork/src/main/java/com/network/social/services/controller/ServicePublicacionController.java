@@ -2,6 +2,7 @@ package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Publicacion;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.PublicacionService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 
 /**
@@ -32,6 +36,9 @@ public class ServicePublicacionController {
 
 	@Autowired
 	private PublicacionService publicacionService;
+	
+	@Autowired
+	private ActividadService actividadService;
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
 	private @ResponseBody Publicacion get(@PathVariable Integer id){
@@ -72,6 +79,15 @@ public class ServicePublicacionController {
 				if(publicacion!=null){
 					bResult=new BResult();
 					bResult.setEstado(publicacionService.save(publicacion));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_PUBLICACION.getMessage());
+					historial.setIdusuario(publicacion.getUsuarioByIdusuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setPublicacion(publicacion);
+					
+					actividadService.save(historial);
+					
 					LOGGER.info("## publicacion registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -100,6 +116,15 @@ public class ServicePublicacionController {
 				if(publicacion!=null){
 					bResult=new BResult();
 					publicacionService.update(publicacion);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_PUBLICACION.getMessage());
+					historial.setIdusuario(publicacion.getUsuarioByIdusuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setPublicacion(publicacion);
+					
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## publicacion actualizado ->"+publicacion.getIdpublicacion());
 					if (bResult.getEstado()>0) {
@@ -129,6 +154,15 @@ public class ServicePublicacionController {
 				if(publicacion.getIdpublicacion()>0){
 					bResult=new BResult();
 					publicacionService.delete(publicacion);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_PUBLICACION.getMessage());
+					historial.setIdusuario(publicacion.getUsuarioByIdusuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setPublicacion(publicacion);
+					
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## publicacion eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {

@@ -2,6 +2,7 @@ package com.network.social.services.controller;
 
 import static com.network.social.services.util.RestURIConstants.*;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Comentario;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.ComentarioService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -30,6 +34,9 @@ public class ServiceComentarioController {
 	
 	@Autowired
 	private ComentarioService comentarioService;
+	
+	@Autowired
+	private ActividadService actividadService;
 	
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
@@ -71,6 +78,15 @@ public class ServiceComentarioController {
 				if(comentario!=null){
 					bResult=new BResult();
 					bResult.setEstado(comentarioService.save(comentario));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_COMENTARIO.getMessage());
+					historial.setIdusuario(comentario.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setComentario(comentario);
+					
+					actividadService.save(historial);
+					
 					LOGGER.info("## Comentario registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -99,6 +115,15 @@ public class ServiceComentarioController {
 				if(comentario!=null){
 					bResult=new BResult();
 					comentarioService.update(comentario);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_COMENTARIO.getMessage());
+					historial.setIdusuario(comentario.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setComentario(comentario);
+					
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## comentario actualizado ->"+comentario.getIdcomentario());
 					if (bResult.getEstado()>0) {
@@ -128,6 +153,15 @@ public class ServiceComentarioController {
 				if(comentario.getIdcomentario()>0){
 					bResult=new BResult();
 					comentarioService.delete(comentario);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_COMENTARIO.getMessage());
+					historial.setIdusuario(comentario.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+					historial.setComentario(comentario);
+					
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## Comentario eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {

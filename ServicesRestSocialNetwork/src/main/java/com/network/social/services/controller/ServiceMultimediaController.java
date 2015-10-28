@@ -1,13 +1,18 @@
 package com.network.social.services.controller;
 
-import static com.network.social.services.util.RestURIConstants.*;
+import static com.network.social.services.util.RestURIConstants.DELETE;
 import static com.network.social.services.util.RestURIConstants.GET;
 import static com.network.social.services.util.RestURIConstants.GET_ALL;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_ALBUM;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_GROUP;
+import static com.network.social.services.util.RestURIConstants.GET_FILTERING_PUBLICACION;
 import static com.network.social.services.util.RestURIConstants.MULTIMEDIA;
 import static com.network.social.services.util.RestURIConstants.MULTIMEDIA_BULKINSERT;
 import static com.network.social.services.util.RestURIConstants.POST;
 import static com.network.social.services.util.RestURIConstants.PUT;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,11 +28,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Album;
 import com.network.social.domain.entities.Multimedia;
 import com.network.social.domain.entities.Publicacion;
 import com.network.social.domain.util.BResult;
 import com.network.social.services.config.PropiedadService;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.MultimediaService;
 import com.network.social.services.service.PublicacionService;
 import com.network.social.services.util.UtilEnum;
@@ -49,6 +56,9 @@ public class ServiceMultimediaController {
 	
 	@Autowired
 	private PublicacionService publicacionService;
+	
+	@Autowired
+	private ActividadService actividadService;
 	
 	@Autowired
 	private MultimediaService multimediaService;
@@ -96,6 +106,10 @@ public class ServiceMultimediaController {
 			if(multimedia!=null){
 				bResult=new BResult();
 				
+				if (multimedia.getAlbum()==null) {
+					multimedia.setAlbum(1); //album por defecto fotos del muro
+				}
+				
 				Publicacion publicacion=new Publicacion();
 				publicacion.setContenido(propiedadService.getProperty(UtilEnum.MESSAGES.PUBLICACION_GENERADA_FOTO.getMessage())
 						.replace("{username}",multimedia.getAlbum().getUsuario().getNombre()));
@@ -107,11 +121,19 @@ public class ServiceMultimediaController {
 				
 				publicacion.setIdpublicacion(idPublicacion);
 				
+				
 				//setter idPublicacion to file
 				multimedia.setPublicacion(publicacion);
 				
 				//create file into database
 				bResult.setEstado(multimediaService.save(multimedia));
+				
+				Actividad historial=new Actividad();
+				historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_MULTIMEDIA.getMessage());
+				historial.setIdusuario(multimedia.getAlbum().getUsuario().getIdusuario());
+				historial.setFechaActividad(new Date());
+
+				actividadService.save(historial);
 				
 				if (bResult.getEstado()>0) {
 					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -143,6 +165,12 @@ public class ServiceMultimediaController {
 				
 				Album album=multimedias.get(0).getAlbum();
 				
+				if (album==null) {
+					album=new Album();
+					album.setIdalbum(1); //album del Muro
+				}
+				
+				
 				Publicacion publicacion=new Publicacion();
 				publicacion.setContenido(propiedadService.getProperty(UtilEnum.MESSAGES.PUBLICACION_GENERADA_FOTOS.getMessage())
 						.replace("{username}",album.getUsuario().getNombre()));
@@ -158,11 +186,9 @@ public class ServiceMultimediaController {
 				for (Iterator<Multimedia> iterator = multimedias.iterator(); iterator.hasNext();) {
 					Multimedia multimedia = (Multimedia) iterator.next();
 					multimedia.setPublicacion(publicacion);
+					multimedia.setAlbum(album);
 				}
-//				for (Multimedia multimedia : multimedias) {
-//					multimedia.setPublicacion(publicacion);
-//				}
-				
+
 				//insert files into database
 				multimediaService.saveCollection(multimedias);
 				bResult.setEstado(multimedias.size());
@@ -213,6 +239,15 @@ public class ServiceMultimediaController {
 				
 				//create file into database
 				multimediaService.update(multimedia);
+				
+				Actividad historial=new Actividad();
+				historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_MULTIMEDIA.getMessage());
+				historial.setIdusuario(multimedia.getAlbum().getUsuario().getIdusuario());
+				historial.setFechaActividad(new Date());
+
+				actividadService.save(historial);
+				
+				
 				bResult.setEstado(multimedia.getIdmultimedia());
 				
 				if (bResult.getEstado()>0) {
@@ -245,8 +280,16 @@ public class ServiceMultimediaController {
 				
 				//delete  file from database
 				multimediaService.delete(multimedia);
-				bResult.setEstado(multimedia.getIdmultimedia());
 				
+				Actividad historial=new Actividad();
+				historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_MULTIMEDIA.getMessage());
+				historial.setIdusuario(multimedia.getAlbum().getUsuario().getIdusuario());
+				historial.setFechaActividad(new Date());
+
+				actividadService.save(historial);
+						
+				bResult.setEstado(multimedia.getIdmultimedia());
+
 				if (bResult.getEstado()>0) {
 					bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
 				}else{

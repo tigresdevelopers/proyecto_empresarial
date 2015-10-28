@@ -8,6 +8,7 @@ import static com.network.social.services.util.RestURIConstants.GET_FILTERING_MU
 import static com.network.social.services.util.RestURIConstants.POST;
 import static com.network.social.services.util.RestURIConstants.PUT;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,9 +21,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Etiqueta;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.EtiquetaService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -37,6 +41,10 @@ public class ServiceEtiquetaController {
 	
 	@Autowired
 	private EtiquetaService etiquetaService;
+	
+	@Autowired
+	private ActividadService actividadService;
+	
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
 	private @ResponseBody Etiqueta get(@PathVariable Integer id){
@@ -63,6 +71,14 @@ public class ServiceEtiquetaController {
 					bResult=new BResult();
 					bResult.setEstado(etiquetaService.save(etiqueta));
 					LOGGER.info("## Etiqueta registrado ->"+bResult.getEstado());
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_ETIQUETA.getMessage());
+					historial.setIdusuario(etiqueta.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
 					}else{
@@ -90,6 +106,14 @@ public class ServiceEtiquetaController {
 				if(etiqueta!=null){
 					bResult=new BResult();
 					etiquetaService.update(etiqueta);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_ETIQUETA.getMessage());
+					historial.setIdusuario(etiqueta.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## etiqueta actualizado ->"+etiqueta.getIdetiqueta());
 					if (bResult.getEstado()>0) {
@@ -119,6 +143,14 @@ public class ServiceEtiquetaController {
 				if(etiqueta.getIdetiqueta()>0){
 					bResult=new BResult();
 					etiquetaService.delete(etiqueta);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_ALBUM.getMessage());
+					historial.setIdusuario(etiqueta.getUsuario().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## Etiqueta eliminado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {

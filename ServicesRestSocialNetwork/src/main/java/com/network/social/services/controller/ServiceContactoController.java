@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Contacto;
 import com.network.social.domain.util.BResult;
+import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.ContactoService;
+import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron
@@ -32,6 +35,9 @@ public class ServiceContactoController {
 
 	@Autowired
 	private ContactoService contactoService;
+	
+	@Autowired
+	private ActividadService actividadService;
 	
 	@RequestMapping(value=GET,method=RequestMethod.GET)
 	private @ResponseBody Contacto get(@PathVariable Integer id){
@@ -58,6 +64,14 @@ public class ServiceContactoController {
 					bResult=new BResult();
 					contacto.setFechaInicioAmistad(new Date());
 					bResult.setEstado(contactoService.save(contacto));
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_CREATE_CONTACTO.getMessage());
+					historial.setIdusuario(contacto.getUsuarioByMyid().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					LOGGER.info("## contacto registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
 						bResult.setEstado(ESTADO_OPERACION.EXITO.getCodigo());
@@ -87,6 +101,14 @@ public class ServiceContactoController {
 				if(contacto!=null){
 					bResult=new BResult();
 					contactoService.update(contacto);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_UPDATE_CONTACTO.getMessage());
+					historial.setIdusuario(contacto.getUsuarioByMyid().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## contacto registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
@@ -116,6 +138,14 @@ public class ServiceContactoController {
 				if(contacto.getIdcontacto()>0){
 					bResult=new BResult();
 					contactoService.delete(contacto);
+					
+					Actividad historial=new Actividad();
+					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_DELETE_CONTACTO.getMessage());
+					historial.setIdusuario(contacto.getUsuarioByMyid().getIdusuario());
+					historial.setFechaActividad(new Date());
+
+					actividadService.save(historial);
+					
 					bResult.setEstado(ESTADO_OPERACION.CORRECTO.getCodigo());
 					LOGGER.info("## contacto registrado ->"+bResult.getEstado());
 					if (bResult.getEstado()>0) {
