@@ -19,9 +19,14 @@ input[placeholder], [placeholder], *[placeholder] {
    font-weight: bold;
 }
 
+input[type=submit]{
+background-color: rgb(2, 33, 249) !important;
+color: white !important;
+}
 
-
-
+input[type=radio]{
+ height: 1em;
+}
 
 .contenedor {
   width:100%;
