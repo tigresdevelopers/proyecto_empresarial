@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+      
+<h:head>
+<title>Listado de Album</title>
+</h:head> 
+<h:body> 
+	
+<h:form>
+ 
+ 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ 
+   <p:dataTable var="aux" value="#{album.albums}">
+   
+   <f:facet name="header">Albums</f:facet>   
+   
+   <p:column headerText="Nombre">
+       <h:outputText value="#{aux.nombre}"/>
+   </p:column>
+   
+   <p:column headerText="Descripcion">
+       <h:outputText value="#{aux.descripcion}"/>
+   </p:column>
+   
+   <p:column headerText="Likes">
+       <h:outputText value="#{aux.likes}"/>
+   </p:column>
+   
+
+   <p:column headerText="+">
+      <p:commandLink id="idAgregar" action="#{album.create()}" ajax="false">
+<!--          <h:graphicImage value="//" /> -->
+      </p:commandLink>
+   </p:column>
+   
+   <p:column headerText="-">
+      <h:commandButton id="idEliminar" action="#{album.create()}" />
+<!--                <h:graphicImage value="" /> -->
+   </p:column>
+   
+   <p:column headerText="*">
+      <p:commandLink id="idEditar" action="#{album.create()}" ajax="false">
+<!--          <h:graphicImage value="" /> -->
+      </p:commandLink>
+   </p:column>
+      
+   </p:dataTable>
+
+</h:form>	
+
+
+</h:body> 
+</html>

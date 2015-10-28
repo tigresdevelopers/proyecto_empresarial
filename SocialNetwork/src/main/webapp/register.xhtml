@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<title>Authentication</title>
+
+<link rel="stylesheet" type="text/css" href="${prop['config.app.resources.web']}csslogin/login.css"/>
+<link rel="stylesheet" type="text/css" href="${prop['config.app.resources.web']}csslogin/bootstrap.css"/>
+<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous"/>
+
+<meta name="viewport" content="width=device-width, user-scalable=no"/>
+</h:head>
+<h:body>
+<div class="contenedor">
+    <div class="bg-img"></div>
+    <div class="header">
+        <div class="loading">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+        <h1>Go!</h1>
+    </div>
+    <div class="main" >
+        <div class="register">
+
+   <form>
+
+              <div class="row">
+
+                
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </span>
+                      <h:inputText value="#{usuario.usuario.nombre}" styleClass="form-control"  placeholder="Nombre" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </span>
+                      <h:inputText value="#{usuario.apellidos}" styleClass="form-control" placeholder="Apellidos" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                     <h:inputSecret value="#{usuario.usuario.clave}" styleClass="form-control" placeholder="contraseña" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-phone-alt"></i>
+                      </span>
+                      <h:inputText value="#{usuario.usuario.email}" styleClass="form-control" placeholder="email" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-tag"></i>
+                      </span>
+                       <h:inputText value="#{usuario.usuario.celular}" styleClass="form-control" placeholder="celular" />
+                    </div>                    
+                </div>
+
+                <div class="form-group">
+                      <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </span>
+                      <p:calendar  value="#{usuario.usuario.fechaNacimiento}" placeholder="Nacimiento" />
+                    </div>                    
+                </div>
+                
+                <div class="form-group" >
+                	<div class="input.group">
+                	 <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                      </span>
+                		   <p:selectOneRadio  value="#{usuario.usuario.sexo}">
+			                <f:selectItem itemLabel="Masculino" itemValue="0" />
+			                <f:selectItem itemLabel="Femenino" itemValue="1" />
+			              </p:selectOneRadio>
+                	</div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  <h:commandButton  value="Register" action="#{usuario.create()}"  styleClass="button"/>
+                  <button type="submit" value="Login">Registro</button>
+                  <span class="form-toggle">Regresar al login</span>
+              </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- <script src="${prop['config.app.resources.web']}csslogin/jquery.min.js"></script> -->
+<script src="${prop['config.app.resources.web']}csslogin/bootstrap.js"></script>
+  <script>
+ $(function() {
+  $('<img/>').attr('src', 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/00tomorrolandbrasil230315.jpg').load(function() {
+    $('.bg-img').append($(this));
+    // simulate loading
+    setTimeout(function() { 
+     $('.contenedor').addClass('loaded');
+
+   }, 1)
+   //$(this).remove(); // prevent memory leaks as @benweet suggested
+ });
+
+  setTimeout(function(){
+     $('.contenedor').toggleClass('show-register')
+   },1500);
+
+  
+
+
+})
+</script>
+          
+</h:body>
+</html>
