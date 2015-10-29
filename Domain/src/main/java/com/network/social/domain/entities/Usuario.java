@@ -70,6 +70,13 @@ public class Usuario extends BaseBean {
 	@Transient
 	public Rol[] roles=UtilUser.ROLES;
 	
+	private String segundonombre;
+	private String nickname;
+	private String direccion;
+	private String compania;
+	private String biografia;
+	private String idstipos;
+	private String idslistas;
 	
 	public Usuario() {
 	}
@@ -261,6 +268,69 @@ public class Usuario extends BaseBean {
 
 	public void setTheme(String theme) {
 		this.theme = theme;
+	}
+	
+	@Column(name="SEGUNDO_NOMBRE")
+	public String getSegundonombre() {
+		return segundonombre;
+	}
+
+	public void setSegundonombre(String segundonombre) {
+		this.segundonombre = segundonombre;
+	}
+
+	@Column(name="NICKNAME")
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	@Column(name="DIRECCION")
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	
+	@Column(name="COMPANIA")
+	public String getCompania() {
+		return compania;
+	}
+
+	public void setCompania(String compania) {
+		this.compania = compania;
+	}
+
+	@Column(name="BIOGRAFIA")
+	public String getBiografia() {
+		return biografia;
+	}
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
+
+	@Column(name="IDSTIPOS")
+	public String getIdstipos() {
+		return idstipos;
+	}
+
+	public void setIdstipos(String idstipos) {
+		this.idstipos = idstipos;
+	}
+
+	@Column(name="IDSLISTAS")
+	public String getIdslistas() {
+		return idslistas;
+	}
+
+	public void setIdslistas(String idslistas) {
+		this.idslistas = idslistas;
 	}
 
 	@JsonIgnore

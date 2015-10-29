@@ -14,6 +14,7 @@ public class UtilUser {
 	public static final String USERNAME="leonxandercs";
 	public static final String PASSWORD="$2a$10$iLRdgu/NIm/1UOZZvPeBn.XOdH.kcKOS1.C2kFiWkEdVbPsfEADZu";
 	public static final Rol[] ROLES=new Rol[]{new Rol(1, "Usuario"),new Rol(2,"Admin")};
-		
+	public static final Rol[] ROLES_USER=new Rol[]{new Rol(1, "Usuario")};
+	public static final Rol[] ROL_ADMIN=new Rol[]{new Rol(2, "Admin")};	
 	
 }
