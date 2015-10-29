@@ -3,6 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>Informacion de usuario</title>
@@ -10,33 +11,35 @@
 <h:body>
 
 
-			<h:form class="form-horizontal" method="get">
+			<h:form class="form-horizontal" >
 				<h4 class="mb-xlg">Informacion Personal</h4>
 				<fieldset>
 					<div class="form-group">
-						<label class="col-md-3 control-label" for="profileFirstName">Primer
-							nombre</label>
+						<label class="col-md-3 control-label" for="profileFirstName">Primer nombre</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="profileFirstName" />
+<!-- 							<input type="text" class="form-control" id="profileFirstName" /> -->
+							<h:inputText styleClass="form-control" value="#{usuario.usuario.nombre}" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-3 control-label" for="profileLastName">Segundo
-							nombre</label>
+						<label class="col-md-3 control-label" for="profileLastName">Segundo nombre</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="profileLastName" />
+<!-- 							<input type="text" class="form-control" id="profileLastName" /> -->
+							<h:inputText styleClass="form-control" value="#{usuario.usuario.segundonombre}" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label" for="profileAddress">Direccion</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="profileAddress" />
+<!-- 							<input type="text" class="form-control" id="profileAddress" /> -->
+							<h:inputText styleClass="form-control" value="#{usuario.usuario.direccion}" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label" for="profileCompany">Compañia</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="profileCompany" />
+<!-- 							<input type="text" class="form-control" id="profileCompany" /> -->
+								<h:inputText styleClass="form-control" value="#{usuario.usuario.compania}" />
 						</div>
 					</div>
 				</fieldset>
@@ -46,18 +49,27 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label" for="profileBio">Biografia</label>
 						<div class="col-md-8">
-							<textarea class="form-control" rows="3" id="profileBio"></textarea>
+<!-- 							<textarea class="form-control" rows="3" id="profileBio"></textarea> -->
+					 		<h:inputTextarea  styleClass="form-control" value="#{usuario.usuario.biografia}" />
 						</div>
 					</div>
+				</fieldset>
+				<hr class="dotted tall" />
+				<h4 class="mb-xlg">¿ Quién puede ver mi Información ?</h4>
+				<fieldset class="mb-xl">
 					<div class="form-group">
-						<label class="col-xs-3 control-label mt-xs pt-none">Publico</label>
-						<div class="col-md-8">
-							<div
-								class="checkbox-custom checkbox-default checkbox-inline mt-xs">
-								<input type="checkbox" checked="" id="profilePublic" /> <label
-									for="profilePublic"></label>
-							</div>
-						</div>
+						<label class="col-md-3 control-label" >Tipos: </label>
+							<p:selectManyCheckbox value="#{usuario.idstipos}" >
+								<f:selectItems value="#{tipocontacto.tipos}" var="t" 
+								itemLabel="#{t.nombre}" itemValue="#{t.idtipoContacto}" />
+							</p:selectManyCheckbox>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" >Mis listas: </label>
+							<p:selectManyCheckbox value="#{usuario.idslistas}" >
+								<f:selectItems value="#{lista.listaContactos}" var="lc" 
+								itemLabel="#{lc.nombre}" itemValue="#{lc.idlistaContactos}" />
+							</p:selectManyCheckbox>
 					</div>
 				</fieldset>
 				<hr class="dotted tall" />
@@ -67,22 +79,25 @@
 						<label class="col-md-3 control-label" for="profileNewPassword">Nueva
 							contraseña</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" id="profileNewPassword" />
+<!-- 							<input type="text" class="form-control" id="profileNewPassword" /> -->
+							<h:inputSecret styleClass="form-control" value="#{usuario.usuario.clave}" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label"
 							for="profileNewPasswordRepeat">Repetir nueva contraseña</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control"
-								id="profileNewPasswordRepeat" />
+<!-- 							<input type="text" class="form-control" id="profileNewPasswordRepeat" /> -->
+							<h:inputSecret styleClass="form-control" value="#{usuario.usuario.clave}" />
 						</div>
 					</div>
 				</fieldset>
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-md-9 col-md-offset-3">
-							<button type="submit" class="btn btn-primary">Submit</button>
+<!-- 							<button type="submit" class="btn btn-primary">Submit</button> -->
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							<h:commandButton action="#{usuario.update()}" value="Actualizar" styleClass="btn btn-primary" />
 							<button type="reset" class="btn btn-default">Reset</button>
 						</div>
 					</div>
