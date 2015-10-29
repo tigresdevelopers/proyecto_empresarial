@@ -57,6 +57,8 @@ public class AdminConfigPropiedad {
 		SERVICE_LISTA_UPDATE("uri.service.listacontacto","uri.service.update"),
 		SERVICE_LISTA_DELETE("uri.service.listacontacto","uri.service.delete"),
 		SERVICE_LISTA_FIND("uri.service.listacontacto","uri.service.find"),
+		SERVICE_LISTA_GETALL("uri.service.listacontacto","uri.service.list"),
+		SERVICE_LISTA_GET_BY_USER("uri.service.listacontacto","uri.service.filter.usuario"),
 		
 		
 		SERVICE_NOTIFICACION_CREATE("uri.service.notificacion","uri.service.create"),
@@ -78,6 +80,7 @@ public class AdminConfigPropiedad {
 		SERVICE_TIPO_UPDATE("uri.service.tipocontacto","uri.service.update"),
 		SERVICE_TIPO_DELETE("uri.service.tipocontacto","uri.service.delete"),
 		SERVICE_TIPO_FIND("uri.service.tipocontacto","uri.service.find"),
+		SERVICE_TIPO_GETALL("uri.service.tipocontacto","uri.service.list"),
 		
 		SERVICE_GRUPOUSUARIO_CREATE("uri.service.grupousuario","uri.service.create"),
 		SERVICE_GRUPOUSUARIO_UPDATE("uri.service.grupousuario","uri.service.update"),

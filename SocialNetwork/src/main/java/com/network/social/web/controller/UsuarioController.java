@@ -11,10 +11,13 @@ import javax.faces.bean.ManagedProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
+import com.network.social.web.form.SituacionForm;
 import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.security.PasswordEncoder;
@@ -36,6 +39,9 @@ public class UsuarioController {
 	@ManagedProperty(value="#{propiedadAdmin}")
 	private PropiedadAdmin propiedadAdmin;
 	
+	private Integer[] idstipos;
+	private Integer[] idslistas;
+	
 	private UsuarioForm usuario;
 	private String apellidos;
 	
@@ -43,7 +49,35 @@ public class UsuarioController {
 	
 	@PostConstruct
 	public void init(){
-		usuario=new UsuarioForm();
+		
+		if (Faces.getSessionAttribute(Faces.ATTRIBUTE_USER)!=null) {
+			UsuarioForm aux=(UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER);
+//			this.usuario=aux;
+			this.usuario=new UsuarioForm();
+			usuario.setIdusuario(aux.getIdusuario());
+			usuario.setNombre(aux.getNombre());
+			usuario.setApePaterno(aux.getApePaterno());
+			usuario.setApePaterno(aux.getApeMaterno());
+			usuario.setFechaNacimiento(aux.getFechaNacimiento());
+			usuario.setEmail(aux.getEmail());
+			usuario.setClave(aux.getClave());
+			usuario.setCelular(aux.getCelular());
+			usuario.setSexo(aux.getSexo());
+			usuario.setFechaRegistro(aux.getFechaRegistro());
+			usuario.setEstado(aux.getEstado());
+			usuario.setTheme(aux.getTheme());
+			
+//			usuario.setSituacionSentimental(new SituacionForm(1));
+			usuario.setSegundonombre(aux.getSegundonombre());
+			usuario.setDireccion(aux.getDireccion());
+			usuario.setCompania(aux.getCompania());
+			usuario.setBiografia(aux.getBiografia());
+			usuario.setNickname(aux.getNickname());
+			usuario.setIdstipos(aux.getIdstipos());
+			usuario.setIdslistas(aux.getIdslistas());
+		}else{
+			usuario=new UsuarioForm();			
+		}
 		System.out.println("iusuairo inciiado");
 	}
 	
@@ -51,7 +85,13 @@ public class UsuarioController {
 		
 		LOGGER.info("## Create user-->"+usuario.getEmail());
 		
+		String nombres[]=this.usuario.getNombre().split("\\s+");
 		String datos[]=this.apellidos.split("\\s+");
+		
+		if (nombres.length>1) {
+			this.usuario.setNombre(nombres[0]);
+			this.usuario.setSegundonombre(nombres[1]);
+		}
 		
 		if (datos.length>1) {
 			this.usuario.setApePaterno(datos[0]);
@@ -81,9 +121,14 @@ public class UsuarioController {
 	public void update(){
 		LOGGER.info("## Actualizar Usuario");
 		
+		this.usuario.setClave(PasswordEncoder.encodePassword(this.usuario.getClave()));
+		this.usuario.setIdslistas(parseIdsPermisos(idslistas));
+		this.usuario.setIdstipos(parseIdsPermisos(idstipos));
+		
+        
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_USUARIO_UPDATE);
-	    BResult result=restTemplate.postForObject(url, new HttpEntity<UsuarioForm>(this.usuario),BResult.class);
-	    
+//		BResult result=restTemplate.postForObject(url, new HttpEntity<UsuarioForm>(this.usuario,headers),BResult.class);
+		BResult result=restTemplate.postForObject(url,this.usuario,BResult.class);
 		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
 			LOGGER.info("## usuario actualizado");
 			Faces.addMessage("Exito", "Usuairo actualizado", FacesMessage.SEVERITY_INFO);
@@ -111,6 +156,17 @@ public class UsuarioController {
 	
 	
 	
+	private String parseIdsPermisos(Integer[] array){
+		StringBuilder sb=new StringBuilder();
+		for (int i = 0; i < array.length; i++) {
+			if (i==array.length-1) {
+				sb.append(array[i]);
+			}else{
+				sb.append(array[i]+",");
+			}
+		}
+		return sb.toString();
+	}
 	
 	public UsuarioForm getUsuario() {
 		return usuario;
@@ -119,6 +175,7 @@ public class UsuarioController {
 	public void setUsuario(UsuarioForm usuario) {
 		this.usuario = usuario;
 	}
+	
 
 	public List<UsuarioForm> getUsuarios() {
 		return usuarios;
@@ -150,6 +207,22 @@ public class UsuarioController {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+
+	public Integer[] getIdstipos() {
+		return idstipos;
+	}
+
+	public void setIdstipos(Integer[] idstipos) {
+		this.idstipos = idstipos;
+	}
+
+	public Integer[] getIdslistas() {
+		return idslistas;
+	}
+
+	public void setIdslistas(Integer[] idslistas) {
+		this.idslistas = idslistas;
 	}
 	
 	

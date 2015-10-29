@@ -1,7 +1,10 @@
 package com.network.social.web.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,11 +14,13 @@ import javax.faces.bean.ManagedProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
 import com.network.social.web.form.ListaContactoForm;
+import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.util.AdminConfigPropiedad.URI;
 import com.network.social.web.spring.util.BResult;
@@ -117,6 +122,23 @@ public class ListaContactoController implements Serializable {
 	}
 
 	public List<ListaContactoForm> getListaContactos() {
+		
+		if (Faces.getSessionAttribute(Faces.ATTRIBUTE_USER)!=null) {
+			UsuarioForm logged=((UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER));
+			
+			if (logged.getRoles().iterator().next().getDescripcion().equalsIgnoreCase("Admin")) {
+				String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_LISTA_GETALL);
+				ResponseEntity<ListaContactoForm[]> data=restTemplate.getForEntity(url, ListaContactoForm[].class);
+				return Arrays.asList(data.getBody());
+			} else {
+				String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_LISTA_GET_BY_USER);
+				Map<String,Integer> urlVariables=new HashMap<String,Integer>();
+				urlVariables.put("filter",logged.getIdusuario());
+				ResponseEntity<ListaContactoForm[]> data=restTemplate.getForEntity(url, ListaContactoForm[].class, urlVariables);
+				return Arrays.asList(data.getBody());
+			}
+		
+		}
 		return listaContactos;
 	}
 

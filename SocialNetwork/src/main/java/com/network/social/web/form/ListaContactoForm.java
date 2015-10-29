@@ -4,12 +4,15 @@ package com.network.social.web.form;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 /**
  * 
  * @author :Alexander Chavez Simbron
  * @date   :19/10/2015
  * @time   :17:25 P.M
  */
+//@JsonSerialize
 public class ListaContactoForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 

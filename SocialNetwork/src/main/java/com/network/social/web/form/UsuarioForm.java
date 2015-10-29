@@ -3,12 +3,15 @@ package com.network.social.web.form;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 /**
  * 
  * @author :Alexander Chavez Simbron
  * @date   :19/10/2015
  * @time   :17:25 P.M
  */
+//@JsonSerialize
 public class UsuarioForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +28,13 @@ public class UsuarioForm extends BaseForm {
 	private Date fechaRegistro;
 	private char estado;
 	private String theme;
+	private String segundonombre;
+	private String nickname;
+	private String direccion;
+	private String compania;
+	private String biografia;
+	private String idstipos;
+	private String idslistas;
 	private Set<ListaContactoForm> listaContactoses = new HashSet<ListaContactoForm>(0);
 	private Set<SolicitudForm> solicitudsForIdusuarioReceiver = new HashSet<SolicitudForm>(0);
 	private Set<AlbumForm> albums = new HashSet<AlbumForm>(0);
@@ -104,6 +114,21 @@ public class UsuarioForm extends BaseForm {
 	public Integer getIdusuario() {
 		return idusuario;
 	}
+	public String getIdstipos() {
+		return idstipos;
+	}
+	
+	public void setIdstipos(String idstipos) {
+		this.idstipos = idstipos;
+	}
+
+	public String getIdslistas() {
+		return idslistas;
+	}
+
+	public void setIdslistas(String idslistas) {
+		this.idslistas = idslistas;
+	}
 
 	public void setIdusuario(Integer idusuario) {
 		this.idusuario = idusuario;
@@ -117,6 +142,7 @@ public class UsuarioForm extends BaseForm {
 		this.situacionSentimental = situacionSentimental;
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -204,7 +230,46 @@ public class UsuarioForm extends BaseForm {
 	public void setTheme(String theme) {
 		this.theme = theme;
 	}
+	
+	public String getSegundonombre() {
+		return segundonombre;
+	}
 
+	public void setSegundonombre(String segundonombre) {
+		this.segundonombre = segundonombre;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public String getCompania() {
+		return compania;
+	}
+
+	public void setCompania(String compania) {
+		this.compania = compania;
+	}
+
+	public String getBiografia() {
+		return biografia;
+	}
+
+	public void setBiografia(String biografia) {
+		this.biografia = biografia;
+	}
 	public Set<ListaContactoForm> getListaContactoses() {
 		return listaContactoses;
 	}
@@ -212,7 +277,6 @@ public class UsuarioForm extends BaseForm {
 	public void setListaContactoses(Set<ListaContactoForm> listaContactoses) {
 		this.listaContactoses = listaContactoses;
 	}
-
 	public Set<SolicitudForm> getSolicitudsForIdusuarioReceiver() {
 		return solicitudsForIdusuarioReceiver;
 	}
@@ -221,7 +285,6 @@ public class UsuarioForm extends BaseForm {
 			Set<SolicitudForm> solicitudsForIdusuarioReceiver) {
 		this.solicitudsForIdusuarioReceiver = solicitudsForIdusuarioReceiver;
 	}
-
 	public Set<AlbumForm> getAlbums() {
 		return albums;
 	}
@@ -229,7 +292,6 @@ public class UsuarioForm extends BaseForm {
 	public void setAlbums(Set<AlbumForm> albums) {
 		this.albums = albums;
 	}
-
 	public Set<ContactoForm> getContactosForMyid() {
 		return contactosForMyid;
 	}
@@ -237,7 +299,6 @@ public class UsuarioForm extends BaseForm {
 	public void setContactosForMyid(Set<ContactoForm> contactosForMyid) {
 		this.contactosForMyid = contactosForMyid;
 	}
-
 	public Set<ComentarioForm> getComentarios() {
 		return comentarios;
 	}
@@ -245,7 +306,6 @@ public class UsuarioForm extends BaseForm {
 	public void setComentarios(Set<ComentarioForm> comentarios) {
 		this.comentarios = comentarios;
 	}
-
 	public Set<PublicacionForm> getPublicacionsForIdusuarioReceiver() {
 		return publicacionsForIdusuarioReceiver;
 	}
@@ -254,7 +314,6 @@ public class UsuarioForm extends BaseForm {
 			Set<PublicacionForm> publicacionsForIdusuarioReceiver) {
 		this.publicacionsForIdusuarioReceiver = publicacionsForIdusuarioReceiver;
 	}
-
 	public Set<SolicitudForm> getSolicitudsForIdusuario() {
 		return solicitudsForIdusuario;
 	}
@@ -262,7 +321,6 @@ public class UsuarioForm extends BaseForm {
 	public void setSolicitudsForIdusuario(Set<SolicitudForm> solicitudsForIdusuario) {
 		this.solicitudsForIdusuario = solicitudsForIdusuario;
 	}
-
 	public Set<ContactoForm> getContactosForIdusuario() {
 		return contactosForIdusuario;
 	}
@@ -270,7 +328,6 @@ public class UsuarioForm extends BaseForm {
 	public void setContactosForIdusuario(Set<ContactoForm> contactosForIdusuario) {
 		this.contactosForIdusuario = contactosForIdusuario;
 	}
-
 	public Set<GrupoUsuarioForm> getGrupoUsuarios() {
 		return grupoUsuarios;
 	}
@@ -278,7 +335,6 @@ public class UsuarioForm extends BaseForm {
 	public void setGrupoUsuarios(Set<GrupoUsuarioForm> grupoUsuarios) {
 		this.grupoUsuarios = grupoUsuarios;
 	}
-
 	public Set<LikeForm> getLikes() {
 		return likes;
 	}
@@ -286,7 +342,6 @@ public class UsuarioForm extends BaseForm {
 	public void setLikes(Set<LikeForm> likes) {
 		this.likes = likes;
 	}
-
 	public Set<IdiomaForm> getIdiomas() {
 		return idiomas;
 	}
@@ -294,7 +349,6 @@ public class UsuarioForm extends BaseForm {
 	public void setIdiomas(Set<IdiomaForm> idiomas) {
 		this.idiomas = idiomas;
 	}
-
 	public Set<EtiquetaForm> getEtiquetas() {
 		return etiquetas;
 	}
@@ -302,7 +356,6 @@ public class UsuarioForm extends BaseForm {
 	public void setEtiquetas(Set<EtiquetaForm> etiquetas) {
 		this.etiquetas = etiquetas;
 	}
-
 	public Set<PublicacionForm> getPublicacionsForIdusuario() {
 		return publicacionsForIdusuario;
 	}
@@ -311,7 +364,7 @@ public class UsuarioForm extends BaseForm {
 			Set<PublicacionForm> publicacionsForIdusuario) {
 		this.publicacionsForIdusuario = publicacionsForIdusuario;
 	}
-
+	
 	public Set<RolForm> getRoles() {
 		return roles;
 	}

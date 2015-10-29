@@ -1,6 +1,7 @@
 package com.network.social.web.controller;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.faces.bean.ManagedProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
@@ -44,7 +46,7 @@ public class TipoContactoController implements Serializable {
 	private void init(){
 		this.tipo=new TipoContactoForm();
 	}
-	
+		
 	public void create(){
 		LOGGER.info("## Registrar Tipo");
 		
@@ -90,6 +92,22 @@ public class TipoContactoController implements Serializable {
 		}
 	}
 	
+	public void setTipo(TipoContactoForm tipo) {
+		this.tipo = tipo;
+	}
+	public List<TipoContactoForm> getTipos() {
+		
+		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_TIPO_GETALL);
+		ResponseEntity<TipoContactoForm[]> data=restTemplate.getForEntity(url, TipoContactoForm[].class);
+		this.tipos=Arrays.asList(data.getBody());
+		return tipos;
+	}
+	public TipoContactoForm getTipo() {
+		return tipo;
+	}
+	public void setTipos(List<TipoContactoForm> tipos) {
+		this.tipos = tipos;
+	}
 	public RestTemplate getRestTemplate() {
 		return restTemplate;
 	}
@@ -102,18 +120,7 @@ public class TipoContactoController implements Serializable {
 	public void setPropiedadAdmin(PropiedadAdmin propiedadAdmin) {
 		this.propiedadAdmin = propiedadAdmin;
 	}
-	public TipoContactoForm getTipo() {
-		return tipo;
-	}
-	public void setTipo(TipoContactoForm tipo) {
-		this.tipo = tipo;
-	}
-	public List<TipoContactoForm> getTipos() {
-		return tipos;
-	}
-	public void setTipos(List<TipoContactoForm> tipos) {
-		this.tipos = tipos;
-	}
+	
 	
 	
 }
