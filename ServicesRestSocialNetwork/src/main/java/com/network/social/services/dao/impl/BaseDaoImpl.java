@@ -112,7 +112,7 @@ public abstract  class BaseDaoImpl<T,E extends Serializable> implements BaseDao<
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(readOnly=false)
 	public void update(T instance) throws Exception {
 		getSessionFactory().getCurrentSession().update(instance);
 	};

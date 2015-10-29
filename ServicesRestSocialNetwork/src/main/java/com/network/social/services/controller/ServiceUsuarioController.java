@@ -30,6 +30,7 @@ import com.network.social.domain.entities.Publicacion;
 import com.network.social.domain.entities.TipoContacto;
 import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.BResult;
+import com.network.social.domain.util.UtilUser;
 import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.PublicacionService;
 import com.network.social.services.service.UsuarioService;
@@ -65,9 +66,7 @@ public class ServiceUsuarioController {
     if (u!=null) {
     	 u.setEmail(u.getEmail());
          u.setClave(u.getClave());
-         u.setSituacionSentimental(u.getSituacionSentimental());
-         System.out.println(u.getSituacionSentimental().getIdsituacion());
-         u.roles=u.roles;
+         u.roles=UtilUser.ROLES_USER;
 	}
      return u;
      
@@ -135,10 +134,11 @@ public class ServiceUsuarioController {
 		return bResult;
     }
 	
-   @RequestMapping(value=PUT,method=RequestMethod.POST,consumes="application/json") 
+//   @RequestMapping(value=PUT,method=RequestMethod.POST,consumes="application/json") 
+   @RequestMapping(value=PUT,method=RequestMethod.POST) 
    private @ResponseBody BResult put(@RequestBody Usuario usuario){
 	 
-		LOGGER.info("## ServiceUsuarioController -->create");
+		LOGGER.info("## ServiceUsuarioController -->update");
 		BResult bResult =null;
 		try{
 			if(usuario!=null){
@@ -153,6 +153,7 @@ public class ServiceUsuarioController {
 				historial.setIdusuario(usuario.getIdusuario());
 				historial.setFechaActividad(new Date());
 
+				usuario.setSituacionSentimental(1);//momentaneo
 				Usuario compare=usuarioService.findById(usuario.getIdusuario());
 				
 				if (!compare.getSituacionSentimental().equals(usuario.getSituacionSentimental())) {
