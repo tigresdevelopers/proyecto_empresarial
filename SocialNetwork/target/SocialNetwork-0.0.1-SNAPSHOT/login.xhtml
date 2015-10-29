@@ -8,10 +8,11 @@
 <h:head>
 <title>Authentication</title>
 
-<link rel="stylesheet" href="${prop['config.app.resources.web']}css/login.css"/>
-<link rel="stylesheet" href="${prop['config.app.resources.web']}css/materialize.css"/>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" type="text/css" href="${prop['config.app.resources.web']}csslogin/login.css"/>
+<link rel="stylesheet" type="text/css" href="${prop['config.app.resources.web']}csslogin/bootstrap.css"/>
+<link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous"/>
 
+<meta name="viewport" content="width=device-width, user-scalable=no"/>
 </h:head>
 <h:body>
 
@@ -26,41 +27,56 @@
         </div>
         <h1>Go!</h1>
     </div>
-    <div class="main">
+    <div class="main" >
         <div class="login">
-            <form id="login" action="j_spring_security_check" method="post">
-				<h:outputText value="Usuario o Contraseña son incorretos!" rendered="#{param.erro}" style="color: darkred" />
-				<br/>
-				<p:inputText id="username" required="true" placeholder="Username" />
-				<p:password id="password" required="true" placeholder="Password" />
-				<h:inputHidden id="${_csrf.parameterName}" value="${_csrf.token}" />
-				<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> -->
-				<button type="submit" value="Login">Login</button>
-				<span class="form-toggle">No Registrado Todavia?</span>
-			</form>
-        </div>
-        <div class="register">
-          	
-        </div>
-    </div>
+           <form id="login" action="j_spring_security_check" method="post" >
+             <h:outputText value="Usuario o Contraseña son incorretos!" rendered="#{param.erro}" style="color: darkred" />
+             <br/>
+               <div class="form-group">
+                     <div class="input-group">
+                     <span class="input-group-addon">
+                       <i class="glyphicon glyphicon-user"></i>
+                     </span>
+                     <h:inputText id="username" required="true" styleClass="form-control" />
+                   </div>                    
+               </div>
 
+               <div class="form-group">
+                     <div class="input-group">
+                     <span class="input-group-addon">
+                       <i class="glyphicon glyphicon-user"></i>
+                     </span>
+                      <h:inputSecret id="password" required="true" styleClass="form-control"  />
+                   </div>                    
+               </div>
+               <h:inputHidden id="${_csrf.parameterName}" value="${_csrf.token}" />
+               <button type="submit" value="Login">Ingresar</button>
+               <span id="register-me" class="form-toggle">No estoy registrado?</span>
+           </form>
+		</div>
+    </div>
 </div>
 
-<script src="${prop['config.app.resources.web']}js/jquery.min.js"></script>
+<script src="${prop['config.app.resources.web']}csslogin/jquery.min.js"></script>
+<script src="${prop['config.app.resources.web']}csslogin/bootstrap.js"></script>
 <script>
- $(function() {
-  $('<img/>').attr('src', 'http://zaetalima.com/img/login.jpg').load(function() {
-    $('.bg-img').append($(this));
-    // simulate loading
-    setTimeout(function() { 
-     $('.contenedor').addClass('loaded'); 
-   },1)
-   //$(this).remove(); // prevent memory leaks as @benweet suggested
- });
-  $('.form-toggle').on('click', function() {
-    $('.contenedor').toggleClass('show-register')
-  })
-})
+$(function() {
+	  $('<img/>').attr('src', 'http://www.impulsonegocios.com/resources/original/IN_2015/-norberto20152/00tomorrolandbrasil230315.jpg').load(function() {
+	    $('.bg-img').append($(this));
+	    // simulate loading
+	    setTimeout(function() { 
+	     $('.contenedor').addClass('loaded'); 
+	   }, 1)
+	   //$(this).remove(); // prevent memory leaks as @benweet suggested
+	 });
+
+	$('#username').attr('placeholder','Usuario');
+	$('#password').attr('placeholder','Contraseña');
+		
+	$('#register-me').click(function(){
+		window.location.href="${request.contextPath}/register.tiger";	
+	 });
+	})
 </script>
           
 </h:body>

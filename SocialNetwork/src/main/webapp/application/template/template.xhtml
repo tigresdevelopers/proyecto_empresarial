@@ -99,10 +99,40 @@
 									</div>
 								</div>
 						</div>
+						
+					    <div class="col-xs-12 col-sm-12 col-lg-11">
+						<br/>
+						<div class="tabs tabs-primary">
+							<ul class="nav nav-tabs">
+								<li class="active">
+									<a href="#popular1" data-toggle="tab"><i class="fa fa-star"></i> Biografía</a>
+								</li>
+								<li>
+									<a href="#informacion" data-toggle="tab">Información</a>
+								</li>
+								<li>
+									<a href="#A" data-toggle="tab">Amigos</a>
+								</li>
+								<li>
+									<a href="#fotos" data-toggle="tab">Fotos</a>
+								</li>
+								<li>
+									<a href="#recent1" data-toggle="tab">Mas</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div id="popular1" class="tab-pane active">
+									<ui:insert name="body"></ui:insert>
+								</div>
+								<div id="informacion" class="tab-pane">
+									<ui:include src="/application/view/user/actualizar.xhtml" />
+								</div>
+							</div>	
+						</div>
+					  </div>
 							
 						<div class="col-md-12">
-							<ui:insert name="body">
-							</ui:insert>
+							
 						</div>
 				
 					</div>

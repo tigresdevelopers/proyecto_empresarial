@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Informacion de usuario</title>
+</h:head>
+<h:body>
+
+
+			<h:form class="form-horizontal" method="get">
+				<h4 class="mb-xlg">Informacion Personal</h4>
+				<fieldset>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileFirstName">Primer
+							nombre</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="profileFirstName" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileLastName">Segundo
+							nombre</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="profileLastName" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileAddress">Direccion</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="profileAddress" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileCompany">Compañia</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="profileCompany" />
+						</div>
+					</div>
+				</fieldset>
+				<hr class="dotted tall" />
+				<h4 class="mb-xlg">Acerca de ti</h4>
+				<fieldset>
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileBio">Biografia</label>
+						<div class="col-md-8">
+							<textarea class="form-control" rows="3" id="profileBio"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-xs-3 control-label mt-xs pt-none">Publico</label>
+						<div class="col-md-8">
+							<div
+								class="checkbox-custom checkbox-default checkbox-inline mt-xs">
+								<input type="checkbox" checked="" id="profilePublic" /> <label
+									for="profilePublic"></label>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				<hr class="dotted tall" />
+				<h4 class="mb-xlg">Nueva contraseña</h4>
+				<fieldset class="mb-xl">
+					<div class="form-group">
+						<label class="col-md-3 control-label" for="profileNewPassword">Nueva
+							contraseña</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="profileNewPassword" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label"
+							for="profileNewPasswordRepeat">Repetir nueva contraseña</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control"
+								id="profileNewPasswordRepeat" />
+						</div>
+					</div>
+				</fieldset>
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-md-9 col-md-offset-3">
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="reset" class="btn btn-default">Reset</button>
+						</div>
+					</div>
+				</div>
+
+			</h:form>
+
+
+</h:body>
+</html>
