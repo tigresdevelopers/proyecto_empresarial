@@ -16,7 +16,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+<!-- 	<mvc:annotation-driven /> -->
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -25,6 +25,16 @@
 	<context:component-scan base-package="com.network.social" />
 	
 	<!-- ResTemplate Configuration -->
+	<mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- Use the HibernateAware mapper instead of the default -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.network.social.web.config.HibernateAwareObjectMapper" />
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 	
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
         <property name="messageConverters">
