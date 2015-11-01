@@ -79,4 +79,22 @@ public class Situacion extends BaseBean {
 		this.usuarios = usuarios;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((idsituacion == null) ? 0 : idsituacion.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Situacion ? ((Situacion)obj).getIdsituacion()==this.idsituacion :false;
+	}
+	
+	
+	
+	
+
 }
