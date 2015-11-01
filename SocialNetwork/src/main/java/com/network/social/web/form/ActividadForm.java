@@ -3,7 +3,11 @@ package com.network.social.web.form;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.network.social.domain.entities.Comentario;
+import com.network.social.domain.entities.Publicacion;
 /**
  * 
  * @author :Alexander Chavez Simbron
@@ -65,6 +69,7 @@ public class ActividadForm extends BaseForm {
 		this.like = like;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -73,12 +78,29 @@ public class ActividadForm extends BaseForm {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion = new PublicacionForm();
+			this.publicacion.setIdpublicacion(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public ComentarioForm getComentario() {
 		return comentario;
 	}
 
 	public void setComentario(ComentarioForm comentario) {
 		this.comentario = comentario;
+	}
+	
+	@JsonSetter
+	public void setComentario(Integer id) {
+		if (id!=null) {
+			this.comentario = new ComentarioForm();
+			this.comentario.setIdcomentario(id);
+		}
 	}
 
 	public String getDescripcion() {

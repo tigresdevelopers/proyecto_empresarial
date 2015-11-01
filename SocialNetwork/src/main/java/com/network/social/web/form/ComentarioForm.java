@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -14,6 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idcomentario")
+@JsonIgnoreProperties({ "etiquetas","notificacioneses","likes_1","actividads","comentarios" })
 public class ComentarioForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -22,6 +26,7 @@ public class ComentarioForm extends BaseForm {
 	private PublicacionForm publicacion;
 	private AlbumForm album;
 	private UsuarioForm usuario;
+	private ComentarioForm comentarioParent;
 	private String contenido;
 	private Date fechaComentario;
 	private Integer likes;
@@ -29,7 +34,6 @@ public class ComentarioForm extends BaseForm {
 	private Set<NotificacionForm> notificacioneses = new HashSet<NotificacionForm>();
 	private Set<LikeForm> likes_1 = new HashSet<LikeForm>();
 	private Set<ActividadForm> actividads = new HashSet<ActividadForm>();
-	private ComentarioForm comentarioParent;
 	private List<ComentarioForm> comentarios;
 	
 	
@@ -71,6 +75,7 @@ public class ComentarioForm extends BaseForm {
 		this.idcomentario = idcomentario;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public MultimediaForm getMultimedia() {
 		return multimedia;
 	}
@@ -78,7 +83,15 @@ public class ComentarioForm extends BaseForm {
 	public void setMultimedia(MultimediaForm multimedia) {
 		this.multimedia = multimedia;
 	}
-
+	
+	@JsonSetter
+	public void setMultimedia(Integer id) {
+		if (id!=null) {
+			this.multimedia =new MultimediaForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -86,7 +99,15 @@ public class ComentarioForm extends BaseForm {
 	public void setPublicacion(PublicacionForm publicacion) {
 		this.publicacion = publicacion;
 	}
+	
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion = new PublicacionForm(id);
+		}
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public AlbumForm getAlbum() {
 		return album;
 	}
@@ -95,6 +116,14 @@ public class ComentarioForm extends BaseForm {
 		this.album = album;
 	}
 
+	@JsonSetter
+	public void setAlbum(Integer id) {
+		if (id!=null) {
+			this.album =new AlbumForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuario() {
 		return usuario;
 	}
@@ -103,6 +132,29 @@ public class ComentarioForm extends BaseForm {
 		this.usuario = usuario;
 	}
 
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		if (id!=null) {
+			this.usuario=new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
+	public ComentarioForm getComentarioParent() {
+		return comentarioParent;
+	}
+
+	public void setComentarioParent(ComentarioForm comentarioParent) {
+		this.comentarioParent = comentarioParent;
+	}
+	
+	@JsonSetter
+	public void setComentarioParent(Integer id) {
+		if (id!=null) {
+			this.comentarioParent = new ComentarioForm(id);
+		}
+	}
+	
 	public String getContenido() {
 		return contenido;
 	}
@@ -157,14 +209,6 @@ public class ComentarioForm extends BaseForm {
 
 	public void setActividads(Set<ActividadForm> actividads) {
 		this.actividads = actividads;
-	}
-
-	public ComentarioForm getComentarioParent() {
-		return comentarioParent;
-	}
-
-	public void setComentarioParent(ComentarioForm comentarioParent) {
-		this.comentarioParent = comentarioParent;
 	}
 
 	public List<ComentarioForm> getComentarios() {

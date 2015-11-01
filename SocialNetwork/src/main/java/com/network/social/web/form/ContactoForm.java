@@ -3,6 +3,8 @@ package com.network.social.web.form;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -57,6 +59,7 @@ public class ContactoForm extends BaseForm {
 		this.idcontacto = idcontacto;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public ListaContactoForm getListaContactos() {
 		return listaContactos;
 	}
@@ -64,7 +67,15 @@ public class ContactoForm extends BaseForm {
 	public void setListaContactos(ListaContactoForm listaContactos) {
 		this.listaContactos = listaContactos;
 	}
+	
+	@JsonSetter
+	public void setListaContactos(Integer id) {
+		if (id!=null) {
+			this.listaContactos = new ListaContactoForm(id);
+		}
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByMyid() {
 		return usuarioByMyid;
 	}
@@ -72,7 +83,15 @@ public class ContactoForm extends BaseForm {
 	public void setUsuarioByMyid(UsuarioForm usuarioByMyid) {
 		this.usuarioByMyid = usuarioByMyid;
 	}
+	
+	@JsonSetter
+	public void setUsuarioByMyid(Integer id) {
+		if (id!=null) {
+			this.usuarioByMyid = new UsuarioForm(id);
+		}
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByIdusuario() {
 		return usuarioByIdusuario;
 	}
@@ -81,6 +100,14 @@ public class ContactoForm extends BaseForm {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuario(Integer id) {
+		if (id!=null) {
+			this.usuarioByIdusuario =new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public TipoContactoForm getTipoContacto() {
 		return tipoContacto;
 	}
@@ -89,6 +116,13 @@ public class ContactoForm extends BaseForm {
 		this.tipoContacto = tipoContacto;
 	}
 
+	@JsonSetter
+	public void setTipoContacto(Integer id) {
+		if (id!=null) {
+			this.tipoContacto = new TipoContactoForm(id);
+		}
+	}
+	
 	public Date getFechaInicioAmistad() {
 		return fechaInicioAmistad;
 	}

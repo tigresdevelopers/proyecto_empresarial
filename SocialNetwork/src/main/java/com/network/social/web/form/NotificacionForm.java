@@ -1,6 +1,8 @@
 package com.network.social.web.form;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -48,6 +50,7 @@ public class NotificacionForm extends BaseForm {
 		this.idnotificacion = idnotificacion;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public LikeForm getLike() {
 		return like;
 	}
@@ -56,6 +59,14 @@ public class NotificacionForm extends BaseForm {
 		this.like = like;
 	}
 
+	@JsonSetter
+	public void setLike(Integer id) {
+		if (id!=null) {
+			this.like = new LikeForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -64,6 +75,14 @@ public class NotificacionForm extends BaseForm {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion = new PublicacionForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public ComentarioForm getComentario() {
 		return comentario;
 	}
@@ -72,6 +91,13 @@ public class NotificacionForm extends BaseForm {
 		this.comentario = comentario;
 	}
 
+	@JsonSetter
+	public void setComentario(Integer id) {
+		if (id!=null) {
+			this.comentario = new ComentarioForm(id);
+		}
+	}
+	
 	public Character getLeido() {
 		return leido;
 	}

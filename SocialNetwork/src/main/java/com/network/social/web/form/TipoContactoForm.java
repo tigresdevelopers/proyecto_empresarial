@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idtipoContacto")
+@JsonIgnoreProperties({"multimedias","contactos","publicacions"})
 public class TipoContactoForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 

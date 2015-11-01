@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -14,6 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idlike")
+@JsonIgnoreProperties({"notificacioneses","actividads"})
 public class LikeForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -60,6 +64,7 @@ public class LikeForm extends BaseForm {
 		this.idlike = idlike;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public MultimediaForm getMultimedia() {
 		return multimedia;
 	}
@@ -68,6 +73,14 @@ public class LikeForm extends BaseForm {
 		this.multimedia = multimedia;
 	}
 
+	@JsonSetter
+	public void setMultimedia(Integer id) {
+		if (id!=null) {
+			this.multimedia = new MultimediaForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -76,6 +89,14 @@ public class LikeForm extends BaseForm {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion=new PublicacionForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public AlbumForm getAlbum() {
 		return album;
 	}
@@ -84,6 +105,14 @@ public class LikeForm extends BaseForm {
 		this.album = album;
 	}
 
+	@JsonSetter
+	public void setAlbum(Integer id) {
+		if (id!=null) {
+			this.album = new AlbumForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public ComentarioForm getComentario() {
 		return comentario;
 	}
@@ -92,6 +121,14 @@ public class LikeForm extends BaseForm {
 		this.comentario = comentario;
 	}
 
+	@JsonSetter
+	public void setComentario(Integer id) {
+		if (id!=null) {
+			this.comentario = new ComentarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuario() {
 		return usuario;
 	}
@@ -100,6 +137,13 @@ public class LikeForm extends BaseForm {
 		this.usuario = usuario;
 	}
 
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		if (id!=null) {
+			this.usuario = new UsuarioForm(id);
+		}
+	}
+	
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}

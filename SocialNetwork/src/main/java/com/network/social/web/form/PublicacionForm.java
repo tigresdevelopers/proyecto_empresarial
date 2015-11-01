@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -12,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idpublicacion")
+@JsonIgnoreProperties({ "etiquetas","albums","actividads","multimedias","likes_1","comentarios","notificacioneses" })
 public class PublicacionForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -82,6 +86,7 @@ public class PublicacionForm extends BaseForm {
 		this.idpublicacion = idpublicacion;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public ListaContactoForm getListaContactos() {
 		return listaContactos;
 	}
@@ -89,7 +94,15 @@ public class PublicacionForm extends BaseForm {
 	public void setListaContactos(ListaContactoForm listaContactos) {
 		this.listaContactos = listaContactos;
 	}
+	
+	@JsonSetter
+	public void setListaContactos(Integer id) {
+		if (id!=null) {
+			this.listaContactos = new ListaContactoForm(id);
+		}
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByIdusuarioReceiver() {
 		return usuarioByIdusuarioReceiver;
 	}
@@ -98,6 +111,14 @@ public class PublicacionForm extends BaseForm {
 		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuarioReceiver(Integer id) {
+		if (id!=null) {
+			this.usuarioByIdusuarioReceiver = new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByIdusuario() {
 		return usuarioByIdusuario;
 	}
@@ -106,6 +127,14 @@ public class PublicacionForm extends BaseForm {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuario(Integer id) {
+		if (id!=null) {
+			this.usuarioByIdusuario = new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public TipoContactoForm getTipoContacto() {
 		return tipoContacto;
 	}
@@ -113,7 +142,15 @@ public class PublicacionForm extends BaseForm {
 	public void setTipoContacto(TipoContactoForm tipoContacto) {
 		this.tipoContacto = tipoContacto;
 	}
+	
+	@JsonSetter
+	public void setTipoContacto(Integer id) {
+		if (id!=null) {
+			this.tipoContacto = new TipoContactoForm(id);
+		}
+	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public GrupoForm getGrupo() {
 		return grupo;
 	}
@@ -122,6 +159,13 @@ public class PublicacionForm extends BaseForm {
 		this.grupo = grupo;
 	}
 
+	@JsonSetter
+	public void setGrupo(Integer id) {
+		if (id!=null) {
+			this.grupo = new GrupoForm(id);
+		}
+	}
+	
 	public String getContenido() {
 		return contenido;
 	}

@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -12,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idalbum")
+@JsonIgnoreProperties({	"multimedias","likes_1v","comentarios"})
 public class AlbumForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -62,6 +66,7 @@ public class AlbumForm extends BaseForm {
 		this.idalbum = idalbum;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -69,7 +74,15 @@ public class AlbumForm extends BaseForm {
 	public void setPublicacion(PublicacionForm publicacion) {
 		this.publicacion = publicacion;
 	}
-
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion =new PublicacionForm();
+			this.publicacion.setIdpublicacion(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuario() {
 		return usuario;
 	}
@@ -77,7 +90,14 @@ public class AlbumForm extends BaseForm {
 	public void setUsuario(UsuarioForm usuario) {
 		this.usuario = usuario;
 	}
-
+	@JsonSetter
+	public void setUsuario(Integer id) {
+		if (id!=null) {
+			this.usuario =new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public GrupoForm getGrupo() {
 		return grupo;
 	}
@@ -86,6 +106,12 @@ public class AlbumForm extends BaseForm {
 		this.grupo = grupo;
 	}
 
+	@JsonSetter
+	public void setGrupo(Integer id) {
+		if (id!=null) {
+			this.grupo =new GrupoForm(id);
+		}
+	}
 	public String getNombre() {
 		return nombre;
 	}

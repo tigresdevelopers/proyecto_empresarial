@@ -4,6 +4,8 @@ package com.network.social.web.form;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -48,6 +50,7 @@ public class SolicitudForm extends BaseForm {
 		this.idsolicitud = idsolicitud;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByIdusuarioReceiver() {
 		return usuarioByIdusuarioReceiver;
 	}
@@ -56,6 +59,14 @@ public class SolicitudForm extends BaseForm {
 		this.usuarioByIdusuarioReceiver = usuarioByIdusuarioReceiver;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuarioReceiver(Integer id) {
+		if (id!=null) {
+			this.usuarioByIdusuarioReceiver = new UsuarioForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public UsuarioForm getUsuarioByIdusuario() {
 		return usuarioByIdusuario;
 	}
@@ -64,6 +75,13 @@ public class SolicitudForm extends BaseForm {
 		this.usuarioByIdusuario = usuarioByIdusuario;
 	}
 
+	@JsonSetter
+	public void setUsuarioByIdusuario(Integer id) {
+		if (id!=null) {
+			this.usuarioByIdusuario = new UsuarioForm(id);
+		}
+	}
+	
 	public Date getFechaSolicitud() {
 		return fechaSolicitud;
 	}

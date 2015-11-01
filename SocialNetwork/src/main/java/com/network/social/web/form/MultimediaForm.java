@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
@@ -12,6 +15,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @time   :17:25 P.M
  */
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idmultimedia")
+@JsonIgnoreProperties({ "comentarios","likes_1","etiquetas" })
 public class MultimediaForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -69,6 +73,7 @@ public class MultimediaForm extends BaseForm {
 		this.idmultimedia = idmultimedia;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public PublicacionForm getPublicacion() {
 		return publicacion;
 	}
@@ -77,6 +82,14 @@ public class MultimediaForm extends BaseForm {
 		this.publicacion = publicacion;
 	}
 
+	@JsonSetter
+	public void setPublicacion(Integer id) {
+		if (id!=null) {
+			this.publicacion = new PublicacionForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public AlbumForm getAlbum() {
 		return album;
 	}
@@ -85,6 +98,14 @@ public class MultimediaForm extends BaseForm {
 		this.album = album;
 	}
 
+	@JsonSetter
+	public void setAlbum(Integer id) {
+		if (id!=null) {
+			this.album = new AlbumForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public ListaContactoForm getListaContactos() {
 		return listaContactos;
 	}
@@ -93,6 +114,14 @@ public class MultimediaForm extends BaseForm {
 		this.listaContactos = listaContactos;
 	}
 
+	@JsonSetter
+	public void setListaContactos(Integer id) {
+		if (id!=null) {
+			this.listaContactos = new ListaContactoForm(id);
+		}
+	}
+	
+	@JsonIdentityReference(alwaysAsId=true)
 	public TipoContactoForm getTipoContacto() {
 		return tipoContacto;
 	}
@@ -101,6 +130,13 @@ public class MultimediaForm extends BaseForm {
 		this.tipoContacto = tipoContacto;
 	}
 
+	@JsonSetter
+	public void setTipoContacto(Integer id) {
+		if (id!=null) {
+			this.tipoContacto = new TipoContactoForm(id);
+		}
+	}
+	
 	public String getNombreArchivo() {
 		return nombreArchivo;
 	}
