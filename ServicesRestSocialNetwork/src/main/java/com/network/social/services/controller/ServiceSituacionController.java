@@ -1,6 +1,11 @@
 package com.network.social.services.controller;
 
-import static com.network.social.services.util.RestURIConstants.*;
+import static com.network.social.services.util.RestURIConstants.DELETE;
+import static com.network.social.services.util.RestURIConstants.GET;
+import static com.network.social.services.util.RestURIConstants.GET_ALL;
+import static com.network.social.services.util.RestURIConstants.POST;
+import static com.network.social.services.util.RestURIConstants.PUT;
+import static com.network.social.services.util.RestURIConstants.SITUACION;
 
 import java.util.List;
 
@@ -14,12 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Situacion;
 import com.network.social.domain.util.BResult;
-import com.network.social.services.service.ActividadService;
 import com.network.social.services.service.SituacionService;
-import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
 /**
  * @author :Alexander Chavez Simbron

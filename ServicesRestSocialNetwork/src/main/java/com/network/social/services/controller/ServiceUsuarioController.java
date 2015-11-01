@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.network.social.domain.entities.Actividad;
 import com.network.social.domain.entities.Publicacion;
+import com.network.social.domain.entities.Situacion;
 import com.network.social.domain.entities.TipoContacto;
 import com.network.social.domain.entities.Usuario;
 import com.network.social.domain.util.BResult;
@@ -36,8 +37,6 @@ import com.network.social.services.service.PublicacionService;
 import com.network.social.services.service.UsuarioService;
 import com.network.social.services.util.UtilEnum;
 import com.network.social.services.util.UtilEnum.ESTADO_OPERACION;
-
-import oracle.net.aso.p;
 /**
  * @author :Alexander Chavez Simbron
  * @date   :21/10/2015
@@ -153,10 +152,10 @@ public class ServiceUsuarioController {
 				historial.setIdusuario(usuario.getIdusuario());
 				historial.setFechaActividad(new Date());
 
-				usuario.setSituacionSentimental(1);//momentaneo
 				Usuario compare=usuarioService.findById(usuario.getIdusuario());
+				Situacion currentSituacion=compare.getSituacionSentimental();
 				
-				if (!compare.getSituacionSentimental().equals(usuario.getSituacionSentimental())) {
+				if (!currentSituacion.equals(usuario.getSituacionSentimental())){
 					
 					publicacion.setContenido(UtilEnum.MESSAGES.PUBLICACION_SITUACION_UPDATE_USUARIO.getMessage());
 					historial.setDescripcion(UtilEnum.MESSAGES.ACTIVIDAD_SITUACION_UPDATE_USUARIO.getMessage());
