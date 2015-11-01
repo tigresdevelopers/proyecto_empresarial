@@ -4,14 +4,24 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
  * @date   :19/10/2015
  * @time   :17:25 P.M
  */
-//@JsonSerialize
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idusuario")
+@JsonIgnoreProperties(
+{	"listaContactoses","solicitudsForIdusuarioReceiver","albums","contactosForMyid",
+	"comentarios","publicacionsForIdusuarioReceiver","solicitudsForIdusuario",
+	"contactosForIdusuario","grupoUsuarios","likes","idiomas","etiquetas",
+	"publicacionsForIdusuario"
+})
 public class UsuarioForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
@@ -134,6 +144,7 @@ public class UsuarioForm extends BaseForm {
 		this.idusuario = idusuario;
 	}
 
+	@JsonIdentityReference(alwaysAsId=true)
 	public SituacionForm getSituacionSentimental() {
 		return situacionSentimental;
 	}
@@ -142,7 +153,14 @@ public class UsuarioForm extends BaseForm {
 		this.situacionSentimental = situacionSentimental;
 	}
 
-	
+	@JsonSetter
+	public void setSituacionSentimental(Integer id) {
+		if (id!=null) {
+			this.situacionSentimental = new SituacionForm();
+			this.situacionSentimental.setIdsituacion(id);
+		}
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

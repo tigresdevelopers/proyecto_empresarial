@@ -1,12 +1,16 @@
 package com.network.social.web.form;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
  * @date   :19/10/2015
  * @time   :17:25 P.M
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idactividad")
 public class ActividadForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 	

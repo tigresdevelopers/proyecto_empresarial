@@ -5,14 +5,17 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 /**
  * 
  * @author :Alexander Chavez Simbron
  * @date   :19/10/2015
  * @time   :17:25 P.M
  */
-//@JsonSerialize
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class,property="idlistaContactos")
+@JsonIgnoreProperties({"multimedias","contactos","publicacions","usuario"})
 public class ListaContactoForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 

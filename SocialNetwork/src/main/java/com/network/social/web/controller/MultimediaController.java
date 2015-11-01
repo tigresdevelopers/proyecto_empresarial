@@ -17,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
-import com.network.social.web.form.AlbumForm;
 import com.network.social.web.form.MultimediaForm;
 import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;

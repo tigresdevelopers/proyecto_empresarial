@@ -11,13 +11,10 @@ import javax.faces.bean.ManagedProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.network.social.web.config.PropiedadAdmin;
 import com.network.social.web.config.UtilEnum.ESTADO_OPERACION;
-import com.network.social.web.form.SituacionForm;
 import com.network.social.web.form.UsuarioForm;
 import com.network.social.web.jsf.util.Faces;
 import com.network.social.web.spring.security.PasswordEncoder;
@@ -51,34 +48,11 @@ public class UsuarioController {
 	public void init(){
 		
 		if (Faces.getSessionAttribute(Faces.ATTRIBUTE_USER)!=null) {
-			UsuarioForm aux=(UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER);
-//			this.usuario=aux;
-			this.usuario=new UsuarioForm();
-			usuario.setIdusuario(aux.getIdusuario());
-			usuario.setNombre(aux.getNombre());
-			usuario.setApePaterno(aux.getApePaterno());
-			usuario.setApePaterno(aux.getApeMaterno());
-			usuario.setFechaNacimiento(aux.getFechaNacimiento());
-			usuario.setEmail(aux.getEmail());
-			usuario.setClave(aux.getClave());
-			usuario.setCelular(aux.getCelular());
-			usuario.setSexo(aux.getSexo());
-			usuario.setFechaRegistro(aux.getFechaRegistro());
-			usuario.setEstado(aux.getEstado());
-			usuario.setTheme(aux.getTheme());
-			
-//			usuario.setSituacionSentimental(new SituacionForm(1));
-			usuario.setSegundonombre(aux.getSegundonombre());
-			usuario.setDireccion(aux.getDireccion());
-			usuario.setCompania(aux.getCompania());
-			usuario.setBiografia(aux.getBiografia());
-			usuario.setNickname(aux.getNickname());
-			usuario.setIdstipos(aux.getIdstipos());
-			usuario.setIdslistas(aux.getIdslistas());
+			this.usuario=(UsuarioForm)Faces.getSessionAttribute(Faces.ATTRIBUTE_USER);
 		}else{
 			usuario=new UsuarioForm();			
 		}
-		System.out.println("iusuairo inciiado");
+		System.out.println("usuario controller iniciado");
 	}
 	
 	public void create(){
@@ -127,8 +101,9 @@ public class UsuarioController {
 		
         
 		String url=propiedadAdmin.getURIServiceAdmin(URI.SERVICE_USUARIO_UPDATE);
-//		BResult result=restTemplate.postForObject(url, new HttpEntity<UsuarioForm>(this.usuario,headers),BResult.class);
-		BResult result=restTemplate.postForObject(url,this.usuario,BResult.class);
+		
+		BResult result=restTemplate.postForObject(url, new HttpEntity<UsuarioForm>(this.usuario),BResult.class);
+//		BResult result=restTemplate.postForObject(url,this.usuario,BResult.class);
 		if (result.getEstado()==ESTADO_OPERACION.EXITO.getCodigo()) {
 			LOGGER.info("## usuario actualizado");
 			Faces.addMessage("Exito", "Usuairo actualizado", FacesMessage.SEVERITY_INFO);
