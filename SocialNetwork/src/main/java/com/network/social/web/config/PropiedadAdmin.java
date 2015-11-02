@@ -26,7 +26,8 @@ import com.network.social.web.spring.util.AdminConfigPropiedad.URL_BASE;
 @Service("propiedadAdmin")
 @PropertySources({ @PropertySource(value = "classpath:/configuration/configIP.properties", ignoreResourceNotFound = false),
 	@PropertySource(value = "classpath:/configuration/configUri.properties", ignoreResourceNotFound = false),
-	@PropertySource(value="classpath:/configuration/links/navigationLinks.properties",ignoreResourceNotFound=false)
+	@PropertySource(value="classpath:/configuration/links/navigationLinks.properties",ignoreResourceNotFound=false),
+	@PropertySource(value="classpath:/configuration/messages/messages-es.properties",ignoreResourceNotFound=false)
 })
 public class PropiedadAdmin {
 

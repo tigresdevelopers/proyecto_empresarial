@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.network.social.domain.entities.Comentario;
-import com.network.social.domain.entities.Publicacion;
 /**
  * 
  * @author :Alexander Chavez Simbron

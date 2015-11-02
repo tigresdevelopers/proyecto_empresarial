@@ -9,7 +9,7 @@ import javax.persistence.Embeddable;
  * @time   :17:25 P.M
  */
 @Embeddable
-public class GrupoUsuarioIdForm extends BaseBean {
+public class GrupoUsuarioIdForm extends BaseForm {
 	private static final long serialVersionUID = 1L;
 
 	private Integer idgrupo;
